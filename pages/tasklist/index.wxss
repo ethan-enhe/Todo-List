@@ -1,1 +1,40 @@
 /* pages/tasklist/index.wxss */
+.title{
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    color:white;
+    background-color: palevioletred;
+    text-transform: uppercase;
+    fill: none;
+    stroke-width: 4px;
+    justify-content: center;
+    animation: stroke 6s infinite linear;
+}
+
+@keyframes stroke {
+    0%{
+        transform:scale(1.2);
+        transform:rotate(20);
+
+    }
+    15%{
+        transform:scale(1);
+        transform:rotate(0);
+    }
+    100%{
+            transform:scale(1.2);
+            transform:rotate(20);
+    }
+}
+/** 标题动态特效 */
+
+.task_normal{
+background-color: blue;
+}
+/** 一般任务 蓝色调*/
+.task_urgent{
+background-color: red;
+}
+/**紧急任务 红色调*/

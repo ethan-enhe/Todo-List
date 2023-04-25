@@ -1,1 +1,8 @@
-<view>tasklist</view>
+
+
+<view class="title" >tasklist</view>
+<block wx:for="{{[1,2,3,4]}}" wx:for-item="item">
+<view class="task_normal">{{item}}</view>
+<view style="height:10px">  </view>
+</block>
+
