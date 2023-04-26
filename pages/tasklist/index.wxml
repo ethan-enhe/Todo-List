@@ -1,8 +1,14 @@
 
 
 <view class="title" >tasklist</view>
-<block wx:for="{{[1,2,3,4]}}" wx:for-item="item">
-<view class="task_normal">{{item}}</view>
-<view style="height:10px">  </view>
+
+<block wx:if="{{true}}"wx:for="{{tasklist}}" >
+<movable-area style="width:100%;height:80px">
+<movable-view direction="horizonal" class="task_normal">
+<view class="task_name_style">任务名: {{item.name}}</view>
+<view>開始時間:{{item.start_time}}</view>
+</movable-view>
+</movable-area>
+
 </block>
 

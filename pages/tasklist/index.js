@@ -10,20 +10,8 @@ export class task{
 }
 
 Page({
-
-    /**
-     * 页面的初始数据
-     */
-   
-    data: {
-      Tasklist : [ 1,2,3,4
-      ]
-    },
-
-
-
-
-
+    
+ 
     /**
      * 生命周期函数--监听页面加载
      */
@@ -82,8 +70,27 @@ Page({
 })
 
 Component({
-  
+      /**
+     * 页面的初始数据
+     */
+   data:{
+      tasklist:[
+         {
+            name:"睡覺",
+            start_time:"一萬年以後",
+            due_time:"十萬年以後"
 
+         },
+         {
+            name:"写作业",
+            start_time:"一萬年以後",
+            due_time:"十萬年以後"
+
+         }
+
+
+      ]
+   },
   pageLifetimes: {
      
          

@@ -4,8 +4,8 @@
     align-items: center;
     font-size: 32px;
     font-weight: bold;
-    color:white;
-    background-color: palevioletred;
+    color:	#FA8072;
+    background-color:#FFDAB9;
     text-transform: uppercase;
     fill: none;
     stroke-width: 4px;
@@ -31,10 +31,26 @@
 /** 标题动态特效 */
 
 .task_normal{
-background-color: blue;
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    height:70px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:black;
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: linear-gradient(to bottom right,#FF6347,#FFE4E1);
+    box-shadow:5px 1px 1px 2px #e0e0e0
 }
 /** 一般任务 蓝色调*/
 .task_urgent{
 background-color: red;
 }
 /**紧急任务 红色调*/
+.task_name_style{
+    color:white;
+    stroke-width:5px;
+    font-weight: bold;
+    margin:10px;
+
+}
