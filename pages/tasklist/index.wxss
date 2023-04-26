@@ -30,7 +30,7 @@
 }
 /** 标题动态特效 */
 
-.task_normal{
+.task_urgent{
     display: flex;
     align-items: center;
     width:fit-content;
@@ -43,8 +43,17 @@
     box-shadow:5px 1px 1px 2px #e0e0e0
 }
 /** 一般任务 蓝色调*/
-.task_urgent{
-background-color: red;
+.task_normal{
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    height:70px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:black;
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);
+    box-shadow:5px 1px 1px 2px #e0e0e0
 }
 /**紧急任务 红色调*/
 .task_name_style{
