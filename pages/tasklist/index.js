@@ -66,7 +66,8 @@ Page({
      */
     onShareAppMessage() {
 
-    }
+    },
+   
 })
 
 Component({
@@ -78,14 +79,15 @@ Component({
          {
             name:"睡覺",
             start_time:"一萬年以後",
-            due_time:"十萬年以後"
+            due_time:"十萬年以後",
+            id:0
 
          },
          {
             name:"写作业",
             start_time:"一萬年以後",
-            due_time:"十萬年以後"
-
+            due_time:"十萬年以後",
+            id:1
          }
 
 
@@ -106,11 +108,8 @@ Component({
         })
       }
     },
-
-
-
-
   },
+  methods:{
    save_task_data(){
        /**
         * 将任务数据缓存至本地
@@ -123,12 +122,26 @@ Component({
    },
     init_task(){
 
+    },
+    long_press:function(e){
+        wx.showModal({
+          title: '确定删除吗',
+          content: '',
+          complete: (res) => {
+            if (res.cancel) {
+            }
+            if (res.confirm) {
+             let arr = this.data.tasklist;
+             arr.map((val,i)=>{
+                 if(val.id === e.currentTarget.dataset.id){
+                     arr.splice(i,1);}
+             });
+             this.setData({tasklist:arr});
+            }
+          }
+        })
     }
+}
     
-
-
-
-
-
-
+    
 })

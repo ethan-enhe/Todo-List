@@ -1,14 +1,25 @@
 
-
 <view class="title" >tasklist</view>
+
+<view class = "page">
+
+
+<view class="head">待完成任务 {{tasklist.length}} 项</view>
+
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >
 <movable-area style="width:100%;height:80px">
-<movable-view direction="horizontal" class="task_normal">
+<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}"  style="display:block" > 
 <view class="task_name_style">任务名: {{item.name}}</view>
-<view>開始時間:{{item.start_time}}</view>
+<view class="task_name_style">開始時間:{{item.start_time}}</view>
 </movable-view>
 </movable-area>
-
 </block>
+</view>
 
+
+
+
+<view wx:if="{{tasklist.length === 0}}" class="title-1"  style="display:block">
+...nothing to do today!😁😁
+</view>

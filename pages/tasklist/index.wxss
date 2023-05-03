@@ -12,6 +12,21 @@
     justify-content: center;
     animation: stroke 6s infinite linear;
 }
+.title-1{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    height:250px;
+    font-weight: bold;
+    color:#FFDAB9;
+    background-color: coral;
+    text-transform: uppercase;
+    fill: none;
+    stroke-width: 4px;
+    justify-content: center;
+   
+}
+
 
 @keyframes stroke {
     0%{
@@ -62,4 +77,19 @@
     font-weight: bold;
     margin:10px;
 
+}
+.head{
+    padding: 10px 15px;
+    font-size:30px;
+    font-weight: bold;
+    color: #1992F5;
+}
+
+.page {
+    min-height: 100%;
+    background-color: #f8f8f8;
+     
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    overflow: hidden;
+    line-height: 1.5em;
 }
