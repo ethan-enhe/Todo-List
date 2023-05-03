@@ -57,9 +57,10 @@
     background: linear-gradient(to bottom right,#FF6347,#FFE4E1);
     box-shadow:5px 1px 1px 2px #e0e0e0
 }
-/** 一般任务 蓝色调*/
+
 .task_normal{
     display: flex;
+    flex-direction: row;
     align-items: center;
     width:fit-content;
     height:70px;
@@ -67,14 +68,15 @@
     border-radius: 5px;
     color:black;
     font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);
+    /*background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);*/
     box-shadow:5px 1px 1px 2px #e0e0e0
 }
-/**紧急任务 红色调*/
+
 .task_name_style{
-    color:white;
+    display: flex;
+    flex-direction: row;
+    color:#00CED1;
     stroke-width:5px;
-    font-weight: bold;
     margin:10px;
 
 }
@@ -83,6 +85,12 @@
     font-size:30px;
     font-weight: bold;
     color: #1992F5;
+}
+.image_view{
+    height:30px;
+    width:30px;
+    display: flex;
+
 }
 
 .page {

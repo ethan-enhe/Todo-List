@@ -8,8 +8,9 @@
 
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >
-<movable-area style="width:100%;height:80px">
-<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}"  style="display:block" > 
+<movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
+<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}"   > 
+<image src="/image/tasks.png" class="image_view" ></image>
 <view class="task_name_style">任务名: {{item.name}}</view>
 <view class="task_name_style">開始時間:{{item.start_time}}</view>
 </movable-view>
