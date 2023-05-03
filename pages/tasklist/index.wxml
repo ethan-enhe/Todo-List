@@ -1,9 +1,7 @@
 
+
+<view style="background-image: url(/image/tasklist_bkg.jpg);height:600px;width:100%;" >
 <view class="title" >tasklist</view>
-
-<view class = "page">
-
-
 <view class="head">待完成任务 {{tasklist.length}} 项</view>
 
 
@@ -16,11 +14,12 @@
 </movable-view>
 </movable-area>
 </block>
-</view>
+
 
 
 
 
 <view wx:if="{{tasklist.length === 0}}" class="title-1"  style="display:block">
 ...nothing to do today!😁😁
+</view>
 </view>

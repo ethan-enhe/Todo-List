@@ -5,6 +5,7 @@
     font-size: 32px;
     font-weight: bold;
     color:	#FA8072;
+    opacity:0.8;
     background-color:#FFDAB9;
     text-transform: uppercase;
     fill: none;
@@ -75,7 +76,8 @@
 .task_name_style{
     display: flex;
     flex-direction: row;
-    color:#00CED1;
+    color:white;
+    
     stroke-width:5px;
     margin:10px;
 
@@ -83,8 +85,7 @@
 .head{
     padding: 10px 15px;
     font-size:30px;
-    font-weight: bold;
-    color: #1992F5;
+    color: white;
 }
 .image_view{
     height:30px;
@@ -94,9 +95,8 @@
 }
 
 .page {
-    min-height: 100%;
-    background-color: #f8f8f8;
-     
+    height:600px;
+
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
     overflow: hidden;
     line-height: 1.5em;
