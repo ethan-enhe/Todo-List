@@ -1,7 +1,30 @@
 
 
-<view style="background-image: url(/image/tasklist_bkg.jpg);height:600px;width:100%;" >
+<view style="background-image: url(/image/tasklist_bkg.jpg);height:1000px;width:100%;" >
 <view class="title" >tasklist</view>
+<view class="date-choose shrink" >
+  <view class="data-month">{{dateMonth}}</view>
+  <swiper class="date-choose-swiper" indicator-dots="{{false}}" current="{{swiperCurrent}}" bindchange="dateSwiperChange">
+    <block wx:for="{{dateList}}" wx:for-item="date" wx:key="date.id">
+      <swiper-item class="swiper-item">
+        <view class="weekday">
+          <block wx:for-item="weekday" wx:for="{{dateListArray}}" wx:key="{{index}}">
+            <text class="week">{{weekday}}</text>
+          </block>
+        </view>
+        <view class="dateday">
+          <block wx:for="{{date.days}}" wx:for-item="day" wx:key="{{day.id}}">
+            <text class="day" id="{{day.id}}" data-id="{{day.id}}" bindtap="chooseDate">
+              <text class="{{dateCurrentStr==day.id?'active':''}}">{{day.day}}</text>
+            </text>
+          </block>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 时间组件-->
+
 <view class="head">待完成任务 {{tasklist.length}} 项</view>
 
 
