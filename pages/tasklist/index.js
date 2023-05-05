@@ -10,7 +10,9 @@ export class task{
 }
 var utils = require('../../utils/util.js')
 Page({
-
+  current_sort:0,
+  sort_banner:"按时间排序",
+  /**default sort by time :0  by priority:1*/
   data:{
     tasklist:[
        {
@@ -51,6 +53,7 @@ Page({
       var that = this;
       // this.loading();
       this.initDate(); // 日历组件程序
+      this.sort_by_time();
     },
 
     /**
@@ -127,7 +130,7 @@ Page({
       var d = new Date();
       var month = utils.addZero(d.getMonth()+1),
           day = utils.addZero(d.getDate());
-      for(var i=-5; i<=5; i++) {
+      for(var i=0; i<=10; i++) {
         this.updateDate(utils.DateAddDay(d, i*7));//多少天之后的
       }
       this.setData({
@@ -196,17 +199,6 @@ Page({
     },
   
 
-
-
-
-
-
-
-
-
-
-
-
    save_task_data(){
        /**
         * 将任务数据缓存至本地
@@ -238,7 +230,35 @@ Page({
             }
           }
         })
+    },
+    sort_by_time(){
+      this.setData({"sort_banner":"按时间排序"})
+        this.data.tasklist.sort(function(a,b){
+          if(a.due_time === b.duetime){return 0;}  
+          else if(a.due_time < b.due_time){return 1;}
+          else{return 0;}
+         } );
+    },
+    sort_by_prior(){
+      this.setData({"sort_banner":"按优先级排序"})
+      this.data.tasklist.sort(function(a,b){
+        if(a.due_time === b.duetime){return 0;}  
+        else if(a.due_time < b.due_time){return 1;}
+        else{return 0;}
+       } );
+    },
+    change_sort(){
+       this.setData({current_sort:this.data.current_sort ^ 1});
+      if(this.data.current_sort === 1){
+        this.sort_by_prior();
+      }
+      else{
+        this.sort_by_time();
+      }
+
     }
+    
+
 
 
   }

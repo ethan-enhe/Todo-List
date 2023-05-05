@@ -24,9 +24,10 @@
   </swiper>
 </view>
 <!-- 时间组件-->
-
-<view class="head">待完成任务 {{tasklist.length}} 项</view>
-
+<view style="display:flex;flex-direction: row;">
+<view class="head"> {{dateCurrentStr}}  待完成任务 {{tasklist.length}} 项</view>
+<button class="sort_btn" bindtap="change_sort"> {{sort_banner}} </button>
+</view>
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >
 <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
