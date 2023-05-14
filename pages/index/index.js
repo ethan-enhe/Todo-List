@@ -1,4 +1,8 @@
 Page({
+    onShow(){
+    },
+    onload(){
+    }
 })
 Component({
   pageLifetimes: {

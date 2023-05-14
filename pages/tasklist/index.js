@@ -4,7 +4,7 @@ export class task{
        this.name = name;
        this.id = id;
        this.expired = expired;
-       this.due_date = due_date;
+       this.due_date = due_date
        this.begin_date = begin_date;
   }
 }
@@ -30,6 +30,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        app=getApp();
 
     },
 
