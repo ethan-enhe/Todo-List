@@ -1,14 +1,48 @@
 
 
+<view style="background-image: url(/image/tasklist_bkg.jpg);height:1000px;width:100%;" >
 <view class="title" >tasklist</view>
+<view class="date-choose shrink" >
+  <view class="data-month">{{dateMonth}}</view>
+  <swiper class="date-choose-swiper" indicator-dots="{{false}}" current="{{swiperCurrent}}" bindchange="dateSwiperChange">
+    <block wx:for="{{dateList}}" wx:for-item="date" wx:key="date.id">
+      <swiper-item class="swiper-item">
+        <view class="weekday">
+          <block wx:for-item="weekday" wx:for="{{dateListArray}}" wx:key="{{index}}">
+            <text class="week">{{weekday}}</text>
+          </block>
+        </view>
+        <view class="dateday">
+          <block wx:for="{{date.days}}" wx:for-item="day" wx:key="{{day.id}}">
+            <text class="day" id="{{day.id}}" data-id="{{day.id}}" bindtap="chooseDate">
+              <text class="{{dateCurrentStr==day.id?'active':''}}">{{day.day}}</text>
+            </text>
+          </block>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 时间组件-->
+
+<view class="head">待完成任务 {{tasklist.length}} 项</view>
+
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >
-<movable-area style="width:100%;height:80px">
-<movable-view direction="horizontal" class="task_normal">
+<movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
+<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}"   > 
+<image src="/image/tasks.png" class="image_view" ></image>
 <view class="task_name_style">任务名: {{item.name}}</view>
-<view>開始時間:{{item.start_time}}</view>
+<view class="task_name_style">開始時間:{{item.start_time}}</view>
 </movable-view>
 </movable-area>
-
 </block>
 
+
+
+
+
+<view wx:if="{{tasklist.length === 0}}" class="title-1"  style="display:block">
+...nothing to do today!😁😁
+</view>
+</view>

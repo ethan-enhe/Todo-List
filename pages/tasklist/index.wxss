@@ -4,7 +4,8 @@
     align-items: center;
     font-size: 32px;
     font-weight: bold;
-    color:	#FA8072;
+    color:	white;
+    opacity:0.8;
     background-color:#FFDAB9;
     text-transform: uppercase;
     fill: none;
@@ -12,6 +13,21 @@
     justify-content: center;
     animation: stroke 6s infinite linear;
 }
+.title-1{
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    height:400px;
+    font-size: 50px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:#FFDAB9;
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  
+    
+   
+}
+
 
 @keyframes stroke {
     0%{
@@ -42,24 +58,108 @@
     background: linear-gradient(to bottom right,#FF6347,#FFE4E1);
     box-shadow:5px 1px 1px 2px #e0e0e0
 }
-/** 一般任务 蓝色调*/
+
 .task_normal{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    width:fit-content;
+    width:90%;
     height:70px;
     margin:10rpx;
     border-radius: 5px;
     color:black;
     font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);
+    /*background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);*/
     box-shadow:5px 1px 1px 2px #e0e0e0
 }
-/**紧急任务 红色调*/
+
 .task_name_style{
+    display: flex;
+    flex-direction: row;
     color:white;
+    
     stroke-width:5px;
-    font-weight: bold;
     margin:10px;
 
+}
+.head{
+    padding: 10px 15px;
+    font-size:18px;
+    color: white;
+}
+.image_view{
+    height:30px;
+    width:30px;
+    display: flex;
+
+}
+
+.page {
+    height:600px;
+
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    overflow: hidden;
+    line-height: 1.5em;
+}
+/** 以下为时间组件*/
+
+
+.date-choose {
+  background: #fff;
+  opacity:0.7;
+  overflow: hidden;
+  box-shadow:0px 1px 1px 0px rgba(198,198,198,0.5);
+  height: 260rpx;
+  backdrop-filter: blur(50px);
+ 
+}
+.data-month {
+  width: 2.6em;
+  align-items: center;
+  padding: .35rem .35rem;
+  text-align: center;
+  /* box-shadow: 2px 0 5px rgba(0,0,0,.4); */
+  color: #333;
+  font-size: 48rpx;
+}
+.date-choose-swiper {
+  flex-grow: 1;
+  height: 4em;
+}
+.swiper-item {
+  display: flex;
+  flex-direction: column;
+}
+.weekday, .dateday {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+.week, .day {
+  width: 14.286%;
+  flex-basis: 14.286%;
+}
+.week{
+  color: #999;
+  font-size: 24rpx;
+}
+.day text {
+  position: relative;
+  color: #009bff;
+  background-color: wheat;
+}
+.day .active:before {/* 圈圈 */
+  content: "";
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 2px solid #000; */
+  border-radius: 100%;
+  background: #E0F3FF;
+  z-index: -1;
 }
