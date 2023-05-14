@@ -8,7 +8,7 @@ App({
             this.importance = importance; //任务重要性，重要为1，否则为0
             this.start_time = start_time; //如果已经确定，则为一个Date对象，否则为null
             this.due_time = due_time; //任务截止时间，果已经确定，则为一个Date对象，否则为null
-            this.id = Math.random(); //任务分配的id，直接随机值，冲突概率很小
+            this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
         }
     },
     tasklist: {
