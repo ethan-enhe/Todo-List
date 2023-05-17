@@ -1,5 +1,6 @@
 // app.js
 var utils = require('./utils/util.js')
+
 App({
     task: class {
         constructor(desc, duration, importance, start_time, due_time) {
@@ -11,6 +12,9 @@ App({
             this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
         }
     },
+    
+
+    
     tasklist: {
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
             this.list.push(task_data);
@@ -42,5 +46,6 @@ App({
     onHide() {
         this.tasklist.save_tasks();
     },
+    
 })
 

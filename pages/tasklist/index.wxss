@@ -27,7 +27,20 @@
     
    
 }
-
+@keyframes upcoming{
+  0%{
+    opacity:0;
+    height:20%;
+  }
+  50%{
+    opacity:0.5;
+    height:50%;
+  }
+  100%{
+    opacity:1.0;
+    height:100%;
+  }
+}
 
 @keyframes stroke {
     0%{
@@ -148,7 +161,7 @@
 .day text {
   position: relative;
   color: #009bff;
-  background-color: wheat;
+ 
 }
 .day .active:before {/* 圈圈 */
   content: "";
@@ -160,6 +173,37 @@
   transform: translate(-50%, -50%);
   /* border: 2px solid #000; */
   border-radius: 100%;
-  background: #E0F3FF;
+  background:lightblue;
+   
   z-index: -1;
 }
+.table{
+ width:40px;
+height:100%;
+ background-color:lightblue;
+ padding:10px;
+ justify-content: space-between;
+ margin-right:30px;
+ animation: upcoming 3s 1 linear;
+
+}
+.visualize{
+  align-items: center;
+  text-align: center;
+ color:white;
+ text-transform: uppercase;
+ font-size:20px;
+ opacity:90%;
+ height:30px;
+}
+
+
+.banner1{
+  align-items: center;
+  text-align: center;
+ color:white;
+ text-transform: uppercase;
+ font-size:15px;
+ opacity:90%;
+}
+

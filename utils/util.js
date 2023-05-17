@@ -58,7 +58,13 @@ const copyObj = (obj = {}) => { //变量先置空
     } else newobj = obj;
     return newobj;
 }
-module.exports = {
+
+
+
+
+
+  module.exports = {
+
   formatTime: formatTime,
   formatDate: formatDate,
   DateAddDay: DateAddDay,
@@ -67,4 +73,3 @@ module.exports = {
   addZero: formatNumber,
   deepcopy: copyObj,
 }
-

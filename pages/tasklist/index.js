@@ -1,15 +1,21 @@
 // pages/tasklist/index.js
-export class task {
-    constructor(name, id, expired = false, begin_date = none, due_date = none) {
-        this.name = name;
-        this.id = id;
-        this.expired = expired;
-        this.due_date = due_date
-        this.begin_date = begin_date;
-    }
-}
+
+
 var utils = require('../../utils/util.js')
+
+
 Page({
+
+    task: class {
+        constructor(desc, duration, importance, start_time, due_time) {
+            this.desc = desc; //任务名称
+            this.duration = duration; //任务持续时间，单位分钟，Number类型
+            this.importance = importance; //任务重要性，重要为1，否则为0
+            this.start_time = start_time; //如果已经确定，则为一个Date对象，否则为null
+            this.due_time = due_time; //任务截止时间，果已经确定，则为一个Date对象，否则为null
+            this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
+        }
+    },
 
     data: {
         tasklist: [{
@@ -38,7 +44,7 @@ Page({
         dateCurrentStr: '', // 正选择日期的 id
         dateMonth: '3月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
-
+        hashmap:new Map()
     },
 
     /**
@@ -190,10 +196,17 @@ Page({
         this.setData({
             dateCurrentStr: str
         });
+    
+     
+        
+       
+ 
     },
 
+     load_data(date){
+          
 
-
+     },
 
 
 
@@ -215,9 +228,11 @@ Page({
 
     },
     init_task() {
+        let tsk = app.tasklist.get_tasks() ;
 
     },
     long_press: function (e) {
+        console.log(this.data.dateCurrent);
         wx.showModal({
             title: '确定删除吗',
             content: '',
