@@ -35,7 +35,7 @@ function DateAddDay(d, days) {
 // 获得本周周日的日期
 function FirstDayInThisWeek(d) {
   var d = new Date(d);
-  console.log(formatTime(DateAddDay(d, 0 - d.getDay())));
+  //console.log(formatTime(DateAddDay(d, 0 - d.getDay())));
   return DateAddDay(d, 0 - d.getDay());
 }
 
@@ -62,9 +62,7 @@ const copyObj = (obj = {}) => { //变量先置空
 
 
 
-
   module.exports = {
-
   formatTime: formatTime,
   formatDate: formatDate,
   DateAddDay: DateAddDay,

@@ -2,11 +2,11 @@
 
 
 var utils = require('../../utils/util.js')
-
+const app = getApp();
 
 Page({
 
-    task: class {
+    task : class {
         constructor(desc, duration, importance, start_time, due_time) {
             this.desc = desc; //任务名称
             this.duration = duration; //任务持续时间，单位分钟，Number类型
@@ -18,25 +18,8 @@ Page({
     },
 
     data: {
-        tasklist: [{
-                name: "睡覺",
-                start_time: "一萬年以後",
-                due_time: "十萬年以後",
-                id: 0
-
-            },
-            {
-                name: "写作业",
-                start_time: "一萬年以後",
-                due_time: "十萬年以後",
-                id: 1
-            }
-
-
-        ],
+        tasklist: [],
         /**临时数据，演示用 */
-
-
         /**时间组件 */
         dateList: [], // 日历数据数组
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
@@ -51,16 +34,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        var that = this;
         // this.loading();
         this.initDate(); // 日历组件程序
+        
+
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+        console.log(this.data.tasklist)
     },
 
     /**
@@ -68,6 +52,8 @@ Page({
      */
     onShow() {
 
+        this.data.tasklist.push(new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12")));
+       this.setData({tasklist:this.data.tasklist});
 
         //每个页面的tab栏实例是不一样的
         //在切换到的页面里还需要设置那个页面的tab实例的选中项目。
@@ -78,7 +64,6 @@ Page({
         })
       }
     },
-
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -125,6 +110,7 @@ Page({
 
     /**时间选择组件 */
     initDate() {
+        
         var d = new Date();
         var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
@@ -190,32 +176,17 @@ Page({
     },
     // 点击日历某日
     chooseDate(e) {
-
         var str = e.currentTarget.dataset.id;
-        console.log(e.currentTarget.dataset.id);
+       // console.log(e.currentTarget.dataset.id);
         this.setData({
             dateCurrentStr: str
         });
-    
-     
-        
-       
- 
     },
 
-     load_data(date){
-          
+     load_data(){
+           app.tasklist.get_tasks();
 
      },
-
-
-
-
-
-
-
-
-
 
     save_task_data() {
         /**
@@ -228,11 +199,12 @@ Page({
 
     },
     init_task() {
-        let tsk = app.tasklist.get_tasks() ;
-
+       
     },
+    
     long_press: function (e) {
-        console.log(this.data.dateCurrent);
+        let t = new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12"));
+        this.
         wx.showModal({
             title: '确定删除吗',
             content: '',
@@ -252,9 +224,9 @@ Page({
             }
         })
     }
-
-
 })
+
+
 
 /*加上有bug，不加tabbar有问题
 Component({

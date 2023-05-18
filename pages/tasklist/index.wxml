@@ -30,10 +30,11 @@
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >
 <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
-<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}"   > 
+<movable-view direction="horizontal" class="task_normal" bindlongpress="long_press" data-id = "{{item.id}}" out-of-bounds="true"  > 
 <image src="/image/tasks.png" class="image_view" ></image>
-<view class="task_name_style">任务名: {{item.name}}</view>
-<view class="task_name_style">開始時間:{{item.start_time}}</view>
+<view class="task_name_style">任务名: {{item.desc}}</view>
+<view class="task_name_style;">开始时间:{{item.start_time.toString()}}</view>
+<view class="task_name_style">结束时间:{{item.due_time.toString()}}</view>
 </movable-view>
 </movable-area>
 
@@ -42,7 +43,7 @@
 </block>
 
 <block>
-<view class="visualize">Visualizing </view>
+<view class="visualize" wx:if="{{tasklist.length !== 0}}">Visualizing </view>
 
 <view style="display:flex;flex-direction:row;">
 <view wx:for="{{tasklist}}" >
@@ -59,6 +60,6 @@
 
 
 <view wx:if="{{tasklist.length === 0}}" class="title-1"  style="display:block">
-...nothing to do today!😁😁
+...nothing 
 </view>
 </view>
