@@ -2,6 +2,7 @@
 var utils = require('./utils/util.js')
 
 App({
+//   globalData: 'I am global data',
 
     tasklist: {
 

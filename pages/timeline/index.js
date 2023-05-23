@@ -32,6 +32,10 @@ Page({
           selected: 1
         })
       }
+      var taskdata=getApp().tasklist.get_tasks();
+      this.setData({tasklist:taskdata})
+
+
     },
 
     /**
