@@ -30,15 +30,15 @@
 @keyframes upcoming{
   0%{
     opacity:0;
-    height:20%;
+    transform:scaleY(0.1);
   }
   50%{
     opacity:0.5;
-    height:50%;
+    transform:scaleY(0.5);
   }
   100%{
     opacity:1.0;
-    height:100%;
+    transform:scaleY(1);
   }
 }
 
@@ -179,7 +179,6 @@
 }
 .table{
  width:40px;
-height:100%;
  background-color:lightblue;
  padding:10px;
  justify-content: space-between;

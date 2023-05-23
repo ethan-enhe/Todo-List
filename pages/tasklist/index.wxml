@@ -50,7 +50,7 @@
    <view style="display:flex;flex-direction: column; height:200px;">
    <view class="banner1">六月三日</view>
    <view class="banner1">1</view>
-   <view  style="display:flex;flex-direction: column; " class="table" >{{item.name}}</view>
+   <view  style="display:flex;flex-direction: column;height:{{item.id}} " class="table" ></view>
   </view>
 </view>
 </view>

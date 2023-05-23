@@ -2,7 +2,7 @@
 
 
 var utils = require('../../utils/util.js')
-const app = getApp();
+const appinstance = getApp();
 
 Page({
 
@@ -203,8 +203,9 @@ Page({
     },
     
     long_press: function (e) {
+        console.log(appinstance.tasklist.get_tasks()); 
         let t = new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12"));
-        this.
+
         wx.showModal({
             title: '确定删除吗',
             content: '',
