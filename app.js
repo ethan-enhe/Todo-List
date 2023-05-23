@@ -37,7 +37,6 @@ App({
         this.tasklist.load_tasks();
         // console.log("1231");
         // this.tasklist.insert_task(new utils.task("123",123,1,new Date("October 13, 1975 11:13:00"),null));
-        // this.tasklist.insert_task(new utils.task("123",123,1,new Date("October 13, 1975 11:13:00"),null));
     },
     onHide() {
         this.tasklist.save_tasks();

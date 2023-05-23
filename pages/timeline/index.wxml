@@ -2,9 +2,9 @@
 
 <view class="cu-timeline">
   <view class="cu-time">昨天</view>
-    <view wx:for="{{tasklist}}" class="cu-item text-blue cuIcon-squarecheckfill">
-        <view class="content bg-gray shadow-blur">
-            {{item.desc}}
+    <view wx:for="{{tasklist}}" wx:key="id" class=" cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':'text-grey cuIcon-roundclose'}}">
+        <view class="{{item.importance?'bg-red':'bg-gray'}} content shadow-blur">
+            <view>{{item.desc}}</view>
         </view>
     </view>
 <!-- <view class="cu-item cur cuIcon-noticefill">
