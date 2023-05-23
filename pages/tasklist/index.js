@@ -27,7 +27,7 @@ Page({
         dateCurrentStr: '', // 正选择日期的 id
         dateMonth: '5月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
-        hashmap:{"19700101":[]}
+        hashmap:{"1970-01-01":[]}
     },
 
     /**
@@ -37,6 +37,7 @@ Page({
         // this.loading();
         this.initDate(); // 日历组件程序
         app.tasklist.load_tasks();
+        this.load_data();
     },
 
     /**
@@ -116,7 +117,7 @@ Page({
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
-            swiperCurrent: 6,
+            swiperCurrent: 5,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
             dateMonth: month + '月',
@@ -172,10 +173,17 @@ Page({
             return arg.year + '-' + arg.month + '-' + arg.day + ' 00:00:00';
         }
     },
-    
-    parse_date(s){
-       return  s.getFullYear().toString() + s.getMonth().toString() + s.getDay().toString();
+    addleadzero(s) {
+        if (s.length === 2) {return s
+          }
+        else {return "0" + s
+        }
     },
+    
+     parse_date(s){
+        return  s.getFullYear().toString() +"-" +this.addleadzero((s.getMonth() + 1).toString()) + "-"+this.addleadzero( s.getDate().toString());
+    },
+    
 
 
      load_data(){
@@ -189,7 +197,9 @@ Page({
                map[this.parse_date(task.start_time)].push(this.encodetask(task));
                }
                else{
-                map[this.parse_date(task.start_time)] .push(this.encodetask(task));
+                   if(! map[this.parse_date(task.start_time)].includes(this.encodetask(task))){
+                map[this.parse_date(task.start_time)].push(this.encodetask(task));
+                   }
                }
            
            };
@@ -232,21 +242,33 @@ Page({
             }
         })
     },
-    encodetask(s) {
-        let l = "";
-        l += encodeURIComponent(escape(Object.values(s)))
-        console.log(l)
-        return l;
+ 
+   encodetask(s) {
+        return encodeURIComponent(JSON.stringify(s))
+    
+    },
+    
+    decodetask(s) {
+        return JSON.parse(decodeURIComponent(s))
     },
     // 点击日历某日
     chooseDate(e) {
-      
-        this.load_data();
         var str = e.currentTarget.dataset.id;
         this.setData({
             dateCurrentStr: str
         });
+        if(Object.keys(this.data.hashmap).includes(this.data.dateCurrentStr)){
+            this.setData({tasklist:this.data.hashmap[this.data.dateCurrentStr]});
+        }
+        else{
+            this.setData({tasklist:[]});
+        }
+
+       
         
+  },
+  update(){
+    this.load_data();
   }
 }
 )

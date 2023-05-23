@@ -177,6 +177,22 @@
    
   z-index: -1;
 }
+
+
+.active1:before {/* 圈圈 */
+  content: "";
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 2px solid #000; */
+  border-radius: 100%;
+  background:red;
+   
+  z-index: -1;
+}
 .table{
  width:40px;
  background-color:lightblue;
