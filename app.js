@@ -31,7 +31,7 @@ App({
         load_tasks() {
             this.list = wx.getStorageSync("tasklist");
             console.log("获取之前记录条数 " + this.list.length);
-            if(typeof this.list == "undefined"){
+            if(typeof list === "undefined"){
                 this.list =new Array();
             }
         }

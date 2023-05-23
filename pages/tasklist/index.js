@@ -2,7 +2,7 @@
 
 
 var utils = require('../../utils/util.js')
-const appinstance = getApp();
+var app=getApp();
 
 Page({
 
@@ -27,7 +27,7 @@ Page({
         dateCurrentStr: '', // 正选择日期的 id
         dateMonth: '5月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
-        hashmap:new Map()
+        hashmap:{"19700101":[]}
     },
 
     /**
@@ -36,7 +36,7 @@ Page({
     onLoad(options) {
         // this.loading();
         this.initDate(); // 日历组件程序
-        appinstance.tasklist.load_tasks();
+        app.tasklist.load_tasks();
     },
 
     /**
@@ -173,23 +173,28 @@ Page({
         }
     },
     
-    parse_date(date){
+    parse_date(s){
        return  s.getFullYear().toString() + s.getMonth().toString() + s.getDay().toString();
     },
 
 
      load_data(){
-           for(task in appinstance.tasklist.load_tasks()){
-             
-               if(!this.data.hashmap.has(parse_date(task.start_time))){
-               this.data.hashmap.set(parse_date(task.start_time),[]);
-               this.data.hashmap.get(parse_date(task.start_time)).push(this.encodetask(task));
+           var map = this.data.hashmap;
+           console.log(Object.keys(map));
+           for(let i=0;i< app.tasklist.get_tasks().length;i++){
+               var task = app.tasklist.get_tasks()[i];
+               if(!Object.keys(map).includes((this.parse_date(task.start_time)))){
+                   
+               map[this.parse_date(task.start_time)] = [];
+               map[this.parse_date(task.start_time)].push(this.encodetask(task));
                }
                else{
-                      let arr = this.data.hashmap.get(parse_date(task.start_time));
+                map[this.parse_date(task.start_time)] .push(this.encodetask(task));
                }
-           }
-           this.setData({hashmap:this.data.hashmap});
+           
+           };
+          
+           this.setData({hashmap:map});
             
      },
 
@@ -208,7 +213,6 @@ Page({
     },
     
     long_press: function (e) {
-        
         wx.showModal({
             title: '确定删除吗',
             content: '',
@@ -228,29 +232,21 @@ Page({
             }
         })
     },
-    encodetask(task) {
+    encodetask(s) {
         let l = "";
-        l += encodeURIComponent(escape(s.desc))
-        l += encodeURIComponent(escape(s.importance))
-        l += encodeURIComponent(escape(s.importance))
-        l += encodeURIComponent(escape(s.start_time.toDateString()))
-        l += encodeURIComponent(escape(s.due_time.toDateString()))
-        l = btoa(l)
+        l += encodeURIComponent(escape(Object.values(s)))
         console.log(l)
         return l;
     },
     // 点击日历某日
     chooseDate(e) {
-        console.log(appinstance.tasklist.load_tasks())
-        appinstance.tasklist.insert_task(new utils.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12")));
+      
         this.load_data();
-        console.log(this.data.hashmap);
         var str = e.currentTarget.dataset.id;
-       // console.log(e.currentTarget.dataset.id);
         this.setData({
             dateCurrentStr: str
         });
-
+        
   }
 }
 )
