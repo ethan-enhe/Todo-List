@@ -1,28 +1,11 @@
-<view class="padding bg-white">任务数量：{{ tasklist.length }}</view>
+<!-- <view class="padding bg-white">任务数量：{{ tasklist.length }}</view> -->
 
-<view class="cu-timeline">
-  <view class="cu-time">昨天</view>
-    <view wx:for="{{tasklist}}" wx:key="id" class=" cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':'text-grey cuIcon-roundclose'}}">
-        <view class="{{item.importance?'bg-red':'bg-gray'}} content shadow-blur">
-            <view>{{item.desc}}</view>
-        </view>
+<view wx:for="{{showdata}}" class="cu-timeline">
+<view class="padding text-xl">{{item.year_month}}</view>
+<view wx:for="{{item.taskdata}}" wx:key="id" class=" cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':'text-grey cuIcon-roundclose'}}">
+    <view class="{{item.importance?'bg-blue light':'bg-gray'}}  padding-sm radius shadow-blur">
+        <view class="cu-tag bg-blue radius">{{item.day}} 日</view>
+        <view class="margin-top">{{item.desc}}</view>
     </view>
-<!-- <view class="cu-item cur cuIcon-noticefill">
-    <view class="content bg-green shadow-blur">
-      <text>22:22</text> 【广州市】快件已到达地球
-    </view>
-  </view>
-  <view class="cu-item text-grey cuIcon-evaluate_fill">
-    <view class="content bg-grey shadow-blur">
-      这是第一次，我家的铲屎官走了这么久。
-    </view>
-  </view>
-  <view class="cu-item text-blue">
-    <view class="bg-blue content">
-      <text>20:00</text> 【月球】快件已到达月球，准备发往地球
-    </view>
-    <view class="bg-cyan content">
-      <text>10:00</text> 【银河系】快件已到达银河系，准备发往月球
-    </view>
-  </view> -->
+</view>
 </view>

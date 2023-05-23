@@ -46,17 +46,8 @@ function Type(obj) {
 }
 
 //深拷贝
-const copyObj = (obj = {}) => { //变量先置空
-    let newobj = null;
-
-    //判断是否需要继续进行递归
-    if (typeof (obj) == 'object' && obj !== null) {
-        newobj = obj instanceof Array ? [] : {}; //进行下一层递归克隆
-        for (var i in obj) {
-            newobj[i] = copyObj(obj[i])
-        } //如果不是对象直接赋值
-    } else newobj = obj;
-    return newobj;
+function copyObj(obj){
+  return JSON.parse(JSON.stringify(obj))
 }
 
 var task = class {
@@ -73,12 +64,16 @@ var task = class {
 };
 
 
+function getYearMonth(d) {
+    return d.getFullYear().toString() + " 年 " + (d.getMonth()+1).toString() + " 月";
+}
 
 
 module.exports = {
     formatTime: formatTime,
     formatDate: formatDate,
     DateAddDay: DateAddDay,
+    getYearMonth: getYearMonth,
     FirstDayInThisWeek: FirstDayInThisWeek,
     type: Type,
     addZero: formatNumber,

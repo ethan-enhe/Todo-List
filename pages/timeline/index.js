@@ -34,18 +34,32 @@ Page({
                 selected: 1
             })
         }
-        app.tasklist.insert_task(new utils.task("123",123,true,new Date("October 13, 1975 11:13:00"),null,false));
-        app.tasklist.insert_task(new utils.task("123",123,true,new Date("October 13, 1975 11:13:00")+10000,null,true));
-        app.tasklist.insert_task(new utils.task("123",123,false,new Date("October 13, 1975 11:13:00")+10000000,null,false));
+        app.tasklist.insert_task(new utils.task("淑芬作业",123,true,new Date("2022-11-12"),null,false));
+        app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2022-12-12"),null,true));
+        app.tasklist.insert_task(new utils.task("热学作业",123,false,new Date("2022-1-12"),null,false));
 
-        var taskdata = app.tasklist.get_tasks_copy().sort(function(a,b){return a.start_date-b.start_date});
+        var taskdata = app.tasklist.get_tasks_copy().sort(function(a,b){
+            return Date.parse(a.start_time)-Date.parse(b.start_time);
+        });
 
         var showdata=new Array();
+        var lastmonth={};
         for(var i=0;i<taskdata.length;i++){
-
+            // taskdata[i].desc+= (new Date(taskdata[i].start_time)).getFullYear();
+            var time=new Date(taskdata[i].start_time);
+            var tmp=utils.getYearMonth(time);
+            taskdata[i].day=time.getDate();
+            if(tmp!=lastmonth.year_month){
+                if(i)showdata.push(lastmonth);
+                lastmonth={year_month:tmp,
+                    taskdata:[taskdata[i]]};
+            }
+            else lastmonth.taskdata.push(taskdata[i]);
         }
+        if(lastmonth!={})showdata.push(lastmonth);
         this.setData({
-            tasklist: taskdata
+            tasklist: taskdata,
+            showdata: showdata
         })
 
 

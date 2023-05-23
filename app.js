@@ -1,4 +1,5 @@
 // app.js
+const { deepcopy } = require('./utils/util.js');
 var utils = require('./utils/util.js')
 
 App({
@@ -20,6 +21,7 @@ App({
             return this.list;
         },
         get_tasks_copy() { //返回列表的深拷贝，可以随意修改
+            // console.log(utils.deepcopy(this.list));
             return utils.deepcopy(this.list);
         },
         save_tasks() {
@@ -35,8 +37,6 @@ App({
     },
     onLaunch() {
         this.tasklist.load_tasks();
-        // console.log("1231");
-        // this.tasklist.insert_task(new utils.task("123",123,1,new Date("October 13, 1975 11:13:00"),null));
     },
     onHide() {
         this.tasklist.save_tasks();
