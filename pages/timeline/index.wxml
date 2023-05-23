@@ -2,10 +2,11 @@
 
 <view wx:for="{{showdata}}" class="cu-timeline">
 <view class="padding text-xl">{{item.year_month}}</view>
-<view wx:for="{{item.taskdata}}" wx:key="id" class=" cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':'text-grey cuIcon-roundclose'}}">
-    <view class="{{item.importance?'bg-blue light':'bg-gray'}}  padding-sm radius shadow-blur">
-        <view class="cu-tag bg-blue radius">{{item.day}} 日</view>
-        <view class="margin-top">{{item.desc}}</view>
+<view wx:for="{{item.taskdata}}" wx:key="id" class="text-xl cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill')}}">
+    <view class="bg-gray padding-sm radius shadow-blur">
+        <view class="cu-tag bg-grey round margin-right-sm">{{item.day}} 日</view>
+        <text class="margin-top">{{item.desc}}</text>
     </view>
 </view>
 </view>
+<view class="bg-white padding-xl"></view>

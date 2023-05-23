@@ -36,6 +36,8 @@ Page({
         }
         app.tasklist.insert_task(new utils.task("淑芬作业",123,true,new Date("2022-11-12"),null,false));
         app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2022-12-12"),null,true));
+        app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2022-12-13"),null,true));
+        app.tasklist.insert_task(new utils.task("线代作业啊大受打击啊老大加拉数据库捡垃圾的反馈阿达flak设计的flak十分谨慎考虑降低发生六点",123,true,new Date("2022-12-14"),null,true));
         app.tasklist.insert_task(new utils.task("热学作业",123,false,new Date("2022-1-12"),null,false));
 
         var taskdata = app.tasklist.get_tasks_copy().sort(function(a,b){
