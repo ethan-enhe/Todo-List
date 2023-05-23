@@ -2,19 +2,10 @@
 var utils = require('./utils/util.js')
 
 App({
-    task: class {
-        constructor(desc, duration, importance, start_time, due_time) {
-            this.desc = desc; //任务名称
-            this.duration = duration; //任务持续时间，单位分钟，Number类型
-            this.importance = importance; //任务重要性，重要为1，否则为0
-            this.start_time = start_time; //如果已经确定，则为一个Date对象，否则为null
-            this.due_time = due_time; //任务截止时间，果已经确定，则为一个Date对象，否则为null
-            this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
-        }
-    },
 
     tasklist: {
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
+            console.log(task_data);
             this.list.push(task_data);
         },
         delete_task(task_id) { //传入taskid，删除对应任务。
@@ -36,14 +27,18 @@ App({
         load_tasks() {
             this.list = wx.getStorageSync("tasklist");
             console.log("获取之前记录条数 " + this.list.length);
+            if (this.list.length == 0)
+                this.list = new Array();
         }
     },
     onLaunch() {
         this.tasklist.load_tasks();
+        // console.log("1231");
+        // this.tasklist.insert_task(new utils.task("123",123,1,new Date("October 13, 1975 11:13:00"),null));
+        // this.tasklist.insert_task(new utils.task("123",123,1,new Date("October 13, 1975 11:13:00"),null));
     },
     onHide() {
         this.tasklist.save_tasks();
     },
-    
-})
 
+})

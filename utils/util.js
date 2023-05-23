@@ -59,6 +59,18 @@ const copyObj = (obj = {}) => { //变量先置空
     return newobj;
 }
 
+var task = class {
+    constructor(desc, duration, importance, start_time, due_time) {
+        console.log("construct");
+        this.desc = desc; //任务名称
+        this.duration = duration; //任务持续时间，单位分钟，Number类型
+        this.importance = importance; //任务重要性，重要为1，否则为0
+        this.start_time = start_time; //如果已经确定，则为一个Date对象，否则为null
+        this.due_time = due_time; //任务截止时间，果已经确定，则为一个Date对象，否则为null
+        this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
+    }
+};
+
 
 
 
@@ -70,4 +82,5 @@ const copyObj = (obj = {}) => { //变量先置空
   type: Type,
   addZero: formatNumber,
   deepcopy: copyObj,
+  task:task,
 }
