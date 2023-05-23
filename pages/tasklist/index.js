@@ -25,7 +25,7 @@ Page({
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
         dateCurrent: new Date(), // 正选择的当前日期
         dateCurrentStr: '', // 正选择日期的 id
-        dateMonth: '3月', // 正显示的月份
+        dateMonth: '5月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
         hashmap:new Map()
     },
@@ -36,23 +36,21 @@ Page({
     onLoad(options) {
         // this.loading();
         this.initDate(); // 日历组件程序
-        
-
+        appinstance.tasklist.load_tasks();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        console.log(this.data.tasklist)
+        
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
-        this.data.tasklist.push(new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12")));
+        
        this.setData({tasklist:this.data.tasklist});
 
         //每个页面的tab栏实例是不一样的
@@ -114,7 +112,7 @@ Page({
         var d = new Date();
         var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
-        for (var i = -1; i <= 30; i++) {
+        for (var i = -1; i <= 10; i++) {
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
@@ -174,18 +172,25 @@ Page({
             return arg.year + '-' + arg.month + '-' + arg.day + ' 00:00:00';
         }
     },
-    // 点击日历某日
-    chooseDate(e) {
-        var str = e.currentTarget.dataset.id;
-       // console.log(e.currentTarget.dataset.id);
-        this.setData({
-            dateCurrentStr: str
-        });
+    
+    parse_date(date){
+       return  s.getFullYear().toString() + s.getMonth().toString() + s.getDay().toString();
     },
 
-     load_data(){
-           app.tasklist.get_tasks();
 
+     load_data(){
+           for(task in appinstance.tasklist.load_tasks()){
+             
+               if(!this.data.hashmap.has(parse_date(task.start_time))){
+               this.data.hashmap.set(parse_date(task.start_time),[]);
+               this.data.hashmap.get(parse_date(task.start_time)).push(this.encodetask(task));
+               }
+               else{
+                      let arr = this.data.hashmap.get(parse_date(task.start_time));
+               }
+           }
+           this.setData({hashmap:this.data.hashmap});
+            
      },
 
     save_task_data() {
@@ -203,9 +208,7 @@ Page({
     },
     
     long_press: function (e) {
-       
-        let t = new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12"));
-
+        
         wx.showModal({
             title: '确定删除吗',
             content: '',
@@ -224,8 +227,33 @@ Page({
                 }
             }
         })
-    }
-})
+    },
+    encodetask(task) {
+        let l = "";
+        l += encodeURIComponent(escape(s.desc))
+        l += encodeURIComponent(escape(s.importance))
+        l += encodeURIComponent(escape(s.importance))
+        l += encodeURIComponent(escape(s.start_time.toDateString()))
+        l += encodeURIComponent(escape(s.due_time.toDateString()))
+        l = btoa(l)
+        console.log(l)
+        return l;
+    },
+    // 点击日历某日
+    chooseDate(e) {
+        console.log(appinstance.tasklist.load_tasks())
+        appinstance.tasklist.insert_task(new utils.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12")));
+        this.load_data();
+        console.log(this.data.hashmap);
+        var str = e.currentTarget.dataset.id;
+       // console.log(e.currentTarget.dataset.id);
+        this.setData({
+            dateCurrentStr: str
+        });
+
+  }
+}
+)
 
 
 

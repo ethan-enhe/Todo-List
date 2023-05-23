@@ -3,7 +3,7 @@ const { deepcopy } = require('./utils/util.js');
 var utils = require('./utils/util.js')
 
 App({
-//   globalData: 'I am global data',
+ //   globalData: 'I am global data',
 
     tasklist: {
 
@@ -31,8 +31,9 @@ App({
         load_tasks() {
             this.list = wx.getStorageSync("tasklist");
             console.log("获取之前记录条数 " + this.list.length);
-            if (this.list.length == 0)
-                this.list = new Array();
+            if(typeof this.list == "undefined"){
+                this.list =new Array();
+            }
         }
     },
     onLaunch() {
