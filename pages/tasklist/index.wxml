@@ -25,7 +25,7 @@
 </view>
 <!-- 时间组件-->
 
-<view class="head">选中日期待完成任务 {{tasklist.length}} 项</view>
+<view class="head">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</view>
 
 
 <block wx:if="{{true}}"wx:for="{{tasklist}}" >

@@ -114,11 +114,11 @@ Page({
         var d = new Date();
         var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
-        for (var i = -5; i <= 5; i++) {
+        for (var i = -1; i <= 30; i++) {
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
-            swiperCurrent: 5,
+            swiperCurrent: 6,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
             dateMonth: month + '月',
@@ -203,7 +203,7 @@ Page({
     },
     
     long_press: function (e) {
-        console.log(appinstance.tasklist.get_tasks()); 
+       
         let t = new this.task("shit",10,1,new Date("2022-10-11"),new Date("2022-10-12"));
 
         wx.showModal({
