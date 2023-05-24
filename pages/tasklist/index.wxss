@@ -199,7 +199,7 @@
  padding:10px;
  justify-content: space-between;
  margin-right:30px;
- animation: upcoming 3s 1 linear;
+ animation: upcoming 1s 1 linear;
 
 }
 .visualize{

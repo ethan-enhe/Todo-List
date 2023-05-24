@@ -7,13 +7,14 @@ var app=getApp();
 Page({
 
     task : class {
-        constructor(desc, duration, importance, start_time, due_time) {
+        constructor(desc, duration, importance, start_time, due_time,complete) {
             this.desc = desc; //任务名称
             this.duration = duration; //任务持续时间，单位分钟，Number类型
             this.importance = importance; //任务重要性，重要为1，否则为0
             this.start_time = start_time; //如果已经确定，则为一个Date对象，否则为null
             this.due_time = due_time; //任务截止时间，果已经确定，则为一个Date对象，否则为null
             this.id = Math.ceil(Math.random()*1145141919); //任务分配的id，直接随机值，冲突概率很小
+            this.complete = complete;
         }
     },
 
@@ -27,7 +28,9 @@ Page({
         dateCurrentStr: '', // 正选择日期的 id
         dateMonth: '5月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
-        hashmap:{"1970-01-01":[]}
+        hashmap:{},
+        cnttask:new Map(),
+        showvis:true
     },
 
     /**
@@ -113,7 +116,7 @@ Page({
         var d = new Date();
         var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
-        for (var i = -1; i <= 10; i++) {
+        for (var i = -1; i <= 40; i++) {
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
@@ -191,6 +194,7 @@ Page({
            console.log(Object.keys(map));
            for(let i=0;i< app.tasklist.get_tasks().length;i++){
                var task = app.tasklist.get_tasks()[i];
+               if(task.complete){continue;}
                if(!Object.keys(map).includes((this.parse_date(task.start_time)))){
                    
                map[this.parse_date(task.start_time)] = [];
@@ -201,9 +205,13 @@ Page({
                 map[this.parse_date(task.start_time)].push(this.encodetask(task));
                    }
                }
-           
            };
-          
+            var cnttsk = this.data.cnttask;
+            var l = map;
+           for (var k =0 ;k< Object.keys(l).length;k++){
+            cnttsk[Object.keys(l)[k]] = l[Object.keys(l)[k]].length;
+            }
+           this.setData({cnttask:cnttsk})
            this.setData({hashmap:map});
             
      },
@@ -258,7 +266,12 @@ Page({
             dateCurrentStr: str
         });
         if(Object.keys(this.data.hashmap).includes(this.data.dateCurrentStr)){
-            this.setData({tasklist:this.data.hashmap[this.data.dateCurrentStr]});
+            let s = this.data.hashmap[this.data.dateCurrentStr];
+            let tl = [];
+            for(var i=0;i<s.length;i++){
+                tl.push(this.decodetask(s[i]));
+            }
+            this.setData({tasklist:tl});
         }
         else{
             this.setData({tasklist:[]});
@@ -267,9 +280,14 @@ Page({
        
         
   },
+  hide(){
+    this.setData({showvis:!this.data.showvis});
+  },
   update(){
     this.load_data();
-  }
+  },
+  
+
 }
 )
 

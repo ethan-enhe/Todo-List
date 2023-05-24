@@ -34,6 +34,7 @@ Page({
                 selected: 1
             })
         }
+        app.tasklist.insert_task(new utils.task("淑芬作业",123,true,new Date("1989-6-4"),null,false));
         app.tasklist.insert_task(new utils.task("淑芬作业",123,true,new Date("2023-6-12"),null,false));
         app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2023-6-14"),null,true));
         app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2023-7-13"),null,true));
