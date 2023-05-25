@@ -211,6 +211,17 @@ Page({
                    }
                }
            };
+           if(Object.keys(this.data.hashmap).includes(this.data.dateCurrentStr)){
+            let s = this.data.hashmap[this.data.dateCurrentStr];
+            let tl = [];
+            for(var i=0;i<s.length;i++){
+                tl.push(this.decodetask(s[i]));
+            }
+            this.setData({tasklist:tl});
+            }
+            else{
+                this.setData({tasklist:[]});
+            }
             var cnttsk = this.data.cnttask;
             var l = map;
            for (var k =0 ;k< Object.keys(l).length;k++){
