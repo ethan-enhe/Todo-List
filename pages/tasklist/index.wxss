@@ -190,12 +190,11 @@
   /* border: 2px solid #000; */
   border-radius: 100%;
   background:red;
-   
+  opacity:0.8;
   z-index: -1;
 }
 .table{
  width:40px;
- background-color:lightblue;
  padding:10px;
  justify-content: space-between;
  margin-right:30px;
@@ -221,4 +220,17 @@
  font-size:15px;
  opacity:90%;
 }
+
+.hidevisual {
+
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgb(28, 184, 65); /* this is a green */
+   
+}
+
+
+
+
 

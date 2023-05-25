@@ -20,7 +20,8 @@ Page({
 
     data: {
         tasklist: [],
-        /**临时数据，演示用 */
+        
+         dateactive:[],
         /**时间组件 */
         dateList: [], // 日历数据数组
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
@@ -41,6 +42,7 @@ Page({
         this.initDate(); // 日历组件程序
         app.tasklist.load_tasks();
         this.load_data();
+        this.setData({dateCurrentStr:this.parse_date(new Date())})
     },
 
     /**
@@ -116,11 +118,11 @@ Page({
         var d = new Date();
         var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
-        for (var i = -1; i <= 40; i++) {
+        for (var i = 0; i <= 20; i++) {
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
-            swiperCurrent: 5,
+            swiperCurrent: d.getMonth() ,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
             dateMonth: month + '月',
@@ -140,6 +142,7 @@ Page({
             d.days.push({
                 'day': day,
                 'id': dd.getFullYear() + '-' + month + '-' + day,
+                'active':false
             });
         }
         return d;
@@ -191,10 +194,12 @@ Page({
 
      load_data(){
            var map = this.data.hashmap;
+           var li = [];
            console.log(Object.keys(map));
            for(let i=0;i< app.tasklist.get_tasks().length;i++){
                var task = app.tasklist.get_tasks()[i];
                if(task.complete){continue;}
+               li.push(this.parse_date(task.start_time))
                if(!Object.keys(map).includes((this.parse_date(task.start_time)))){
                    
                map[this.parse_date(task.start_time)] = [];
@@ -211,8 +216,10 @@ Page({
            for (var k =0 ;k< Object.keys(l).length;k++){
             cnttsk[Object.keys(l)[k]] = l[Object.keys(l)[k]].length;
             }
+            
            this.setData({cnttask:cnttsk})
            this.setData({hashmap:map});
+           this.setData({dateactive:li});
             
      },
 
@@ -231,6 +238,7 @@ Page({
     },
     
     long_press: function (e) {
+       
         wx.showModal({
             title: '确定删除吗',
             content: '',
@@ -261,10 +269,12 @@ Page({
     },
     // 点击日历某日
     chooseDate(e) {
+        
         var str = e.currentTarget.dataset.id;
         this.setData({
             dateCurrentStr: str
         });
+       
         if(Object.keys(this.data.hashmap).includes(this.data.dateCurrentStr)){
             let s = this.data.hashmap[this.data.dateCurrentStr];
             let tl = [];
