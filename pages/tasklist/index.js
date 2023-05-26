@@ -193,7 +193,7 @@ Page({
 
 
      load_data(){
-           var map = this.data.hashmap;
+           var map = {};
            var li = [];
            console.log(Object.keys(map));
            for(let i=0;i< app.tasklist.get_tasks().length;i++){
@@ -222,18 +222,17 @@ Page({
             else{
                 this.setData({tasklist:[]});
             }
-            var cnttsk = this.data.cnttask;
+            var cnttsk = {};
             var l = map;
            for (var k =0 ;k< Object.keys(l).length;k++){
             cnttsk[Object.keys(l)[k]] = l[Object.keys(l)[k]].length;
             }
-            
            this.setData({cnttask:cnttsk})
            this.setData({hashmap:map});
            this.setData({dateactive:li});
-            
+           console.log(l);
+           console.log(this.data.cnttask);
      },
-
     save_task_data() {
         /**
          * 将任务数据缓存至本地
@@ -249,16 +248,19 @@ Page({
     },
     
     long_press: function (e) {
-       
+         console.log(e.currentTarget.dataset.id);
+         let did = e.currentTarget.dataset.id;
         wx.showModal({
             title: '确定删除吗',
             content: '',
             complete: (res) => {
                 if (res.cancel) {}
                 if (res.confirm) {
+                    app.tasklist.delete_task(did);
+                    this.load_data();
                     let arr = this.data.tasklist;
                     arr.map((val, i) => {
-                        if (val.id === e.currentTarget.dataset.id) {
+                        if (val.id === did) {
                             arr.splice(i, 1);
                         }
                     });

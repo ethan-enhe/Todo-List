@@ -15,6 +15,7 @@ App({
             var index = this.list.findIndex(function (x) {
                 return x.id == task_id;
             })
+            console.log("已经删除")
             if (index != -1) this.list.splice(index, 1);
         },
         get_tasks() { //返回列表本身，不要直接做修改！！

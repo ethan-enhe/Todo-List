@@ -6,7 +6,7 @@
     font-weight: bold;
     color:	white;
     opacity:0.8;
-    background-color:#FFDAB9;
+    background-color:rgb(28, 184, 65);
     text-transform: uppercase;
     fill: none;
     stroke-width: 4px;
@@ -21,7 +21,7 @@
     font-size: 50px;
     margin:10rpx;
     border-radius: 5px;
-    color:#FFDAB9;
+    color:rgb(28, 184, 65);
     font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   
     
