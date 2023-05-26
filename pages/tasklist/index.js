@@ -227,6 +227,7 @@ Page({
            for (var k =0 ;k< Object.keys(l).length;k++){
             cnttsk[Object.keys(l)[k]] = l[Object.keys(l)[k]].length;
             }
+
            this.setData({cnttask:cnttsk})
            this.setData({hashmap:map});
            this.setData({dateactive:li});
@@ -287,10 +288,9 @@ Page({
         this.setData({
             dateCurrentStr: str
         });
-       
+        let tl = [];
         if(Object.keys(this.data.hashmap).includes(this.data.dateCurrentStr)){
             let s = this.data.hashmap[this.data.dateCurrentStr];
-            let tl = [];
             for(var i=0;i<s.length;i++){
                 tl.push(this.decodetask(s[i]));
             }
