@@ -1,12 +1,16 @@
 <!-- <view class="padding bg-white">任务数量：{{ tasklist.length }}</view> -->
 
 <view wx:for="{{showdata}}" class="cu-timeline">
-<view class="padding text-xl">{{item.year_month}}</view>
-<view wx:for="{{item.taskdata}}" wx:key="id" class="text-xl cu-item {{item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill')}}">
-    <view class="bg-gray padding-sm radius shadow-blur">
-        <view class="cu-tag bg-grey round margin-right-sm">{{item.day}} 日</view>
-        <text class="margin-top">{{item.desc}}</text>
+    <view class="padding text-xl">{{item.year_month}}</view>
+    <view wx:for="{{item.taskdata}}" wx:key="id" class="text-xl cu-item {{item.ddl?'text-red cuIcon-timefill':(item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill'))}}">
+        <view wx:if="{{!item.ddl}}" class="text-cut bg-gray padding-sm radius shadow-blur">
+            <view class="cu-tag {{item.importance?'bg-red':'bg-grey'}} round margin-right-sm">{{item.day}} 日</view>
+            <text class="margin-top">{{item.desc}}</text>
+        </view>
+        <view wx:if="{{item.ddl && !item.complete}}" class="text-cut bg-red light padding-sm radius shadow-blur">
+            <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 日截止</view>
+            <text class="margin-top">{{item.desc}}</text>
+        </view>
     </view>
-</view>
 </view>
 <view class="bg-white padding-xl"></view>

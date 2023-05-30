@@ -39,6 +39,12 @@ App({
     },
     onLaunch() {
         this.tasklist.load_tasks();
+        this.tasklist.insert_task(new utils.task("淑芬作业1", 123, true, new Date("1989-6-4"), null, false));
+        this.tasklist.insert_task(new utils.task("淑芬作业2", 123, true, new Date("2023-6-12"), new Date("2023-6-23"), false));
+        this.tasklist.insert_task(new utils.task("线代作业1", 123, false, new Date("2023-6-14"), null, true));
+        this.tasklist.insert_task(new utils.task("线代作业2", 123, false, new Date("2023-7-13"), new Date("2023-7-23"), true));
+        this.tasklist.insert_task(new utils.task("线代作业3", 123, true, new Date("2022-12-14"), null, true));
+        this.tasklist.insert_task(new utils.task("线代作业4", 123, true, new Date("2023-7-13"), null, true))
     },
     onHide() {
         this.tasklist.save_tasks();
