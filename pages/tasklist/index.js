@@ -58,7 +58,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.load_data();
         this.setData({
             tasklist: this.data.tasklist
         });
@@ -111,10 +111,6 @@ Page({
     /**
      * 页面的初始数据
      */
-
-
-
-
 
     /**时间选择组件 */
     initDate() {
@@ -207,14 +203,14 @@ Page({
             if (task.complete) {
                 continue;
             }
-            li.push(this.parse_date(task.start_time))
-            if (!Object.keys(map).includes((this.parse_date(task.start_time)))) {
+            li.push(this.parse_date(new Date(task.start_time)))
+            if (!Object.keys(map).includes((this.parse_date(new Date(task.start_time))))) {
 
-                map[this.parse_date(task.start_time)] = [];
-                map[this.parse_date(task.start_time)].push(this.encodetask(task));
+                map[this.parse_date(new Date(task.start_time))] = [];
+                map[this.parse_date(new Date(task.start_time))].push(this.encodetask(task));
             } else {
-                if (!map[this.parse_date(task.start_time)].includes(this.encodetask(task))) {
-                    map[this.parse_date(task.start_time)].push(this.encodetask(task));
+                if (!map[this.parse_date(new Date(task.start_time))].includes(this.encodetask(task))) {
+                    map[this.parse_date(new Date(task.start_time))].push(this.encodetask(task));
                 }
             }
         };
