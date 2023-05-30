@@ -1,6 +1,6 @@
 // pages/timeline/index.js
 var utils = require('../../utils/util.js')
-var app=getApp();
+var app = getApp();
 Page({
 
     /**
@@ -34,34 +34,40 @@ Page({
                 selected: 1
             })
         }
-        app.tasklist.insert_task(new utils.task("数分补考",123,true,new Date("2023-7-13"),null,false));
-        app.tasklist.insert_task(new utils.task("淑芬重修",123,true,new Date("2023-6-12"),null,false));
-        app.tasklist.insert_task(new utils.task("线代作业",123,true,new Date("2023-6-14"),null,true));
-        app.tasklist.insert_task(new utils.task("线代补考",123,true,new Date("2023-7-13"),null,true));
-        app.tasklist.insert_task(new utils.task("线代作业啊大受打击啊老大加拉数据库捡垃圾的反馈阿达flak设计的flak十分谨慎考虑降低发生六点",123,true,new Date("2022-12-14"),null,true));
-        app.tasklist.insert_task(new utils.task( "退学",123,true,new Date("2023-7-13"),null,true) )
 
-        var taskdata = app.tasklist.get_tasks_copy().sort(function(a,b){
-            return Date.parse(a.start_time)-Date.parse(b.start_time);
+        var taskdata = app.tasklist.get_tasks_copy()
+        var sz = taskdata.length;
+        // console.log(sz);
+        for (var i = 0; i < sz; i++) {
+            taskdata[i].ddl = false;
+            if(taskdata[i].due_time!=null && !taskdata[i].complete)
+            taskdata.push({
+                ddl: true,
+                desc: taskdata[i].desc,
+                start_time: taskdata[i].due_time
+            });
+        }
+        taskdata.sort(function (a, b) {
+            return Date.parse(a.start_time) - Date.parse(b.start_time);
         });
 
-        var showdata=new Array();
-        var lastmonth={};
-        for(var i=0;i<taskdata.length;i++){
+        var showdata = new Array();
+        var lastmonth = {};
+        for (var i = 0; i < taskdata.length; i++) {
             // taskdata[i].desc+= (new Date(taskdata[i].start_time)).getFullYear();
-            var time=new Date(taskdata[i].start_time);
-            var tmp=utils.getYearMonth(time);
-            taskdata[i].day=time.getDate();
-            if(tmp!=lastmonth.year_month){
-                if(i)showdata.push(lastmonth);
-                lastmonth={year_month:tmp,
-                    taskdata:[taskdata[i]]};
-            }
-            else lastmonth.taskdata.push(taskdata[i]);
+            var time = new Date(taskdata[i].start_time);
+            var tmp = utils.getYearMonth(time);
+            taskdata[i].day = time.getDate();
+            if (tmp != lastmonth.year_month) {
+                if (i) showdata.push(lastmonth);
+                lastmonth = {
+                    year_month: tmp,
+                    taskdata: [taskdata[i]]
+                };
+            } else lastmonth.taskdata.push(taskdata[i]);
         }
-        if(lastmonth!={})showdata.push(lastmonth);
+        if (lastmonth != {}) showdata.push(lastmonth);
         this.setData({
-            tasklist: taskdata,
             showdata: showdata
         })
 
