@@ -1,0 +1,236 @@
+/* pages/tasklist/index.wxss */
+.title{
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    color:	white;
+    opacity:0.8;
+    background-color:rgb(28, 184, 65);
+    text-transform: uppercase;
+    fill: none;
+    stroke-width: 4px;
+    justify-content: center;
+    animation: stroke 6s infinite linear;
+}
+.title-1{
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    height:400px;
+    font-size: 50px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:rgb(28, 184, 65);
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  
+    
+   
+}
+@keyframes upcoming{
+  0%{
+    opacity:0;
+    transform:scaleY(0.2);
+  }
+  50%{
+    opacity:0.5;
+    transform:scaleY(0.6);
+  }
+  100%{
+    opacity:1.0;
+    transform:scaleY(1);
+  }
+}
+
+@keyframes stroke {
+    0%{
+        transform:scale(1.2);
+        transform:rotate(20);
+
+    }
+    15%{
+        transform:scale(1);
+        transform:rotate(0);
+    }
+    100%{
+            transform:scale(1.2);
+            transform:rotate(20);
+    }
+}
+/** 标题动态特效 */
+
+.task_urgent{
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    height:70px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:black;
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: linear-gradient(to bottom right,#FF6347,#FFE4E1);
+    box-shadow:5px 1px 1px 2px #e0e0e0
+}
+
+.task_normal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:90%;
+    height:70px;
+    margin:10rpx;
+    border-radius: 5px;
+    color:black;
+    font-family:"Source Han Sans CN", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    /*background: linear-gradient(to bottom right,	#00CED1,	#F0F8FF);*/
+    box-shadow:5px 1px 1px 2px #e0e0e0
+}
+
+.task_name_style{
+    display: flex;
+    flex-direction: row;
+    color:white;
+    
+    stroke-width:5px;
+    margin:10px;
+
+}
+.head{
+    padding: 10px 15px;
+    font-size:18px;
+    color: white;
+}
+.image_view{
+    height:30px;
+    width:30px;
+    display: flex;
+
+}
+
+.page {
+    height:600px;
+
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    overflow: hidden;
+    line-height: 1.5em;
+}
+/** 以下为时间组件*/
+
+
+.date-choose {
+  background: #fff;
+  opacity:0.7;
+  overflow: hidden;
+  box-shadow:0px 1px 1px 0px rgba(198,198,198,0.5);
+  height: 260rpx;
+  backdrop-filter: blur(50px);
+ 
+}
+.data-month {
+  width: 2.6em;
+  align-items: center;
+  padding: .35rem .35rem;
+  text-align: center;
+  /* box-shadow: 2px 0 5px rgba(0,0,0,.4); */
+  color: #333;
+  font-size: 48rpx;
+}
+.date-choose-swiper {
+  flex-grow: 1;
+  height: 4em;
+}
+.swiper-item {
+  display: flex;
+  flex-direction: column;
+}
+.weekday, .dateday {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+.week, .day {
+  width: 14.286%;
+  flex-basis: 14.286%;
+}
+.week{
+  color: #999;
+  font-size: 24rpx;
+}
+.day text {
+  position: relative;
+  color: #009bff;
+ 
+}
+.day .active:before {/* 圈圈 */
+  content: "";
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 2px solid #000; */
+  border-radius: 100%;
+  background:lightblue;
+   
+  z-index: -1;
+}
+
+
+.active1:before {/* 圈圈 */
+  content: "";
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 2px solid #000; */
+  border-radius: 100%;
+  background:red;
+  opacity:0.8;
+  z-index: -1;
+}
+.table{
+ width:40px;
+ padding:10px;
+ justify-content: space-between;
+ margin-right:30px;
+ animation: upcoming 1s 1 linear;
+
+}
+.visualize{
+  align-items: center;
+  text-align: center;
+ color:white;
+ text-transform: uppercase;
+ font-size:20px;
+ opacity:90%;
+ height:30px;
+}
+
+
+.banner1{
+  align-items: center;
+  text-align: center;
+ color:white;
+ text-transform: uppercase;
+ font-size:15px;
+ opacity:90%;
+}
+
+.hidevisual {
+
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgb(28, 184, 65); /* this is a green */
+   
+}
+
+
+
+
+
