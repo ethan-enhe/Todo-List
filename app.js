@@ -1,9 +1,11 @@
 // app.js
-const { deepcopy } = require('./utils/util.js');
+const {
+    deepcopy
+} = require('./utils/util.js');
 var utils = require('./utils/util.js')
 
 App({
- //   globalData: 'I am global data',
+    //   globalData: 'I am global data',
 
     tasklist: {
 
@@ -23,7 +25,12 @@ App({
         },
         get_tasks_copy() { //返回列表的深拷贝，可以随意修改
             // console.log(utils.deepcopy(this.list));
-            return utils.deepcopy(this.list);
+            var res = utils.deepcopy(this.list);
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].start_time != null) res[i].start_time = new Date(res[i].start_time);
+                if (res[i].due_time != null) res[i].due_time = new Date(res[i].due_time);
+            }
+            return res;
         },
         save_tasks() {
             wx.setStorageSync("tasklist", this.list);
@@ -32,8 +39,8 @@ App({
         load_tasks() {
             this.list = wx.getStorageSync("tasklist");
             console.log("获取之前记录条数 " + this.list.length);
-            if(typeof list === "undefined"){
-                this.list =new Array();
+            if (typeof list === "undefined") {
+                this.list = new Array();
             }
         }
     },
@@ -49,8 +56,8 @@ App({
     onHide() {
         this.tasklist.save_tasks();
     },
-    globaldata:{
-        bkgcolor:"none",
-        bkgimage:"none",
+    globaldata: {
+        bkgcolor: "none",
+        bkgimage: "none",
     }
 })

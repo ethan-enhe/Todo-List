@@ -209,14 +209,14 @@ Page({
             if (task.complete) {
                 continue;
             }
-            li.push(this.parse_date(new Date(task.start_time)))
-            if (!Object.keys(map).includes((this.parse_date(new Date(task.start_time))))) {
+            li.push(this.parse_date(task.start_time))
+            if (!Object.keys(map).includes((this.parse_date(task.start_time)))) {
 
-                map[this.parse_date(new Date(task.start_time))] = [];
-                map[this.parse_date(new Date(task.start_time))].push(this.encodetask(task));
+                map[this.parse_date(task.start_time)] = [];
+                map[this.parse_date(task.start_time)].push(this.encodetask(task));
             } else {
-                if (!map[this.parse_date(new Date(task.start_time))].includes(this.encodetask(task))) {
-                    map[this.parse_date(new Date(task.start_time))].push(this.encodetask(task));
+                if (!map[this.parse_date(task.start_time)].includes(this.encodetask(task))) {
+                    map[this.parse_date(task.start_time)].push(this.encodetask(task));
                 }
             }
         };

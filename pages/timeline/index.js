@@ -61,8 +61,7 @@ Page({
         var showdata = new Array();
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
-            // taskdata[i].desc+= (new Date(taskdata[i].start_time)).getFullYear();
-            var time = new Date(taskdata[i].start_time);
+            var time = taskdata[i].start_time;
             var tmp = utils.getYearMonth(time);
             taskdata[i].day = time.getDate();
             if (tmp != lastmonth.year_month) {
@@ -77,8 +76,6 @@ Page({
         this.setData({
             showdata: showdata
         })
-
-
     },
 
     /**

@@ -46,8 +46,8 @@ function Type(obj) {
 }
 
 //深拷贝
-function copyObj(obj){
-  return JSON.parse(JSON.stringify(obj))
+function copyObj(obj) {
+    return JSON.parse(JSON.stringify(obj))
 }
 
 var task = class {
@@ -65,7 +65,7 @@ var task = class {
 
 
 function getYearMonth(d) {
-    return d.getFullYear().toString() + " 年 " + (d.getMonth()+1).toString() + " 月";
+    return d.getFullYear().toString() + " 年 " + (d.getMonth() + 1).toString() + " 月";
 }
 
 
