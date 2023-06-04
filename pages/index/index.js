@@ -43,7 +43,7 @@ Page({
     },
     getmotto(){
       var  len = this.data.motto.length;
-      var idx = this.randomNum(0,len-1);
+      var idx = this.randomNum(-1,len-1);
        this.setData({curstr:this.data.motto[idx]})
     },
 
