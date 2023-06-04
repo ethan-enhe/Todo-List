@@ -4,7 +4,6 @@
         "pages/tasklist/index",
         "pages/timeline/index",
         "pages/settings/index",
-        "pages/edit/index",
         "pages/input/index"
     ],
     "window": {
