@@ -2,31 +2,21 @@
 <view style="background-image: url({{im}});height:fit-content;width:100%;">
     <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
         <view class="text-xl padding text-black text-bold">事件创建</view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>事件名称
-            </view>
 
-            <input class="input" type="text" placeholder="线代作业" confirm-type="done" auto-focus="true" bindinput="descinput"></input>
-        </view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>所需时间（分钟）
-            </view>
 
-            <input type="number" placeholder="114" confirm-type="done" focus="true" bindinput="durationinput"></input>
+
+        <view class="cu-form-group solid-bottom">
+            <view class="title">事件名称</view>
+            <input class="text-right input" type="text" placeholder="线代作业" confirm-type="done" auto-focus="true" bindinput="descinput"></input>
         </view>
-        <view class="cu-form-group bg-white solid-bottom">
-            <view class="title">重要性</view>
-            <switch class="red margin-right-xl" checked="{{importance}}"></switch>
+        <view class="cu-form-group solid-bottom">
+            <view class="title">所需时间（分钟）</view>
+            <input class="text-right" type="number" placeholder="114" confirm-type="done" focus="true" bindinput="durationinput"></input>
+
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">重要性</view>
-            <picker mode="date" value="{{start_date}}" start="2023-01-01" end="2028-12-31" bindchange="startdinput">
-                <view class="picker">
-                    {{start_date}}
-                </view>
-            </picker>
+            <switch class="red margin-right" checked="{{importance}}"></switch>
         </view>
         <!--
 
@@ -69,7 +59,7 @@
         </view>
     </view>
     <view class="padding-bottom">
-        <button wx:if="{{desc!=null && duration!=null && (start_date!=null || due_date!=null)}}" class="cu-btn bg-green block lg" bindtap="newtask">创建！</button>
-        <button wx:if="{{!(desc!=null && duration!=null && (start_date!=null || due_date!=null))}}" class="cu-btn bg-grey block lg">请填写必要数据</button>
+        <button wx:if="{{desc!=null  && desc!=''}}" class="cu-btn bg-green block lg" bindtap="newtask">创建！</button>
+        <button wx:if="{{desc==null || desc=='' }}" class="cu-btn bg-grey block lg">请填写必要数据</button>
     </view>
 </view>
