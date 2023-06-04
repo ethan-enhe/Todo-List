@@ -1,10 +1,22 @@
+
+var cl = getApp().globaldata.bkgcolor;
+var im = getApp().globaldata.bkgimage;
 Page({
     data:{
       country:"...定位中",
       city:"...定位中",
+      hour:8,
+      
      
     },
     onShow() {
+      var hournow = new Date().getHours();
+         this.setData({
+        cl: getApp().globaldata.bkgcolor,
+        im: getApp().globaldata.bkgimage,
+        hour:hournow
+      })
+
         /*
         每个页面的tab栏实例是不一样的
         在切换到的页面里还需要设置那个页面的tab实例的选中项目。
