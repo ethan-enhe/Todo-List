@@ -12,7 +12,8 @@ Page({
         });
         if (app.taskid > 0) {
             pos = app.tasklist.get_pos(app.taskid);
-            var list = app.tasklist.get_tasks();
+            console.log("find!!",pos);
+            var list = app.tasklist.get_tasks_copy();
             this.setData({
                 desc: list[pos].desc,
                 duration: list[pos].duration,

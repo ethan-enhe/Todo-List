@@ -1,6 +1,6 @@
 <!-- <view class="padding bg-white">任务数量：{{ tasklist.length }}</view> -->
 <view style="background-image: url({{im}});height:fit-content;width:100%;">
-    <view class="bg-gradual-{{cl}} padding radius shadow-blur">
+    <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
         <view wx:for="{{showdata}}" class="cu-timeline text-black">
             <view class="padding text-xl {{item.unknown?'unk':''}} {{item.current?'cur':''}}">{{item.year_month}} </view>
             <view  wx:for="{{item.taskdata}}" wx:key="id" class="text-xl cu-item {{item.ddl?'text-red cuIcon-timefill':(item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill'))}}">
