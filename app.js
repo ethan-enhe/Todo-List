@@ -6,7 +6,7 @@ var utils = require('./utils/util.js')
 
 App({
     globaldata: {
-        bkgcolor: "none",
+        bkgcolor: "blue",
         bkgimage: "none",
     },
     tasklist: {
