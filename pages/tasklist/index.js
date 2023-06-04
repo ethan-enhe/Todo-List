@@ -55,27 +55,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
-        wx.onAppRoute(function(res){ 
-            this.load_data();
-            this.setData({
-                tasklist: this.data.tasklist
-            });}) 
-        this.setData({
-            cl: getApp().globaldata.bkgcolor,
-            im: getApp().globaldata.bkgimage,
-        })
-        
-
-        //每个页面的tab栏实例是不一样的
-        //在切换到的页面里还需要设置那个页面的tab实例的选中项目。
-        if (typeof this.getTabBar === 'function' &&
-            this.getTabBar()) {
-            this.getTabBar().setData({
-                selected: 2
-            })
-        }
-    },
+   
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -317,8 +297,28 @@ Page({
             showvis: !this.data.showvis
         });
     },
-    update() {
-        this.load_data();
+    onShow() {
+        const that = this;
+        wx.onAppRoute(function(res){ 
+            console.log(that);
+            that.load_data();
+            that.setData({
+                tasklist: that.data.tasklist
+            });}) 
+        that.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
+        })
+        
+
+        //每个页面的tab栏实例是不一样的
+        //在切换到的页面里还需要设置那个页面的tab实例的选中项目。
+        if (typeof this.getTabBar === 'function' &&
+            this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 2
+            })
+        }
     },
 
 

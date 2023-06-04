@@ -88,7 +88,7 @@ module.exports = {
 <view wx:for="{{cnttask}}" wx:for-index="key"  >
    <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
    <view class="task_name_style">{{key}}</view>
-   <view  style="display:flex;flex-direction: column;height:{{item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table" ></view>
+   <view  style="display:flex;flex-direction: column;height:{{item*20 >200 ?200:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table" ></view>
    <view class="task_name_style" >{{item}}</view>
 </view>
 </view>
