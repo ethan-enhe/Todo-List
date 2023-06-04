@@ -60,12 +60,6 @@ var task = class {
         this.complete = complete;
         this.id = Math.ceil(Math.random() * 1145141919); //任务分配的id，直接随机值，冲突概率很小
     }
-};
-
-function fix_task(x) { //把变成字符串的日期救回来
-    if (typeof (x.start_time) == "string") x.start_time = new Date(x.start_time);
-    if (typeof (x.due_time) == "string") x.due_time = new Date(x.due_time);
-    return x;
 }
 
 
@@ -84,5 +78,4 @@ module.exports = {
     addZero: formatNumber,
     deepcopy: copyObj,
     task: task,
-    fix_task: fix_task,
 }

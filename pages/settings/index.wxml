@@ -79,20 +79,11 @@
         </view>  -->
         <view class="cu-bar bg-white margin-top solid-bottom text-right">
             <view class="action">
-                <text class="cuIcon-title text-blue"></text>
-                导出剪贴板
+                <text class="cuIcon-title text-blue">
+                </text>文件导出
             </view>
             <view class="action">
-                <view class="cu-btn bg-green round xl" bind:tap="export_data">点击导出</view>
-            </view>
-        </view>
-        <view class="cu-bar bg-white solid-bottom text-right">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>
-                剪贴板导入<text class="text-red">（会覆盖当前数据！）</text>
-            </view>
-            <view class="action">
-                <view class="cu-btn bg-red round xl" bind:tap="import_data">点击导入</view>
+                <view class="cu-btn bg-green round xl">点击导出</view>
             </view>
         </view>
     </view>

@@ -23,7 +23,7 @@ Page({
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
         dateCurrent: new Date(), // 正选择的当前日期
         dateCurrentStr: '', // 正选择日期的 id
-        dateMonth: '..加载中', // 正显示的月份
+        dateMonth: '5月', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
         hashmap: {},
         cnttask: new Map(),
@@ -96,34 +96,31 @@ Page({
 
     /**时间选择组件 */
     initDate() {
-            var d = new Date();
-            var month = utils.addZero((d.getMonth())%12 + 1),
+
+        var d = new Date();
+        var month = utils.addZero(d.getMonth() + 1),
             day = utils.addZero(d.getDate());
-        for (var i = 0; i <= 10; i++) {
+        for (var i = 0; i <= 20; i++) {
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
-        
-      
         this.setData({
-            swiperCurrent: 0,
+            swiperCurrent: d.getMonth(),
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
-           dateMonth:((d.getMonth())%12 + 1)  + '月'
+            dateMonth: month + '月',
         });
-       
-
     },
     // 获取这周从周日到周六的日期
     calculateDate(_date) {
         var first = utils.FirstDayInThisWeek(_date);
         var d = {
-            'month': first.getMonth() + 1 ,
+            'month': first.getMonth() + 1,
             'days': [],
         };
         for (var i = 0; i < 7; i++) {
             var dd = utils.DateAddDay(first, i);
             var day = utils.addZero(dd.getDate()),
-                month = utils.addZero(dd.getMonth()%12 + 1);
+                month = utils.addZero(dd.getMonth() + 1);
             d.days.push({
                 'day': day,
                 'id': dd.getFullYear() + '-' + month + '-' + day,
@@ -181,6 +178,7 @@ Page({
     load_data() {
         var map = {};
         var li = [];
+        console.log(Object.keys(map));
         var task_copy = app.tasklist.get_tasks_copy();
         for (let i = 0; i < task_copy.length; i++) {
             var task = task_copy[i];
@@ -226,6 +224,8 @@ Page({
         this.setData({
             dateactive: li
         });
+        console.log(l);
+        console.log(this.data.cnttask);
     },
     init_task() {
 

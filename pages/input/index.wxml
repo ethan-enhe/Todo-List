@@ -12,7 +12,7 @@
 
         </view>
         <view class="cu-form-group solid-bottom">
-            <view class="title">重要性</view>
+            <view class="title">重要性（默认不重要）</view>
             <switch class="red margin-right" checked="{{importance}}"></switch>
         </view>
         <view class="cu-form-group solid-bottom">

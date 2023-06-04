@@ -2,7 +2,7 @@ Page({
     data:{
       country:"...定位中",
       city:"...定位中",
-  
+     
     },
     onShow() {
         /*

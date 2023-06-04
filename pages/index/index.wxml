@@ -1,10 +1,5 @@
 <view>Home</view>
 <navigator url="../input/index">编辑</navigator>
-<view>微信小程序开发工具请在本地设置中打开不校验https 证书!</view>
-
-
-
-
 <view class="padding-sm" >
                     <view class="bg-gradual-blue padding radius text-center shadow-blur">
                     <view style="display:flex;flex-direction:row">
@@ -12,5 +7,10 @@
                      <view>
                         <view  class="text-lg">国家(地区): {{country}}</view>
                         <view class="text-lg">城市: {{city}}</view>
+           
                      </view></view></view>
+</view>
+<view>
+TOOLIST 
+
 </view>

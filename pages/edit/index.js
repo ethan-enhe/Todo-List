@@ -1,66 +1,101 @@
-// pages/edit/index.js
+// pages/input/index.js
+var utils = require('../../utils/util.js');
+var app = getApp();
+var cl = getApp().globaldata.bkgcolor;
+var im = getApp().globaldata.bkgimage;
+var desc, duration, importance = false,
+    start_time, due_time;
+var start_date, due_date, complete;
+console.log(app)
+var pos = app.tasklist.get_pos(app.globaldata.taskid);
+var list = app.tasklist.get_tasks();
 Page({
-
-    /**
-     * 页面的初始数据
-     */
-    data: {
-
+    onload: function () {},
+ /*   data: {
+        desc: list[pos].desc,
+        duration: list[pos].duration,
+        importance: list[pos].importance,
+        start_date: null,
+        due_date: null,
+        start_time: null,
+        due_time: null,
+        complete: list[pos].complete,
+    },*/
+    onShow: function (options) {
+        this.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
+            pos: app.tasklist.get_pos(app.globaldata.taskid),
+            desc: list[pos].desc,
+            duration: list[pos].duration,
+            importance: list[pos].importance,   
+            complete: list[pos].complete,
+        })
+        this.setData({
+            start_date: list[pos].start_time.toLocaleDateString(),//xxxx/xx/xx
+            start_time: list[pos].start_time.getHours()+":"+list[pos].start_time.getMinutes(),//xx:xx
+        })
+        this.setData({
+            due_date: list[pos].due_time.toLocaleDateString(),
+            due_time: list[pos].due_time.getHours()+":"+list[pos].due_time.getMinutes(),
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad(options) {
-
+    descinput(e) {
+        this.setData({
+            desc: e.detail.value
+        })
+        desc = e.detail.value;
+        console.log(desc);
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
+    durationinput(e) {
+        this.setData({
+            duration: e.detail.value
+        })
+        duration = e.detail.value;
+        console.log(e.detail.value);
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-
+    starttinput(e) {
+        this.setData({
+            start_time: e.detail.value
+        })
+        start_time = e.detail.value;
+        console.log(e.detail.value);
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
-
+    duetinput(e) {
+        this.setData({
+            due_time: e.detail.value
+        })
+        due_time = e.detail.value;
+        console.log(e.detail.value);
     },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-
+    startdinput(e) {
+        this.setData({
+            start_date: e.detail.value
+        })
+        start_date = e.detail.value;
+        console.log(e.detail.value);
     },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
+    duedinput(e) {
+        this.setData({
+            due_date: e.detail.value
+        })
+        due_date = e.detail.value;
+        console.log(e.detail.value);
     },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+    newtask() {
+        console.log("!!!", desc);
+        list[pos].desc=desc;
+        list[pos].duration=duration; 
+        list[pos].importance=importance;
+        list[pos].start_date=new date(start_date + " " + start_time); 
+        list[pos].due_date=new date(due_date + " " + due_time);
+        list[pos].complete=complete;
+        wx.switchTab({
+            url: '/pages/tasklist/index',
+            success: (res) => {},
+            fail: (res) => {},
+            complete: (res) => {},
+        })
     }
 })
