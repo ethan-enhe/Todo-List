@@ -12,7 +12,6 @@ App({
     tasklist: {
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
             this.list.push(task_data);
-            console.log(task_data);
         },
         delete_task(task_id) { //传入taskid，删除对应任务。
             var index = this.list.findIndex(function (x) {
@@ -27,10 +26,9 @@ App({
         get_tasks_copy() { //返回列表的深拷贝，可以随意修改
             // console.log(utils.deepcopy(this.list));
             var res = utils.deepcopy(this.list);
-            for (var i = 0; i < res.length; i++) {
-                if (res[i].start_time != null) res[i].start_time = new Date(res[i].start_time);
-                if (res[i].due_time != null) res[i].due_time = new Date(res[i].due_time);
-            }
+            for (var i = 0; i < res.length; i++)
+                res[i] = utils.fix_task(res[i]);
+
             return res;
         },
         save_tasks() {
@@ -43,6 +41,8 @@ App({
             this.list = wx.getStorageSync('tasklist')
             if (this.list == "")
                 this.list = new Array();
+            for (var i = 0; i < this.list.length; i++)
+                this.list[i] = utils.fix_task(this.list[i]);
         }
     },
     onLaunch() {
