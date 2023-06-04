@@ -1,0 +1,91 @@
+<view style="background-image: url({{im}});height:fit-content;width:100%;">
+    <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
+        <view class="flex-sub text-left">
+            <view class="text-xl padding text-black text-bold">
+                设置
+            </view>
+        </view>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text>背景颜色
+            </view>
+        </view>
+        <view class="padding bg-white solid-bottom">
+            <view class="grid col-2 padding-sm">
+                <view class="padding-sm" bindtap="bkgsetred">
+                    <view class="bg-gradual-red padding radius text-center shadow-blur">
+                        <view class="text-lg">魅红</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetorange">
+                    <view class="bg-gradual-orange padding radius text-center shadow-blur">
+                        <view class="text-lg">鎏金</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetgreen">
+                    <view class="bg-gradual-green padding radius text-center shadow-blur">
+                        <view class="text-lg">翠柳</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetblue">
+                    <view class="bg-gradual-blue padding radius text-center shadow-blur">
+                        <view class="text-lg">靛青</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetpurple">
+                    <view class="bg-gradual-purple padding radius text-center shadow-blur">
+                        <view class="text-lg">惑紫</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetpink">
+                    <view class="bg-gradual-pink padding radius text-center shadow-blur">
+                        <view class="text-lg">霞彩</view>
+                    </view>
+                </view>
+                <view class="padding-sm" bindtap="bkgsetdefault">
+                    <view class="bg-gradual-none padding radius text-center shadow-blur">
+                        <view class="text-lg">默认</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="cu-bar bg-white margin-top  solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text>背景图片
+            </view>
+        </view>
+        <view class="padding bg-white solid-bottom">
+            <view class="grid col-4">
+                <view class="bg-img padding-tb-xl flex align-begin" style="background-image: url(/image/bkg1.jpg);height: 400rpx;" bindtap="bkgsetimg1"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url(/image/bkg2.jpg);height: 400rpx;" bindtap="bkgsetimg2"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url(/image/bkg3.jpg);height: 400rpx;" bindtap="bkgsetimg3"></view>
+                <view class="bg-img padding-tb-xl flex align-end" style="background-image: url(/image/bkg4.jpeg);height: 400rpx;" bindtap="bkgsetimg4"></view>
+            </view>
+        </view>
+        <!--
+        <view class="cu-bar bg-white margin-top  solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text>背景透明度
+            </view>
+        </view>
+        <view class="padding bg-white solid-bottom">
+    <view class="flex flex-wrap">
+        <view class="flex-sub bg-grey margin-xs padding-sm radius">0%</view>
+      <view class="flex-sub bg-grey margin-xs padding-sm radius">25%</view>
+      <view class="flex-sub bg-grey margin-xs padding-sm radius">50%</view>
+      <view class="flex-sub bg-grey margin-xs padding-sm radius">75%</view>
+      <view class="flex-sub bg-grey margin-xs padding-sm radius">100%</view>
+  </view>
+        </view>  -->
+        <view class="cu-bar bg-white margin-top solid-bottom text-right">
+            <view class="action">
+                <text class="cuIcon-title text-blue">
+                </text>文件导出
+            </view>
+            <view class="action">
+                <view class="cu-btn bg-green round xl">点击导出</view>
+            </view>
+        </view>
+    </view>
+    <view class="bg-white padding-xl" ></view>
+</view>
