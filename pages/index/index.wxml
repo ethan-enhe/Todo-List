@@ -1,5 +1,5 @@
 <view>Home</view>
-<navigator url="../input/index">编辑</navigator>
+<navigator url="../edit/index">编辑</navigator>
 <view>微信小程序开发工具请在本地设置中打开不校验https 证书!</view>
 
 

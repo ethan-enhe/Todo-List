@@ -16,8 +16,6 @@ Page({
         start_time: null,
         due_time: null,
         complete: false,
-        due_date: null,
-        start_date: null
     },
     onShow: function (options) {
         this.setData({
@@ -70,7 +68,7 @@ Page({
     },
     newtask() {
         console.log("!!!", desc);
-        app.tasklist.insert_task(new utils.task(desc, duration, importance, start_date+" "+start_time, due_date+" "+due_time, false));
+        app.tasklist.insert_task(new utils.task(desc, duration, importance, new date(start_date+" "+start_time), new date(due_date+" "+due_time), false));
         wx.switchTab({
           url: '/pages/tasklist/index',
           success: (res) => {},
