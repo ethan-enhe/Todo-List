@@ -9,8 +9,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        cl,
-        im,
     },
 
     /**
@@ -32,8 +30,8 @@ Page({
      */
     onShow() {
         this.setData({
-            cl: getApp().globaldata.bkgcolor,
-            im: getApp().globaldata.bkgimage,
+            cl: cl,
+            im: im,
         })
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
@@ -47,12 +45,12 @@ Page({
         // console.log(sz);
         for (var i = 0; i < sz; i++) {
             taskdata[i].ddl = false;
-            if(taskdata[i].due_time!=null && !taskdata[i].complete)
-            taskdata.push({
-                ddl: true,
-                desc: taskdata[i].desc,
-                start_time: taskdata[i].due_time
-            });
+            if (taskdata[i].due_time != null && !taskdata[i].complete)
+                taskdata.push({
+                    ddl: true,
+                    desc: taskdata[i].desc,
+                    start_time: taskdata[i].due_time
+                });
         }
         taskdata.sort(function (a, b) {
             return Date.parse(a.start_time) - Date.parse(b.start_time);
@@ -73,9 +71,21 @@ Page({
             } else lastmonth.taskdata.push(taskdata[i]);
         }
         if (lastmonth != {}) showdata.push(lastmonth);
+        var cur_year_month = utils.getYearMonth(new Date());
+        for (var i = 0; i < showdata.length; i++)
+            if (i + 1 == showdata.length || showdata[i].year_month >= cur_year_month) {
+                showdata[i].current = true;
+                break;
+            }
         this.setData({
             showdata: showdata
         })
+    },
+    scroll_cur_month() {
+        // 1.使用wx.createSelectorQuery()查询到需要滚动到的元素位置
+                    wx.pageScrollTo({
+                        selector:".cur"
+                    })
     },
 
     /**

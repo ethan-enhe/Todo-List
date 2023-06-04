@@ -32,8 +32,6 @@ Page({
         hashmap: {},
         cnttask: new Map(),
         showvis: true,
-        cl,
-        im
     },
 
     /**

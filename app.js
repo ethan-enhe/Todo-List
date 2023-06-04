@@ -5,8 +5,10 @@ const {
 var utils = require('./utils/util.js')
 
 App({
-    //   globalData: 'I am global data',
-
+    globaldata: {
+        bkgcolor: "none",
+        bkgimage: "none",
+    },
     tasklist: {
 
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
@@ -39,13 +41,18 @@ App({
         load_tasks() {
             this.list = wx.getStorageSync("tasklist");
             console.log("获取之前记录条数 " + this.list.length);
-            if (typeof list === "undefined") {
+            if (typeof list == "undefined") {
                 this.list = new Array();
             }
         }
     },
     onLaunch() {
         this.tasklist.load_tasks();
+            var setting = wx.getStorageSync("setting");
+            if (typeof setting != "undefined") {
+                this.globaldata=setting;
+            }
+
         this.tasklist.insert_task(new utils.task("淑芬作业1", 123, true, new Date("1989-6-4"), null, false));
         this.tasklist.insert_task(new utils.task("淑芬作业2", 123, true, new Date("2023-6-12"), new Date("2023-6-23"), false));
         this.tasklist.insert_task(new utils.task("线代作业1", 123, false, new Date("2023-6-14"), null, true));
@@ -55,9 +62,6 @@ App({
     },
     onHide() {
         this.tasklist.save_tasks();
-    },
-    globaldata: {
-        bkgcolor: "none",
-        bkgimage: "none",
+        wx.setStorageSync("setting", this.globaldata);
     }
 })

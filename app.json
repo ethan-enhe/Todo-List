@@ -4,7 +4,7 @@
         "pages/tasklist/index",
         "pages/timeline/index",
         "pages/settings/index",
-        "pages/logs/logs"
+        "pages/edit/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

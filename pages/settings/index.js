@@ -1,102 +1,105 @@
 var app = getApp();
-var cl = getApp().globaldata.bkgcolor;
-var im = getApp().globaldata.bkgimage;
+var cl = cl;
+var im = im;
 Page({
-    onshow: function (options) {
-        var cl = getApp().globaldata.bkgcolor;
-        var im = getApp().globaldata.bkgimage;
-        console.log(cl);
+    onShow: function (options) {
+        if (typeof this.getTabBar === 'function' &&
+            this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 3
+            })
+        }
     },
     data: {
         cl,
         im
     },
     bkgsetred() {
-        getApp().globaldata.bkgcolor = "red";
-        getApp().globaldata.bkgimage = "none";
+        cl = "red";
+        im = "none";
         this.setData({
-            cl: "red",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetorange() {
-        app.globaldata.bkgcolor = "orange";
-        getApp().globaldata.bkgimage = "none";
+        cl = "orange";
+        im = "none";
         this.setData({
-            cl: "orange",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetgreen() {
-        app.globaldata.bkgcolor = "green";
-        getApp().globaldata.bkgimage = "none";
+        cl = "green";
+        im = "none";
         this.setData({
-            cl: "green",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetblue() {
-        app.globaldata.bkgcolor = "blue";
-        getApp().globaldata.bkgimage = "none";
+        cl = "blue";
+        im = "none";
         this.setData({
-            cl: "blue",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetpurple() {
-        app.globaldata.bkgcolor = "purple";
-        getApp().globaldata.bkgimage = "none";
+        cl = "purple";
+        im = "none";
         this.setData({
-            cl: "purple",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetpink() {
-        app.globaldata.bkgcolor = "pink";
-        getApp().globaldata.bkgimage = "none";
+        cl = "pink";
+        im = "none";
         this.setData({
-            cl: "pink",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetdefault() {
-        app.globaldata.bkgcolor = "none";
-        getApp().globaldata.bkgimage = "none";
+        cl = "none";
+        im = "none";
         this.setData({
-            cl: "none",
-            im: "none"
+            cl: cl,
+            im: im
         })
     },
     bkgsetimg1() {
-        app.globaldata.bkgcolor = "none";
-        getApp().globaldata.bkgimage = "/image/bkg1.jpg";
+        cl = "none";
+        im = "/image/bkg1.jpg";
         this.setData({
-            cl: "none",
-            im: "/image/bkg1.jpg"
+            cl: cl,
+            im: im
         })
     },
     bkgsetimg2() {
-        app.globaldata.bkgcolor = "none";
-        getApp().globaldata.bkgimage = "/image/bkg2.jpg";
+        cl = "none";
+        im = "/image/bkg2.jpg";
         this.setData({
-            cl: "none",
-            im: "/image/bkg2.jpg"
+            cl: cl,
+            im: im
         })
     },
     bkgsetimg3() {
-        app.globaldata.bkgcolor = "none";
-        getApp().globaldata.bkgimage = "/image/bkg3.jpg";
+        cl = "none";
+        im = "/image/bkg3.jpg";
         this.setData({
-            cl: "none",
-            im: "/image/bkg3.jpg"
+            cl: cl,
+            im: im
         })
     },
     bkgsetimg4() {
-        app.globaldata.bkgcolor = "none";
-        getApp().globaldata.bkgimage = "/image/bkg4.jpeg";
+        cl = "none";
+        im = "/image/bkg4.jpeg";
         this.setData({
-            cl: "none",
-            im: "/image/bkg4.jpeg"
+            cl: cl,
+            im: im
         })
     },
 })
@@ -107,12 +110,6 @@ Page({
         show() {
             每个页面的tab栏实例是不一样的
             在切换到的页面里还需要设置那个页面的tab实例的选中项目。
-            if (typeof this.getTabBar === 'function' &&
-                this.getTabBar()) {
-                this.getTabBar().setData({
-                    selected: 3
-                })
-            }
         }
     },
     methods: {
