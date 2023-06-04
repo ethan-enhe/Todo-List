@@ -66,7 +66,7 @@ module.exports = {
   </swiper>
 </view>
 <!-- 时间组件-->
-<button bindtap="update" class="hidevisual">Update </button>
+<button class="hidevisual">任务列表 </button>
 <view class="head">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</view>
 <scroll-view scroll-y="true" style="height:200px">
 <block wx:if="{{true}}"wx:for="{{tasklist}}"  >

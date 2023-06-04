@@ -1,6 +1,4 @@
 // pages/tasklist/index.js
-
-
 var utils = require('../../utils/util.js')
 var app = getApp();
 var cl = getApp().globaldata.bkgcolor;
@@ -58,14 +56,16 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        wx.onAppRoute(function(res){ 
+            this.load_data();
+            this.setData({
+                tasklist: this.data.tasklist
+            });}) 
         this.setData({
             cl: getApp().globaldata.bkgcolor,
             im: getApp().globaldata.bkgimage,
         })
-        this.load_data();
-        this.setData({
-            tasklist: this.data.tasklist
-        });
+        
 
         //每个页面的tab栏实例是不一样的
         //在切换到的页面里还需要设置那个页面的tab实例的选中项目。
