@@ -17,6 +17,6 @@
         <button bindtap="scroll_cur_month" class="cu-btn icon lg bg-blue" style="position:fixed; bottom: 70px; right: 50px">
             <text class="cuIcon-top"></text>
         </button>
-        <view style="padding: 100px;"></view>
+        <view style="padding: 30px;"></view>
     </view>
 </view>
