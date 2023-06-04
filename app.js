@@ -14,9 +14,8 @@ App({
             this.list.push(task_data);
         },
         get_pos(task_id) { //通过id查找事件在列表中的位置
-            var res = utils.deepcopy(this.list);
-            for (var i = 0; i < res.length; i++)
-                if (res[i].id == task_id) return i;
+            for (var i = 0; i < this.list.length; i++)
+                if (this.list[i].id == task_id) return i;
         },
         delete_task(task_id) { //传入taskid，删除对应任务。
             var index = this.list.findIndex(function (x) {
