@@ -10,7 +10,7 @@
                     <view style="display:flex;flex-direction:row">
                      <icon type="info" size="44"></icon>
                      <view>
-                        <view  class="text-lg">国家 : {{country}}</view>
+                        <view  class="text-lg">国家(地区): {{country}}</view>
                         <view class="text-lg">城市: {{city}}</view>
                      </view>
                     </view>         
