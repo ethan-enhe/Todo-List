@@ -21,7 +21,10 @@ formatNumber = function (n) {
         var s = formatNumber(date.getSeconds());
         var a = formatNumber(date.getDay());
         var time_str = "";
-        if (type == 'month') {
+        if (type == 'hourmin'){
+           time_str = h + ':' + i
+        }
+        else if (type == 'month') {
           time_str = y + '-' + m;
         } else if (type == 'date') {
           time_str = y + '-' + m + '-' + d;
@@ -74,8 +77,8 @@ module.exports = {
 <movable-view direction="horizontal" class="task_normal" bindlongpress="long_press"  data-id="{{item.id}}" out-of-bounds="true"  > 
 <image src="/image/tasks.png" class="image_view" ></image>
 <view class="task_name_style">任务名: {{item.desc}}</view>  
-<view class="task_name_style;">开始时间:{{active.psd(item.start_time,'datetime')}}</view>
-<view class="task_name_style">结束时间:{{active.psd(item.due_time,'datetime')}}</view>
+<view class="task_name_style;">开始时间:{{active.psd(item.start_time,"hourmin")}}</view>
+<view class="task_name_style">结束时间:{{active.psd(item.due_time,"hourmin")}}</view>
 </movable-view>
 </movable-area>
 </block>
