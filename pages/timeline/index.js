@@ -80,6 +80,12 @@ Page({
             showdata: showdata
         })
     },
+    edit_task(d){
+        app.taskid=d.target.dataset.id;
+        wx.navigateTo({
+          url: '../input/index',
+        })
+    },
     scroll_cur_month() {
         wx.pageScrollTo({
             selector: ".cur"
