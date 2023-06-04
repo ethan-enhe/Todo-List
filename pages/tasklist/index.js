@@ -23,7 +23,7 @@ Page({
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
         dateCurrent: new Date(), // 正选择的当前日期
         dateCurrentStr: '', // 正选择日期的 id
-        dateMonth: '5月', // 正显示的月份
+        dateMonth: '...加载中', // 正显示的月份
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
         hashmap: {},
         cnttask: new Map(),
@@ -107,7 +107,7 @@ Page({
             swiperCurrent:0,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
-            dateMonth: d.getMonth() + '月',
+            dateMonth:( d.getMonth() + 1) + '月',
         });
     },
     // 获取这周从周日到周六的日期
@@ -129,6 +129,21 @@ Page({
         }
         return d;
     },
+    add(){
+     app.taskid = -1;
+     wx.navigateTo({
+     url: '../input/index',
+   })
+    },
+
+    modify(e){
+        app.taskid = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '../input/index',
+          })
+        
+    },
+
     // 更新日期数组数据
     updateDate(_date, atBefore) {
         var week = this.calculateDate(_date);
