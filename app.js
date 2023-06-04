@@ -49,5 +49,8 @@ App({
     onHide() {
         this.tasklist.save_tasks();
     },
-
+    globaldata:{
+        bkgcolor:"none",
+        bkgimage:"none",
+    }
 })

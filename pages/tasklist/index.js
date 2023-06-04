@@ -3,7 +3,8 @@
 
 var utils = require('../../utils/util.js')
 var app = getApp();
-
+var cl = getApp().globaldata.bkgcolor;
+var im = getApp().globaldata.bkgimage;
 Page({
 
     task: class {
@@ -20,7 +21,6 @@ Page({
 
     data: {
         tasklist: [],
-
         dateactive: [],
         /**时间组件 */
         dateList: [], // 日历数据数组
@@ -31,7 +31,9 @@ Page({
         dateListArray: ['日', '一', '二', '三', '四', '五', '六'],
         hashmap: {},
         cnttask: new Map(),
-        showvis: true
+        showvis: true,
+        cl,
+        im
     },
 
     /**
@@ -58,6 +60,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
+        })
         this.load_data();
         this.setData({
             tasklist: this.data.tasklist

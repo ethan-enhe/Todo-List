@@ -1,13 +1,16 @@
 // pages/timeline/index.js
 var utils = require('../../utils/util.js')
 var app = getApp();
+var cl = getApp().globaldata.bkgcolor;
+var im = getApp().globaldata.bkgimage;
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        cl,
+        im,
     },
 
     /**
@@ -28,6 +31,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
+        })
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
