@@ -104,10 +104,10 @@ Page({
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
-            swiperCurrent: d.getMonth(),
+            swiperCurrent:0,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
-            dateMonth: month + '月',
+            dateMonth: d.getMonth() + '月',
         });
     },
     // 获取这周从周日到周六的日期

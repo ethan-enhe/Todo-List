@@ -12,6 +12,12 @@ function formatTime(date) {
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+function fix_task(x) { //把变成字符串的日期救回来
+    if (typeof (x.start_time) == "string") x.start_time = new Date(x.start_time);
+    if (typeof (x.due_time) == "string") x.due_time = new Date(x.due_time);
+    return x;
+}
+
 function formatDate(date, split) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
@@ -78,4 +84,5 @@ module.exports = {
     addZero: formatNumber,
     deepcopy: copyObj,
     task: task,
+    fix_task:fix_task
 }
