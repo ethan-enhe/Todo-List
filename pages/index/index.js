@@ -38,14 +38,16 @@ Page({
           selected: 0
         })
       }
+    },
+    getmotto(){
+      return 0;
+  
+  
+  
+  
     }
   },
 
-  getmotto(){
-
-
-
-
-  }
+  
 
 )
