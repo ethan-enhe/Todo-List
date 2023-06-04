@@ -66,7 +66,7 @@ module.exports = {
   </swiper>
 </view>
 <!-- 时间组件-->
-<button bindtap="update" class="hidevisual">Update </button>
+<button class="hidevisual">任务列表 </button>
 <view class="head">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</view>
 <scroll-view scroll-y="true" style="height:200px">
 <block wx:if="{{true}}"wx:for="{{tasklist}}"  >
@@ -88,7 +88,7 @@ module.exports = {
 <view wx:for="{{cnttask}}" wx:for-index="key"  >
    <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
    <view class="task_name_style">{{key}}</view>
-   <view  style="display:flex;flex-direction: column;height:{{item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table" ></view>
+   <view  style="display:flex;flex-direction: column;height:{{item*20 >200 ?200:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table" ></view>
    <view class="task_name_style" >{{item}}</view>
 </view>
 </view>
