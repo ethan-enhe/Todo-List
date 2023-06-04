@@ -28,7 +28,6 @@ App({
             var res = utils.deepcopy(this.list);
             for (var i = 0; i < res.length; i++)
                 res[i] = utils.fix_task(res[i]);
-
             return res;
         },
         save_tasks() {
