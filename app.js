@@ -6,8 +6,8 @@ var utils = require('./utils/util.js')
 
 App({
     globaldata: {
-        bkgcolor: 'none',
-        bkgimage: 'none',
+        bkgcolor: "none",
+        bkgimage: "none",
     },
     tasklist: {
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
