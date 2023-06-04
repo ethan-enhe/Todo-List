@@ -298,7 +298,6 @@ Page({
     onShow() {
         const that = this;
         wx.onAppRoute(function(res){ 
-            console.log(that);
             that.load_data();
             that.setData({
                 tasklist: that.data.tasklist
