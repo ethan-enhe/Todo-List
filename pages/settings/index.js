@@ -1,6 +1,14 @@
 var app = getApp();
 var cl = app.globaldata.bkgcolor;
 var im = app.globaldata.bkgimage;
+var url = ["/image/bkg1.jpg", "/image/bkg2.jpg", "/image/bkg3.jpg", "/image/bkg4.jpeg"]
+
+var Background_base64 = function (path) {
+    return 'data:image/jpg;base64,' + wx.getFileSystemManager().readFileSync(path, 'base64');
+}
+for (var i = 0; i < url.length; i++)
+    url[i] = Background_base64(url[i]);
+
 Page({
     onShow: function (options) {
         if (typeof this.getTabBar === 'function' &&
@@ -12,7 +20,8 @@ Page({
     },
     data: {
         cl,
-        im
+        im,
+        url: url,
     },
     bkgsetred() {
         app.globaldata.bkgcolor = "red";
@@ -72,7 +81,7 @@ Page({
     },
     bkgsetimg1() {
         app.globaldata.bkgcolor = "none";
-        app.globaldata.bkgimage = "/image/bkg1.jpg";
+        app.globaldata.bkgimage = url[0];
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage
@@ -80,7 +89,7 @@ Page({
     },
     bkgsetimg2() {
         app.globaldata.bkgcolor = "none";
-        app.globaldata.bkgimage = "/image/bkg2.jpg";
+        app.globaldata.bkgimage = url[1];
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage
@@ -88,7 +97,7 @@ Page({
     },
     bkgsetimg3() {
         app.globaldata.bkgcolor = "none";
-        app.globaldata.bkgimage = "/image/bkg3.jpg";
+        app.globaldata.bkgimage = url[2];
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage
@@ -96,7 +105,7 @@ Page({
     },
     bkgsetimg4() {
         app.globaldata.bkgcolor = "none";
-        app.globaldata.bkgimage = "/image/bkg4.jpeg";
+        app.globaldata.bkgimage = url[3];
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage

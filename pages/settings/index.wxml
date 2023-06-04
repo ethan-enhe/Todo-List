@@ -56,10 +56,10 @@
         </view>
         <view class="padding bg-white solid-bottom">
             <view class="grid col-4">
-                <view class="bg-img padding-tb-xl flex align-begin" style="background-image: url(/image/bkg1.jpg);height: 400rpx;" bindtap="bkgsetimg1"></view>
-                <view class="bg-img padding-tb-xl flex" style="background-image: url(/image/bkg2.jpg);height: 400rpx;" bindtap="bkgsetimg2"></view>
-                <view class="bg-img padding-tb-xl flex" style="background-image: url(/image/bkg3.jpg);height: 400rpx;" bindtap="bkgsetimg3"></view>
-                <view class="bg-img padding-tb-xl flex align-end" style="background-image: url(/image/bkg4.jpeg);height: 400rpx;" bindtap="bkgsetimg4"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url({{url[0]}});height: 400rpx;" bindtap="bkgsetimg1"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url({{url[1]}});height: 400rpx;" bindtap="bkgsetimg2"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url({{url[2]}});height: 400rpx;" bindtap="bkgsetimg3"></view>
+                <view class="bg-img padding-tb-xl flex" style="background-image: url({{url[3]}});height: 400rpx;" bindtap="bkgsetimg4"></view>
             </view>
         </view>
         <!--
