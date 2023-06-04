@@ -64,5 +64,11 @@ Page({
     newtask() {
         console.log("!!!", desc);
         app.tasklist.insert_task(new utils.task(desc, duration, importance, start_time, due_time, false));
+        wx.switchTab({
+          url: '/pages/tasklist/index',
+          success: (res) => {},
+          fail: (res) => {},
+          complete: (res) => {},
+        })
     }
 })
