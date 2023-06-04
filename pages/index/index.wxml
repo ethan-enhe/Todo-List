@@ -11,7 +11,7 @@
                         <view class="text-lg">城市: {{city}}</view>
                      </view></view></view>
 <view  class="bg-gradual-green padding radius text-center shadow-blur">
-
+{{curstr}}
 </view>
 
 </view></view>
