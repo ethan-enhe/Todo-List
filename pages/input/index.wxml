@@ -7,15 +7,15 @@
 
         <view class="cu-form-group solid-bottom">
             <view class="title">事件名称</view>
-            <input class="text-right input" type="text" placeholder="线代作业" confirm-type="done" auto-focus="true" bindinput="descinput"></input>
+            <input class="text-right input" type="text" placeholder="例：线代作业" confirm-type="done" auto-focus="true" bindinput="descinput"></input>
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">所需时间（分钟）</view>
-            <input class="text-right" type="number" placeholder="114" confirm-type="done" focus="true" bindinput="durationinput"></input>
+            <input class="text-right" type="number" placeholder="例：114" confirm-type="done" focus="true" bindinput="durationinput"></input>
 
         </view>
         <view class="cu-form-group solid-bottom">
-            <view class="title">重要性</view>
+            <view class="title">重要性（默认不重要）</view>
             <switch class="red margin-right" checked="{{importance}}"></switch>
         </view>
         <!--
