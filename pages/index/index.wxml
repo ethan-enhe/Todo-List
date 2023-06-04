@@ -1,3 +1,2 @@
 <view>Home</view>
-<view>ip地址 {{ip}}</view>
-<navigator url="../edit/index">编辑</navigator>
+<navigator url="../input/index">编辑</navigator>

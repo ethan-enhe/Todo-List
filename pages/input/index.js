@@ -7,8 +7,6 @@ var desc, duration, importance=false, start_time, due_time, complete;
 Page({
     onload: function () {},
     data: {
-        cl,
-        im,
         desc: null,
         duration: null,
         importance: false,
@@ -17,9 +15,10 @@ Page({
         complete: false,
     },
     onShow: function (options) {
-        var cl = getApp().globaldata.bkgcolor;
-        var im = getApp().globaldata.bkgimage;
-        console.log(cl);
+        this.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
+        })
     },
 
     descinput(e) {
