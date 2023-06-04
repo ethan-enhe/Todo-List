@@ -1,2 +1,6 @@
 <view>Home</view>
 <navigator url="../input/index">编辑</navigator>
+<view>微信小程序开发工具请在本地设置中打开不校验https 证书!</view>
+<view>当前定位</view>
+<view>国家 : {{country}}</view>
+<view>城市: {{city}}</view>
