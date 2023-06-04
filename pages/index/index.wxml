@@ -1,6 +1,6 @@
 
 <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
-<view style="font-size:30px">{{(hour > 18|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{country}} {{hour}}</view>
+<view style="font-size:30px">{{(hour > 17|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{city}} </view>
 <navigator url="../input/index"  class="bg-gradual-green padding radius text-center shadow-blur" >编辑</navigator>
 <view class="padding-sm" >
                     <view class="bg-gradual-blue padding radius text-center shadow-blur">
@@ -10,6 +10,8 @@
                         <view  class="text-lg">国家(地区): {{country}}</view>
                         <view class="text-lg">城市: {{city}}</view>
                      </view></view></view>
-</view>
+<view  class="bg-gradual-green padding radius text-center shadow-blur">
 
 </view>
+
+</view></view>
