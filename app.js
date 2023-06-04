@@ -10,9 +10,7 @@ App({
         bkgimage: 'none',
     },
     tasklist: {
-
         insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
-            // console.log(task_data);
             this.list.push(task_data);
         },
         delete_task(task_id) { //传入taskid，删除对应任务。
@@ -39,21 +37,18 @@ App({
             console.log("缓存记录条数 " + this.list.length);
         },
         load_tasks() {
-            this.list = wx.getStorageSync("tasklist");
-            console.log("获取之前记录条数 " + this.list.length);
-            if (typeof this.list == "undefined") {
+            //this.list;
+            const that = this;
+            this.list = wx.getStorageSync('tasklist')
+            if (this.list == "")
                 this.list = new Array();
-            }
         }
     },
     onLaunch() {
         this.tasklist.load_tasks();
-        var setting = wx.getStorageSync("setting");
-        if (typeof setting != "undefined") {
-            this.globaldata = setting;
-        }
-        console.log(setting);
-
+        var res = wx.getStorageSync("setting");
+        if (res != "")
+            this.globaldata = res;
         this.tasklist.insert_task(new utils.task("淑芬作业1", 123, true, new Date("1989-6-4"), null, false));
         this.tasklist.insert_task(new utils.task("淑芬作业2", 123, true, new Date("2023-6-12"), new Date("2023-6-23"), false));
         this.tasklist.insert_task(new utils.task("线代作业1", 123, false, new Date("2023-6-14"), null, true));
