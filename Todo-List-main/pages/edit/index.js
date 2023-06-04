@@ -1,0 +1,6 @@
+Page({
+    onShow(){
+    },
+    onload(){
+    }
+})

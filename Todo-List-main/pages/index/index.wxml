@@ -1,0 +1,2 @@
+<view>Home</view>
+<navigator url="../input/index">编辑</navigator>
