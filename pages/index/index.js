@@ -1,7 +1,7 @@
 Page({
     data:{
-      country:"China",
-      city:"Beijing",
+      country:"...定位中",
+      city:"...定位中",
   
     },
     onShow() {
@@ -12,7 +12,7 @@ Page({
        const that = this;
        wx.request(
         {
-            url:"http://ip-api.com/json",
+            url:"http://ip-api.com/json/?lang=zh-CN",
             success(e){
                 that.setData({city:e.data.city});
                 that.setData({country:e.data.country})
