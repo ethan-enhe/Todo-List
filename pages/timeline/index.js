@@ -6,8 +6,7 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-    },
+    data: {},
 
     /**
      * 生命周期函数--监听页面加载
@@ -80,10 +79,9 @@ Page({
         })
     },
     scroll_cur_month() {
-        // 1.使用wx.createSelectorQuery()查询到需要滚动到的元素位置
-                    wx.pageScrollTo({
-                        selector:".cur"
-                    })
+        wx.pageScrollTo({
+            selector: ".cur"
+        })
     },
 
     /**

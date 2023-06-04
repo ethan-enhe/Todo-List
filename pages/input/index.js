@@ -3,16 +3,21 @@ var utils = require('../../utils/util.js');
 var app = getApp();
 var cl = getApp().globaldata.bkgcolor;
 var im = getApp().globaldata.bkgimage;
-var desc, duration, importance=false, start_time, due_time, complete;
+var desc, duration, importance=false, start_time, due_time;
+var start_date, due_date, complete;
 Page({
     onload: function () {},
     data: {
         desc: null,
         duration: null,
         importance: false,
+        start_date: null,
+        due_date: null,
         start_time: null,
         due_time: null,
         complete: false,
+        due_date: null,
+        start_date: null
     },
     onShow: function (options) {
         this.setData({
@@ -35,34 +40,42 @@ Page({
         duration = e.detail.value;
         console.log(e.detail.value);
     },
-    startinput(e) {
+    starttinput(e) {
         this.setData({
             start_time: e.detail.value
         })
         start_time = e.detail.value;
         console.log(e.detail.value);
     },
-    dueinput(e) {
+    duetinput(e) {
         this.setData({
             due_time: e.detail.value
         })
         due_time = e.detail.value;
         console.log(e.detail.value);
     },
-    setimp() {
+    startdinput(e) {
         this.setData({
-            importance: true
+            start_date: e.detail.value
         })
-        importance = true;
+        start_date = e.detail.value;
+        console.log(e.detail.value);
     },
-    setunimp() {
+    duedinput(e) {
         this.setData({
-            importance: false
+            due_date: e.detail.value
         })
-        importance = false;
+        due_date = e.detail.value;
+        console.log(e.detail.value);
     },
     newtask() {
         console.log("!!!", desc);
-        app.tasklist.insert_task(new utils.task(desc, duration, importance, start_time, due_time, false));
+        app.tasklist.insert_task(new utils.task(desc, duration, importance, start_date+" "+start_time, due_date+" "+due_time, false));
+        wx.switchTab({
+          url: '/pages/tasklist/index',
+          success: (res) => {},
+          fail: (res) => {},
+          complete: (res) => {},
+        })
     }
 })

@@ -4,53 +4,72 @@
         <view class="text-xl padding text-black text-bold">事件创建</view>
         <view class="cu-bar bg-white solid-bottom">
             <view class="action">
-                <text class="cuIcon-title text-blue"></text>输入事件名称
+                <text class="cuIcon-title text-blue"></text>事件名称
             </view>
-       
-        <input class="input" type="text" placeholder="请输入事件名称" confirm-type="done" auto-focus="true" bindinput="descinput"></input> </view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>输入事件所需时间（分钟）
-            </view>
-    
-        <input type="number" placeholder="请输入事件所需时间" confirm-type="done" focus="true" bindinput="durationinput"></input>    </view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>事件是否重要（默认为非重要）
-            </view>
+
+            <input class="input" type="text" placeholder="线代作业" confirm-type="done" auto-focus="true" bindinput="descinput"></input>
         </view>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text>所需时间（分钟）
+            </view>
+
+            <input type="number" placeholder="114" confirm-type="done" focus="true" bindinput="durationinput"></input>
+        </view>
+        <view class="cu-form-group bg-white solid-bottom">
+            <view class="title">重要性</view>
+            <switch class="red margin-right-xl" checked="{{importance}}"></switch>
+        </view>
+        <view class="cu-form-group solid-bottom">
+            <view class="title">重要性</view>
+            <picker mode="date" value="{{start_date}}" start="2023-01-01" end="2028-12-31" bindchange="startdinput">
+                <view class="picker">
+                    {{start_date}}
+                </view>
+            </picker>
+        </view>
+        <!--
+
         <view class="cu-bar btn-group">
             <button class="cu-btn bg-red shadow-blur round" bindtap="setimp">重要</button>
             <button class="cu-btn bg-blue shadow-blur round" bindtap="setunimp">一般</button>
         </view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>事件开始日期（选填）
-            </view>
+        !-->
+        <view class="cu-form-group solid-bottom">
+            <view class="title">开始日期（选填）</view>
+            <picker mode="date" value="{{start_date}}" start="2023-01-01" end="2028-12-31" bindchange="startdinput">
+                <view class="picker">
+                    {{start_date}}
+                </view>
+            </picker>
         </view>
-        <view class="cu-form-group">
-            <view class="title text-black">日期选择</view>
-            <picker mode="date" value="{{start_time}}" start="2023-01-01" end="2028-12-31" bindchange="startinput">
-                <view class="picker text-black">
+        <view class="cu-form-group" wx:if="{{start_date!=null}}">
+            <view class="title">开始时间（选填）</view>
+            <picker mode="time" value="{{start_time}}" start="00：00" end="23：59" bindchange="starttinput">
+                <view class="picker">
                     {{start_time}}
                 </view>
             </picker>
         </view>
-        <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text>事件截止日期（选填，两个日期至少填写一个）
-            </view>
-        </view>
         <view class="cu-form-group">
-            <view class="title text-black">日期选择</view>
-            <picker mode="date" value="{{due_time}}" start="2023-01-01" end="2028-12-31" bindchange="dueinput">
-                <view class="picker text-black">
+            <view class="title">截止日期（选填）</view>
+            <picker mode="date" value="{{due_date}}" start="2023-01-01" end="2028-12-31" bindchange="duedinput">
+                <view class="picker">
+                    {{due_date}}
+                </view>
+            </picker>
+        </view>
+        <view class="cu-form-group" wx:if="{{due_date!=null}}">
+            <view class="title">截止时间（选填）</view>
+            <picker mode="time" value="{{due_time}}" start="00：00" end="23：59" bindchange="duetinput">
+                <view class="picker">
                     {{due_time}}
                 </view>
             </picker>
         </view>
-    <view class="padding">
-    <button wx:if="{{desc!=null && duration!=null && (start_time!=null || due_time!=null)}}" class="cu-btn bg-green block lg" bindtap="newtask">创建！</button>
-    <button wx:if="{{!(desc!=null && duration!=null && (start_time!=null || due_time!=null))}}" class="cu-btn bg-grey block lg">请填写必要数据</button></view>
+    </view>
+    <view class="padding-bottom">
+        <button wx:if="{{desc!=null && duration!=null && (start_date!=null || due_date!=null)}}" class="cu-btn bg-green block lg" bindtap="newtask">创建！</button>
+        <button wx:if="{{!(desc!=null && duration!=null && (start_date!=null || due_date!=null))}}" class="cu-btn bg-grey block lg">请填写必要数据</button>
     </view>
 </view>
