@@ -1,8 +1,6 @@
 // pages/timeline/index.js
 var utils = require('../../utils/util.js')
 var app = getApp();
-var cl = getApp().globaldata.bkgcolor;
-var im = getApp().globaldata.bkgimage;
 Page({
 
     /**
@@ -30,8 +28,8 @@ Page({
      */
     onShow() {
         this.setData({
-            cl: cl,
-            im: im,
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
         })
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {

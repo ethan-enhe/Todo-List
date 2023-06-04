@@ -3,8 +3,6 @@
 
 var utils = require('../../utils/util.js')
 var app = getApp();
-var cl = getApp().globaldata.bkgcolor;
-var im = getApp().globaldata.bkgimage;
 Page({
 
     task: class {

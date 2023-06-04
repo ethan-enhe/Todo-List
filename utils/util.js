@@ -52,7 +52,6 @@ function copyObj(obj) {
 
 var task = class {
     constructor(desc, duration, importance, start_time, due_time, complete) {
-        console.log("construct");
         this.desc = desc; //任务名称
         this.duration = duration; //任务持续时间，单位分钟，Number类型
         this.importance = importance; //任务重要性，重要为true，否则为false

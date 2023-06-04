@@ -1,6 +1,6 @@
 var app = getApp();
-var cl = cl;
-var im = im;
+var cl = app.globaldata.bkgcolor;
+var im = app.globaldata.bkgimage;
 Page({
     onShow: function (options) {
         if (typeof this.getTabBar === 'function' &&
@@ -15,91 +15,91 @@ Page({
         im
     },
     bkgsetred() {
-        cl = "red";
-        im = "none";
+        app.globaldata.bkgcolor = "red";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetorange() {
-        cl = "orange";
-        im = "none";
+        app.globaldata.bkgcolor = "orange";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetgreen() {
-        cl = "green";
-        im = "none";
+        app.globaldata.bkgcolor = "green";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetblue() {
-        cl = "blue";
-        im = "none";
+        app.globaldata.bkgcolor = "blue";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetpurple() {
-        cl = "purple";
-        im = "none";
+        app.globaldata.bkgcolor = "purple";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetpink() {
-        cl = "pink";
-        im = "none";
+        app.globaldata.bkgcolor = "pink";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetdefault() {
-        cl = "none";
-        im = "none";
+        app.globaldata.bkgcolor = "none";
+        app.globaldata.bkgimage = "none";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetimg1() {
-        cl = "none";
-        im = "/image/bkg1.jpg";
+        app.globaldata.bkgcolor = "none";
+        app.globaldata.bkgimage = "/image/bkg1.jpg";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetimg2() {
-        cl = "none";
-        im = "/image/bkg2.jpg";
+        app.globaldata.bkgcolor = "none";
+        app.globaldata.bkgimage = "/image/bkg2.jpg";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetimg3() {
-        cl = "none";
-        im = "/image/bkg3.jpg";
+        app.globaldata.bkgcolor = "none";
+        app.globaldata.bkgimage = "/image/bkg3.jpg";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
     bkgsetimg4() {
-        cl = "none";
-        im = "/image/bkg4.jpeg";
+        app.globaldata.bkgcolor = "none";
+        app.globaldata.bkgimage = "/image/bkg4.jpeg";
         this.setData({
-            cl: cl,
-            im: im
+            cl: app.globaldata.bkgcolor,
+            im: app.globaldata.bkgimage
         })
     },
 })
