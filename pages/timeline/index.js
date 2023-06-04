@@ -74,6 +74,8 @@ Page({
                 showdata[i].current = true;
                 break;
             }
+            if(showdata.length>0)
+            showdata[showdata.length-1].unknown=true;
         this.setData({
             showdata: showdata
         })
@@ -81,6 +83,11 @@ Page({
     scroll_cur_month() {
         wx.pageScrollTo({
             selector: ".cur"
+        })
+    },
+    scroll_unknown() {
+        wx.pageScrollTo({
+            selector: ".unk"
         })
     },
 
