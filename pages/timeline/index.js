@@ -26,10 +26,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.setData({
-            cl: getApp().globaldata.bkgcolor,
-            im: getApp().globaldata.bkgimage,
-        })
+
+            this.edit_task = null;
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
@@ -42,23 +40,22 @@ Page({
         // console.log(sz);
         for (var i = 0; i < sz; i++) {
             taskdata[i].ddl = false;
-            if (taskdata[i].due_time != null && !taskdata[i].complete)
-                taskdata.push({
-                    ddl: true,
-                    desc: taskdata[i].desc,
-                    start_time: taskdata[i].due_time
-                });
+            if (taskdata[i].due_time != null && !taskdata[i].complete) {
+                var due = utils.deepcopy(taskdata[i]);
+                due.ddl = true, due.start_time = taskdata[i].due_time;
+                taskdata.push(due);
+            }
         }
         taskdata.sort(function (a, b) {
             return Date.parse(a.start_time) - Date.parse(b.start_time);
         });
-
         var showdata = new Array();
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
             var time = taskdata[i].start_time;
             var tmp = utils.getYearMonth(time);
             taskdata[i].day = time.getDate();
+            taskdata[i] = taskdata[i];
             if (tmp != lastmonth.year_month) {
                 if (i) showdata.push(lastmonth);
                 lastmonth = {
@@ -74,16 +71,25 @@ Page({
                 showdata[i].current = true;
                 break;
             }
-            if(showdata.length>0)
-            showdata[showdata.length-1].unknown=true;
+        if (showdata.length > 0)
+            showdata[showdata.length - 1].unknown = true;
+
+
         this.setData({
+            cl: getApp().globaldata.bkgcolor,
+            im: getApp().globaldata.bkgimage,
             showdata: showdata
-        })
-    },
-    edit_task(d){
-        app.taskid=d.target.dataset.id;
-        wx.navigateTo({
-          url: '../input/index',
+        }, function () {
+            this.edit_task = function (d) {
+                console.log(d)
+                console.log(d.target)
+                if (typeof (d.target.dataset.id) == "number")
+                    wx.navigateTo({
+                        url: '../input/index?id=' + d.target.dataset.id,
+                    })
+                else
+                    console.log("fuck");
+            }
         })
     },
     scroll_cur_month() {

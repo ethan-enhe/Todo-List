@@ -1,4 +1,4 @@
-<view style="background-image: url({{im}});height:fit-content;width:100%;">
+<view style="{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%">
     <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur"  style="opacity: 85%;">
         <view class="flex-sub text-left">
             <view class="text-xl padding text-black text-bold">

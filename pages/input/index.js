@@ -3,17 +3,20 @@ var utils = require('../../utils/util.js');
 var app = getApp();
 //console.log(app)
 var pos;
+var taskid;
 Page({
-    onload: function () {},
-    onShow: function (options) {
+    onLoad: function (option) {
+        taskid=option.id;
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage,
         });
-        if (app.taskid > 0) {
-            pos = app.tasklist.get_pos(app.taskid);
-            console.log("find!!",pos);
+        if (taskid > 0) {
+            pos = app.tasklist.get_pos(taskid);
             var list = app.tasklist.get_tasks_copy();
+            // console.log(app.tasklist.list);
+            // console.log("pos->", pos)
+            // console.log(app.tasklist.list[pos]);
             this.setData({
                 desc: list[pos].desc,
                 duration: list[pos].duration,
@@ -53,9 +56,11 @@ Page({
             })
         }
     },
+    onShow: function () {
+    },
     newtask() {
 
-        if (app.taskid > 0) {
+        if (taskid > 0) {
             app.tasklist.list[pos].desc = this.data.desc;
             app.tasklist.list[pos].duration = this.data.duration;
             app.tasklist.list[pos].importance = this.data.importance;
@@ -63,7 +68,7 @@ Page({
             app.tasklist.list[pos].due_date = new Date(this.data.due_date + " " + this.data.due_time);
             app.tasklist.list[pos].complete = this.data.complete;
         } else {
-            var tmp=new utils.task(
+            var tmp = new utils.task(
                 this.data.desc,
                 this.data.duration,
                 this.data.importance,
@@ -71,7 +76,6 @@ Page({
                 new Date(this.data.due_date + " " + this.data.due_time),
                 this.data.complete,
             )
-            console.log(tmp);
             app.tasklist.insert_task(new utils.task(
                 this.data.desc,
                 this.data.duration,
