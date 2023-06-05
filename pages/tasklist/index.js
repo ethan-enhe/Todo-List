@@ -53,7 +53,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-   
+
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -104,10 +104,10 @@ Page({
             this.updateDate(utils.DateAddDay(d, i * 7)); //多少天之后的
         }
         this.setData({
-            swiperCurrent:0,
+            swiperCurrent: 0,
             dateCurrent: d,
             dateCurrentStr: d.getFullYear() + '-' + month + '-' + day,
-            dateMonth:( d.getMonth() + 1) + '月',
+            dateMonth: (d.getMonth() + 1) + '月',
         });
     },
     // 获取这周从周日到周六的日期
@@ -129,19 +129,18 @@ Page({
         }
         return d;
     },
-    add(){
-     app.taskid = -1;
-     wx.navigateTo({
-     url: '../input/index',
-   })
+    add() {
+        wx.navigateTo({
+            url: '../input/index?id=-1',
+        })
     },
 
-    modify(e){
-        app.taskid = e.currentTarget.dataset.id;
+    modify(e) {
+        // app.taskid = e.currentTarget.dataset.id;
         wx.navigateTo({
-            url: '../input/index',
-          })
-        
+            url: '../input/index?id=' + e.currentTarget.dataset.id,
+        })
+
     },
 
     // 更新日期数组数据
@@ -312,16 +311,17 @@ Page({
     },
     onShow() {
         const that = this;
-        wx.onAppRoute(function(res){ 
+        wx.onAppRoute(function (res) {
             that.load_data();
             that.setData({
                 tasklist: that.data.tasklist
-            });}) 
+            });
+        })
         that.setData({
             cl: getApp().globaldata.bkgcolor,
             im: getApp().globaldata.bkgimage,
         })
-        
+
 
         //每个页面的tab栏实例是不一样的
         //在切换到的页面里还需要设置那个页面的tab实例的选中项目。

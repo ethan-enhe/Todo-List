@@ -27,7 +27,7 @@ Page({
      */
     onShow() {
 
-            this.edit_task = null;
+        this.edit_task = null;
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
@@ -80,16 +80,20 @@ Page({
             im: getApp().globaldata.bkgimage,
             showdata: showdata
         }, function () {
-            this.edit_task = function (d) {
-                console.log(d)
-                console.log(d.target)
-                if (typeof (d.target.dataset.id) == "number")
-                    wx.navigateTo({
-                        url: '../input/index?id=' + d.target.dataset.id,
-                    })
-                else
-                    console.log("fuck");
-            }
+            setTimeout(() => {
+                this.edit_task = function (d) {
+                    console.log(d)
+                    console.log(d.target)
+                    console.log(d.target.dataset)
+                    console.log(d.target.dataset.id)
+                    if (typeof (d.target.dataset.id) == "number")
+                        wx.navigateTo({
+                            url: '../input/index?id=' + d.target.dataset.id,
+                        })
+                    else
+                        console.log("fuck");
+                }
+            }, 1500);
         })
     },
     scroll_cur_month() {

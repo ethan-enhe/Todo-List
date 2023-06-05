@@ -6,7 +6,8 @@ var pos;
 var taskid;
 Page({
     onLoad: function (option) {
-        taskid=option.id;
+        taskid = new Number(option.id);
+        if (typeof (taskid) == 'undefined') taskid = -1;
         this.setData({
             cl: app.globaldata.bkgcolor,
             im: app.globaldata.bkgimage,
@@ -56,8 +57,7 @@ Page({
             })
         }
     },
-    onShow: function () {
-    },
+    onShow: function () {},
     newtask() {
 
         if (taskid > 0) {

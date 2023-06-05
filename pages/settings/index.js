@@ -1,4 +1,5 @@
 var app = getApp();
+var utils = require('../../utils/util.js');
 var cl = app.globaldata.bkgcolor;
 var im = app.globaldata.bkgimage;
 var url = ["/image/bkg1.jpg", "/image/bkg2.jpg", "/image/bkg3.jpg", "/image/bkg4.jpeg"]
@@ -111,6 +112,21 @@ Page({
             im: app.globaldata.bkgimage
         })
     },
+    export_data() {
+
+        wx.setClipboardData({
+            data: JSON.stringify(app.tasklist.get_tasks())
+        });
+    },
+    import_data() {
+        wx.getClipboardData({
+            success(res) {
+                app.tasklist.list = JSON.parse(res.data);
+                for (var i = 0; i < app.tasklist.list.length; i++)
+                    app.tasklist.list[i] = utils.fix_task(app.tasklist.list[i]);
+            }
+        });
+    }
 })
 
 /* Component({
