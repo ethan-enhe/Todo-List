@@ -81,11 +81,11 @@
         <scroll-view scroll-y="true" style="height:150px;opacity:0.7;background-color:white">
             <block wx:if="{{true}}" wx:for="{{tasklist}}">
                 <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
-                    <movable-view class="bg-grey"direction="horizontal" class="task_normal" bindtap="modify" bindlongpress="long_press" data-id="{{item.id}}" out-of-bounds="true">
+                    <movable-view class="bg-grey" direction="horizontal" class="task_normal" bindtap="modify" bindlongpress="long_press" data-id="{{item.id}}" out-of-bounds="true">
                         <image src="/image/tasks.png" class="image_view"></image>
-                        <view class="task_name_style">任务名: {{item.desc}}</view>
-                        <view class="task_name_style;">开始时间:{{active.psd(item.start_time,"hourmin")}}</view>
-                        <view class="task_name_style">结束时间:{{active.psd(item.due_time,"hourmin")}}</view>
+                            <view class="task_name_style"><view style="display:flex;flex-direction: column">任务名：<view>{{item.desc}}</view></view></view>
+                            <view class="task_name_style"><view style="display:flex;flex-direction: column">开始时间:<view>{{active.psd(item.start_time,"hourmin")}}</view></view></view>
+                            <view class="task_name_style"><view style="display:flex;flex-direction: column">结束时间:<view>{{active.psd(item.due_time,"hourmin")}}</view></view></view>
                     </movable-view>
                 </movable-area>
             </block>
@@ -107,23 +107,23 @@
         </view>
         <view wx:if="{{showvis}}">
             <view class="cu-bar bg-white solid-bottom">
-            <view class="action">
-                <text class="cuIcon-title text-blue"></text><text class="text-black text-xl text-bold">待完成任务视图</text>
+                <view class="action">
+                    <text class="cuIcon-title text-blue"></text><text class="text-black text-xl text-bold">待完成任务视图</text>
+                </view>
             </view>
-        </view>
             <view class="cu-bar bg-white solid-bottom" style="opacity: 0.7;">
-            <scroll-view scroll-x="true" style="height:300px">
-                <view style="display:flex;flex-direction:row;">
-                    <view wx:for="{{cnttask}}" wx:for-index="key">
-                        <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
-                            <view class="task_name_style">{{key}}</view>
-                            <view style="display:flex;flex-direction: column;height:{{item*20 >160 ?180:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table"></view>
-                            <view class="task_name_style">{{item}}</view>
+                <scroll-view scroll-x="true" style="height:300px">
+                    <view style="display:flex;flex-direction:row;">
+                        <view wx:for="{{cnttask}}" wx:for-index="key">
+                            <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
+                                <view class="task_name_style">{{key}}</view>
+                                <view style="display:flex;flex-direction: column;height:{{item*20 >160 ?180:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table"></view>
+                                <view class="task_name_style">{{item}}</view>
+                            </view>
                         </view>
                     </view>
-                </view>
-            </scroll-view>
+                </scroll-view>
+            </view>
         </view>
     </view>
-</view>
 </view>
