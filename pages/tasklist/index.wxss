@@ -89,7 +89,7 @@
 .task_name_style{
     display: flex;
     flex-direction: row;
-    color:white;
+    color:black;
     
     stroke-width:5px;
     margin:10px;

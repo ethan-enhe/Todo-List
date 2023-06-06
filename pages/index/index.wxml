@@ -10,8 +10,5 @@
                         <view  class="text-lg">国家(地区): {{country}}</view>
                         <view class="text-lg">城市: {{city}}</view>
                      </view></view></view>
-<view  class="bg-gradual-green padding radius text-center shadow-blur">
-{{curstr}}
-</view>
-
+<view  class="bg-gradual-green padding radius text-center shadow-blur">{{curstr}}</view>
 </view></view>

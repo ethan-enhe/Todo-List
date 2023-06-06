@@ -46,66 +46,84 @@
             psd: parseTime,
         }
 </wxs>
-<view style="{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%;position:fixed">
-</view>
-<view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
-    <view class="title">tasklist</view>
-    <view class="date-choose shrink">
-        <view class="data-month">{{dateMonth}}</view>
-        <swiper class="date-choose-swiper" indicator-dots="{{false}}" current="{{swiperCurrent}}" bindchange="dateSwiperChange">
-            <block wx:for="{{dateList}}" wx:for-item="date" wx:key="date.id">
-                <swiper-item class="swiper-item">
-                    <view class="weekday">
-                        <block wx:for-item="weekday" wx:for="{{dateListArray}}" wx:key="{{index}}">
-                            <text class="week">{{weekday}}</text>
-                        </block>
-                    </view>
-                    <view class="dateday">
-                        <block wx:for="{{date.days}}" wx:for-item="day" wx:key="{{day.id}}">
-                            <text class="day" id="{{day.id}}" data-id="{{day.id}}" bindtap="chooseDate">
-                                <text class="{{dateCurrentStr==day.id?'active':''}}">{{day.day}}
+<view style="background-image: url({{im}});height:fit-content;width:100%;">
+    <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
+        <view class="text-xsl padding">TaskList</view>
+        <view class="date-choose shrink">
+            <view class="data-month">{{dateMonth}}</view>
+            <swiper class="date-choose-swiper" indicator-dots="{{false}}" current="{{swiperCurrent}}" bindchange="dateSwiperChange">
+                <block wx:for="{{dateList}}" wx:for-item="date" wx:key="date.id">
+                    <swiper-item class="swiper-item">
+                        <view class="weekday">
+                            <block wx:for-item="weekday" wx:for="{{dateListArray}}" wx:key="{{index}}">
+                                <text class="week">{{weekday}}</text>
+                            </block>
+                        </view>
+                        <view class="dateday">
+                            <block wx:for="{{date.days}}" wx:for-item="day" wx:key="{{day.id}}">
+                                <text class="day" id="{{day.id}}" data-id="{{day.id}}" bindtap="chooseDate">
+                                    <text class="{{dateCurrentStr==day.id?'active':''}}">{{day.day}}
+                                    </text>
+                                    <text class="{{active.chk(dateactive,day.id)?'active1':''}}">
+                                    </text>
                                 </text>
-                                <text class="{{active.chk(dateactive,day.id)?'active1':''}}">
-                                </text>
-                            </text>
-                        </block>
-                    </view>
-                </swiper-item>
+                            </block>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!-- 时间组件-->
+        <view class="padding-top padding-bottom flex flex-direction">
+            <button class="cu-btn bg-grey lg" style="width: 100%;">任务列表 </button>
+        </view>
+        <view class="head">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</view>
+        <scroll-view scroll-y="true" style="height:150px;opacity:0.7;background-color:white">
+            <block wx:if="{{true}}" wx:for="{{tasklist}}">
+                <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
+                    <movable-view class="bg-grey"direction="horizontal" class="task_normal" bindtap="modify" bindlongpress="long_press" data-id="{{item.id}}" out-of-bounds="true">
+                        <image src="/image/tasks.png" class="image_view"></image>
+                        <view class="task_name_style">任务名: {{item.desc}}</view>
+                        <view class="task_name_style;">开始时间:{{active.psd(item.start_time,"hourmin")}}</view>
+                        <view class="task_name_style">结束时间:{{active.psd(item.due_time,"hourmin")}}</view>
+                    </movable-view>
+                </movable-area>
             </block>
-        </swiper>
-    </view>
-    <!-- 时间组件-->
-    <button class="hidevisual">任务列表 </button>
-    <view class="head">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</view>
-    <scroll-view scroll-y="true" style="height:150px;opacity:0.7;background-color:green">
-        <block wx:if="{{true}}" wx:for="{{tasklist}}">
-            <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
-                <movable-view direction="horizontal" class="task_normal" bindtap="modify" bindlongpress="long_press" data-id="{{item.id}}" out-of-bounds="true">
-                    <image src="/image/tasks.png" class="image_view"></image>
-                    <view class="task_name_style">任务名: {{item.desc}}</view>
-                    <view class="task_name_style;">开始时间:{{active.psd(item.start_time,"hourmin")}}</view>
-                    <view class="task_name_style">结束时间:{{active.psd(item.due_time,"hourmin")}}</view>
-                </movable-view>
-            </movable-area>
-        </block>
-    </scroll-view>
-    <view style="display:flex;flex-direction:row;background-color: white;color:green">
-        <icon type="info" size="44"></icon>
-        <button style="font-size: 20px;text-shadow: 3px;" bindtap="add">新增任务</button>
-    </view>
-    <button bindtap="hide" class="hidevisual">{{showvis? "隐藏任务视图":"显示任务视图"}}</button>
-    <view wx:if="{{showvis}}">
-        <view class="visualize">待完成任务视图</view>
-        <scroll-view scroll-x="true" style="height:300px">
-            <view style="display:flex;flex-direction:row;">
-                <view wx:for="{{cnttask}}" wx:for-index="key">
-                    <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
-                        <view class="task_name_style">{{key}}</view>
-                        <view style="display:flex;flex-direction: column;height:{{item*20 >160 ?180:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table"></view>
-                        <view class="task_name_style">{{item}}</view>
-                    </view>
+        </scroll-view>
+        <!--<view style="display:flex;flex-direction:row;background-color: white;color:green">
+<icon  type="info" size="44"></icon>
+<button style="font-size: 20px;text-shadow: 3px;" bindtap="add">新增任务</button>
+</view>-->
+        <view class="cu-bar bg-white solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text>
+                <view class="padding centering text-xl text-bold text-black">
+                    <text bindtap="add">新增任务</text>
                 </view>
             </view>
-        </scroll-view>
+        </view>
+        <view class="padding-top padding-bottom flex flex-direction">
+            <button bindtap="hide" class="cu-btn bg-grey margin-tb-sm lg" style="width: 100%;">{{showvis? "隐藏任务视图":"显示任务视图"}}</button>
+        </view>
+        <view wx:if="{{showvis}}">
+            <view class="cu-bar bg-white solid-bottom">
+            <view class="action">
+                <text class="cuIcon-title text-blue"></text><text class="text-black text-xl text-bold">待完成任务视图</text>
+            </view>
+        </view>
+            <view class="cu-bar bg-white solid-bottom" style="opacity: 0.7;">
+            <scroll-view scroll-x="true" style="height:300px">
+                <view style="display:flex;flex-direction:row;">
+                    <view wx:for="{{cnttask}}" wx:for-index="key">
+                        <view style="display:flex;flex-direction: column; height:200px;" wx:if="{{item !== 0}}">
+                            <view class="task_name_style">{{key}}</view>
+                            <view style="display:flex;flex-direction: column;height:{{item*20 >160 ?180:item*20}}px;background-color:rgb(0,{{255 - item*20}},255)" class="table"></view>
+                            <view class="task_name_style">{{item}}</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
     </view>
+</view>
 </view>
