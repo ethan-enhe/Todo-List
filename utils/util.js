@@ -64,6 +64,7 @@ var task = class {
 
 
 function getYearMonth(d) {
+    if(d==null)return "Nan 年 Nan 月"
     return d.getFullYear().toString() + " 年 " + (d.getMonth() + 1).toString() + " 月";
 }
 function fix_task(x) { //把变成字符串的日期救回来

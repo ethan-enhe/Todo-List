@@ -54,7 +54,7 @@ Page({
         for (var i = 0; i < taskdata.length; i++) {
             var time = taskdata[i].start_time;
             var tmp = utils.getYearMonth(time);
-            taskdata[i].day = time.getDate();
+            taskdata[i].day = time == null ? "Nan" : time.getDate();
             taskdata[i] = taskdata[i];
             if (tmp != lastmonth.year_month) {
                 if (i) showdata.push(lastmonth);
@@ -64,7 +64,8 @@ Page({
                 };
             } else lastmonth.taskdata.push(taskdata[i]);
         }
-        if (lastmonth != {}) showdata.push(lastmonth);
+        if (lastmonth.year_month) showdata.push(lastmonth);
+
         var cur_year_month = utils.getYearMonth(new Date());
         for (var i = 0; i < showdata.length; i++)
             if (i + 1 == showdata.length || showdata[i].year_month >= cur_year_month) {
@@ -104,6 +105,11 @@ Page({
     scroll_unknown() {
         wx.pageScrollTo({
             selector: ".unk"
+        })
+    },
+    add() {
+        wx.navigateTo({
+            url: '../input/index?id=-1',
         })
     },
 

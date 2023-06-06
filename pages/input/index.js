@@ -86,5 +86,10 @@ Page({
             ));
         }
         wx.navigateBack();
+    },
+    deltask() {
+        if (taskid > 0)
+            app.tasklist.delete_task(taskid);
+        wx.navigateBack();
     }
 })

@@ -46,6 +46,10 @@ App({
                 this.list = new Array();
             for (var i = 0; i < this.list.length; i++)
                 this.list[i] = utils.fix_task(this.list[i]);
+        },
+        get_available_time(d) { //传入日期，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
+            var tmp = this.get_tasks_copy();
+
         }
     },
     onLaunch() {
@@ -53,12 +57,6 @@ App({
         var res = wx.getStorageSync("setting");
         if (res != "")
             this.globaldata = res;
-        this.tasklist.insert_task(new utils.task("淑芬作业1", 123, true, new Date("2023-1-4"), null, false));
-        this.tasklist.insert_task(new utils.task("淑芬作业2", 123, true, new Date("2023-6-12"), new Date("2023-6-23"), false));
-        this.tasklist.insert_task(new utils.task("线代作业1", 123, false, new Date("2023-6-14"), null, true));
-        this.tasklist.insert_task(new utils.task("线代作业2", 123, false, new Date("2023-7-13"), new Date("2023-7-23"), true));
-        this.tasklist.insert_task(new utils.task("线代作业3", 123, true, new Date("2022-12-14"), null, true));
-        this.tasklist.insert_task(new utils.task("线代作业4", 123, true, new Date("2023-7-13"), null, true))
     },
     onHide() {
         this.tasklist.save_tasks();
