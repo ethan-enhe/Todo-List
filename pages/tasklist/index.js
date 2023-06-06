@@ -300,9 +300,6 @@ Page({
                 tasklist: []
             });
         }
-
-
-
     },
     hide() {
         this.setData({
