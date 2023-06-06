@@ -47,9 +47,51 @@ App({
             for (var i = 0; i < this.list.length; i++)
                 this.list[i] = utils.fix_task(this.list[i]);
         },
-        get_available_time(d) { //传入日期，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
+        get_available_time(d) { //传入Date对象，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
             var tmp = this.get_tasks_copy();
-
+            var samedaytasks = new Array();
+            var curday = utils.getYearMonthDay(d);
+            for (var i = 0; i < tmp.length; i++) {
+                // console.log(typeof (tmp[i].duration), curday == utils.getYearMonthDay(tmp[i].start_time));
+                if (typeof (tmp[i].duration) == "number" && utils.getYearMonthDay(tmp[i].start_time) == curday) {
+                    var end = new Date(tmp[i].start_time);
+                    end.setMinutes(end.getMinutes() + tmp[i].duration)
+                    samedaytasks.push({
+                        start_time: tmp[i].start_time,
+                        end_time: end
+                    });
+                }
+            }
+            samedaytasks.sort(function (a, b) {
+                return Date.parse(a.star_time) - Date.parse(b.start_time);
+            })
+            d.setHours(0);
+            d.setMinutes(0);
+            d.setSeconds(0);
+            d.setMilliseconds(0);
+            var nxday = new Date(d);
+            nxday.setDate(nxday.getDate() + 1);
+            var ge5min = function (a, b) {
+                return Date.parse(b) - Date.parse(a) >= 5 * 60 * 1000
+            }
+            var ava = new Array();
+            for (var i = 0; i < samedaytasks.length; i++) {
+                if (ge5min(d, samedaytasks[i].start_time)) {
+                    ava.push({
+                        start_ava: new Date(d),
+                        end_ava: new Date(samedaytasks[i].start_time)
+                    })
+                }
+                if (samedaytasks[i].end_time > d)
+                    d = samedaytasks[i].end_time;
+            }
+            if (ge5min(d, nxday))
+                ava.push({
+                    start_ava: new Date(d),
+                    end_ava: nxday
+                })
+            console.log(utils.getYearMonthDay(d),"空闲时间：",ava);
+            return ava;
         }
     },
     onLaunch() {

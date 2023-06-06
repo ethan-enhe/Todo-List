@@ -62,23 +62,15 @@ Page({
 
         if (taskid > 0) {
             app.tasklist.list[pos].desc = this.data.desc;
-            app.tasklist.list[pos].duration = this.data.duration;
+            app.tasklist.list[pos].duration = new Number(this.data.duration);
             app.tasklist.list[pos].importance = this.data.importance;
             app.tasklist.list[pos].start_date = new Date(this.data.start_date + " " + this.data.start_time);
             app.tasklist.list[pos].due_date = new Date(this.data.due_date + " " + this.data.due_time);
             app.tasklist.list[pos].complete = this.data.complete;
         } else {
-            var tmp = new utils.task(
-                this.data.desc,
-                this.data.duration,
-                this.data.importance,
-                new Date(this.data.start_date + " " + this.data.start_time),
-                new Date(this.data.due_date + " " + this.data.due_time),
-                this.data.complete,
-            )
             app.tasklist.insert_task(new utils.task(
                 this.data.desc,
-                this.data.duration,
+                new Number(this.data.duration),
                 this.data.importance,
                 new Date(this.data.start_date + " " + this.data.start_time),
                 new Date(this.data.due_date + " " + this.data.due_time),

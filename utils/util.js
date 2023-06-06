@@ -64,12 +64,19 @@ var task = class {
 
 
 function getYearMonth(d) {
-    if(d==null)return "Nan 年 Nan 月"
+    if (d == null) return "Nan 年 Nan 月"
     return d.getFullYear().toString() + " 年 " + (d.getMonth() + 1).toString() + " 月";
 }
+
+function getYearMonthDay(d) {
+    if (d == null) return "Nan 年 Nan 月 Nan 日"
+    return d.getFullYear().toString() + " 年 " + (d.getMonth() + 1).toString() + " 月" + (d.getDate() + 1).toString() + " 日";
+}
+
 function fix_task(x) { //把变成字符串的日期救回来
     if (typeof (x.start_time) == "string") x.start_time = new Date(x.start_time);
     if (typeof (x.due_time) == "string") x.due_time = new Date(x.due_time);
+    if (typeof (x.duration) == "string") x.duration = new Number(x.duration);
     return x;
 }
 
@@ -83,6 +90,7 @@ module.exports = {
     type: Type,
     addZero: formatNumber,
     deepcopy: copyObj,
+    getYearMonthDay: getYearMonthDay,
     task: task,
     fix_task: fix_task,
 }

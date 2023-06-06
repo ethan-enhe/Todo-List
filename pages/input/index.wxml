@@ -24,7 +24,7 @@
             </picker>
         </view>
         <view class="cu-form-group" wx:if="{{start_date!=null}}">
-            <view class="title">开始时间</view>
+            <view class="title text-bold">开始时间（必填）</view>
             <picker mode="time" model:value="{{start_time}}" start="00：00" end="23：59">
                 <view class="picker">
                     {{start_time}}
@@ -40,7 +40,7 @@
             </picker>
         </view>
         <view class="cu-form-group" wx:if="{{due_date!=null}}">
-            <view class="title">截止时间</view>
+            <view class="title text-bold">截止时间（必填）</view>
             <picker mode="time" model:value="{{due_time}}" start="00：00" end="23：59">
                 <view class="picker">
                     {{due_time}}
@@ -51,7 +51,8 @@
             <view class="title">是否完成</view>
             <switch class="red margin-right" model:checked="{{complete}}"></switch>
         </view>
-        <view wx:if="{{desc}}" class="padding-top">
+        <!--时间与日期同时填写/不填写-->
+        <view wx:if="{{desc && !((due_date!=null)^(due_time!=null)) && !((start_date!=null)^(start_time!=null))}}" class="padding-top">
             <button class="cu-btn bg-green block lg" bindtap="newtask">完成编辑</button>
         </view>
         <view class="padding-top">
