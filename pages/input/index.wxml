@@ -1,23 +1,23 @@
 <!--pages/edit/index.wxml-->
 <view style="{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%">
-    <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur"  style="opacity: 85%;">
+    <view class="bg-gradual-{{cl}} padding radius text-center shadow-blur" style="opacity: 85%;">
         <view class="text-xl padding text-black text-bold">事件修改</view>
         <view class="cu-form-group solid-bottom">
             <view class="title">事件名称</view>
-            <input  model:value="{{desc}}" class="text-right input" type="text" placeholder="例：线代作业" confirm-type="done" auto-focus="true" ></input>
+            <input model:value="{{desc}}" class="text-right input" type="text" placeholder="例：线代作业" confirm-type="done" auto-focus="true"></input>
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">所需时间（分钟）</view>
-            <input  model:value="{{duration}}" class="text-right" type="number" placeholder="例：114" confirm-type="done" focus="true"></input>
+            <input model:value="{{duration}}" class="text-right" type="number" placeholder="例：114" confirm-type="done" focus="true"></input>
 
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">重要性（默认不重要）</view>
-            <switch class="red margin-right"  model:checked="{{importance}}"></switch>
+            <switch class="red margin-right" model:checked="{{importance}}"></switch>
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">开始日期</view>
-            <picker mode="date"  model:value="{{start_date}}" start="2023-01-01" end="2028-12-31">
+            <picker mode="date" model:value="{{start_date}}" start="2023-01-01" end="2028-12-31">
                 <view class="picker">
                     {{start_date}}
                 </view>
@@ -25,7 +25,7 @@
         </view>
         <view class="cu-form-group" wx:if="{{start_date!=null}}">
             <view class="title">开始时间</view>
-            <picker mode="time"  model:value="{{start_time}}" start="00：00" end="23：59">
+            <picker mode="time" model:value="{{start_time}}" start="00：00" end="23：59">
                 <view class="picker">
                     {{start_time}}
                 </view>
@@ -33,7 +33,7 @@
         </view>
         <view class="cu-form-group">
             <view class="title">截止日期</view>
-            <picker mode="date"  model:value="{{due_date}}" start="2023-01-01" end="2028-12-31" >
+            <picker mode="date" model:value="{{due_date}}" start="2023-01-01" end="2028-12-31">
                 <view class="picker">
                     {{due_date}}
                 </view>
@@ -41,7 +41,7 @@
         </view>
         <view class="cu-form-group" wx:if="{{due_date!=null}}">
             <view class="title">截止时间</view>
-            <picker mode="time"  model:value="{{due_time}}" start="00：00" end="23：59">
+            <picker mode="time" model:value="{{due_time}}" start="00：00" end="23：59">
                 <view class="picker">
                     {{due_time}}
                 </view>
@@ -49,10 +49,10 @@
         </view>
         <view class="cu-form-group solid-bottom">
             <view class="title">是否完成</view>
-            <switch class="red margin-right"  model:checked="{{complete}}"></switch>
+            <switch class="red margin-right" model:checked="{{complete}}"></switch>
         </view>
-    </view>
-    <view class="padding-bottom">
-        <button class="cu-btn bg-green block lg" bindtap="newtask">修改完成</button>
+        <view class="padding-top">
+            <button class="cu-btn bg-green block lg" bindtap="newtask">修改完成</button>
+        </view>
     </view>
 </view>

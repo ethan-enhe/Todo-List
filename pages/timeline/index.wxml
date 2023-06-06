@@ -2,24 +2,26 @@
 <view style="{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%;position:fixed">
 </view>
 <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
-    <view wx:for="{{showdata}}" wx:key="year_month" class="cu-timeline text-black">
-        <view class="padding text-xl {{item.unknown?'unk':''}} {{item.current?'cur':''}}">{{item.year_month}} </view>
-        <view wx:for="{{item.taskdata}}" wx:key="year_month" class="text-xl cu-item {{item.ddl?'text-red cuIcon-timefill':(item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill'))}}">
-            <view ontap="edit_task" data-id="{{item.id}}" hidden="{{item.ddl}}" class="text-cut bg-gray padding-sm radius shadow-blur">
-                <view class="cu-tag {{item.importance?'bg-red':'bg-grey'}} round margin-right-sm">{{item.day}} 日</view>
-                <text class="margin-top">{{item.desc}}</text>
-            </view>
-            <view ontap="edit_task" data-id="{{item.id}}" hidden="{{!(item.ddl && !item.complete)}}" class="text-cut bg-red light padding-sm radius shadow-blur">
-                <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 日截止</view>
-                <text class="margin-top">{{item.desc}}</text>
+    <view class="radius bg-white">
+        <view wx:for="{{showdata}}" wx:key="year_month" class="cu-timeline text-black" style="background-color: rgba(0,0,0,0);">
+            <view class="padding text-xl {{item.unknown?'unk':''}} {{item.current?'cur':''}}">{{item.year_month}} </view>
+            <view wx:for="{{item.taskdata}}" wx:key="year_month" class="text-xl cu-item {{item.ddl?'text-red cuIcon-timefill':(item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill'))}}">
+                <view ontap="edit_task" data-id="{{item.id}}" hidden="{{item.ddl}}" class="text-cut bg-gray padding-sm radius shadow-blur">
+                    <view class="cu-tag {{item.importance?'bg-red':'bg-grey'}} round margin-right-sm">{{item.day}} 日</view>
+                    <text class="margin-top">{{item.desc}}</text>
+                </view>
+                <view ontap="edit_task" data-id="{{item.id}}" hidden="{{!(item.ddl && !item.complete)}}" class="text-cut bg-red light padding-sm radius shadow-blur">
+                    <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 日截止</view>
+                    <text class="margin-top">{{item.desc}}</text>
+                </view>
             </view>
         </view>
     </view>
+    <view style="padding: 30px;"></view>
     <button bindtap="scroll_cur_month" class="cu-btn icon lg bg-blue" style="position:fixed; bottom: 70px; right: 50px">
         <text class="cuIcon-locationfill"></text>
     </button>
     <button bindtap="scroll_unknown" class="cu-btn icon lg bg-grey" style="position:fixed; bottom: 120px; right: 50px">
         <text class="cuIcon-question"></text>
     </button>
-    <view style="padding: 30px;"></view>
 </view>
