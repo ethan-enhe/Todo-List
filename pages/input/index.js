@@ -59,7 +59,6 @@ Page({
     },
     onShow: function () {},
     newtask() {
-
         if (taskid > 0) {
             app.tasklist.list[pos].desc = this.data.desc;
             app.tasklist.list[pos].duration = new Number(this.data.duration);

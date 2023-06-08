@@ -47,8 +47,9 @@ Page({
             }
         }
         taskdata.sort(function (a, b) {
-            return Date.parse(a.start_time) - Date.parse(b.start_time);
+            return utils.cmp_date(b.start_time, a.start_time);
         });
+        console.log(taskdata);
         var showdata = new Array();
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {

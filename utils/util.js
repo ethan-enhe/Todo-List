@@ -80,6 +80,15 @@ function fix_task(x) { //把变成字符串的日期救回来
     return x;
 }
 
+function cmp_date(a, b) { //比较两个date对象，放回时间差（毫秒）（把有null的放在后面）
+    var inf = 1e10;
+    if (a == null && b == null) {
+        return 0;
+    }
+    if (a == null) return -inf;
+    if (b == null) return inf;
+    return (Date.parse(b) - Date.parse(a));
+}
 
 module.exports = {
     formatTime: formatTime,
@@ -93,4 +102,6 @@ module.exports = {
     getYearMonthDay: getYearMonthDay,
     task: task,
     fix_task: fix_task,
+    cmp_date: cmp_date,
+
 }
