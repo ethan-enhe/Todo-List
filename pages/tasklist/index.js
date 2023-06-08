@@ -213,6 +213,10 @@ Page({
             if (task.complete) {
                 continue;
             }
+            if(task.start_time === null || task.due_time === null)
+            {
+                continue;
+            }
             li.push(this.parse_date(task.start_time))
             if (!Object.keys(map).includes((this.parse_date(task.start_time)))) {
 
