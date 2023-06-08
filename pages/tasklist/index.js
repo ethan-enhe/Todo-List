@@ -228,6 +228,8 @@ Page({
             let s = this.data.hashmap[this.data.dateCurrentStr];
             let tl = [];
             for (var i = 0; i < s.length; i++) {
+                let curtask = this.decodetask(s[i]);
+                if(curtask.complete === true){continue;}
                 tl.push(this.decodetask(s[i]));
             }
             this.setData({
@@ -257,9 +259,16 @@ Page({
     init_task() {
 
     },
-
+    complete:function(e){
+        let did = e.currentTarget.dataset.id;
+        let taslistpos = app.tasklist.get_pos(did);
+        app.tasklist.get_tasks()[taslistpos].complete = true;
+        this.load_data();
+        this.load_data();
+    }
+,
     long_press: function (e) {
-        console.log(e.currentTarget.dataset.id);
+       
         let did = e.currentTarget.dataset.id;
         wx.showModal({
             title: '确定删除吗',
@@ -326,6 +335,7 @@ Page({
             that.setData({
                 tasklist: that.data.tasklist
             });
+            that.load_data();
         })
         that.setData({
             cl: getApp().globaldata.bkgcolor,

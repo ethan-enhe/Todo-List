@@ -94,7 +94,7 @@
     </view>
     <scroll-view  scroll-y="true" style="height:200px;opacity:0.8;background-color:white">
     <view class="cu-list menu-avatar" wx:for="{{tasklist}}">
-    <view  bindlongpress= "modify" data-id="{{item.id}}" wx:if= "{{importanceshow == 0 ?true:item.importance?true:false}}" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}"  wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+    <view  bindlongpress= "modify" data-id="{{item.id}}" wx:if= "{{importanceshow === 0 ?true:item.importance?true:false}}" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}"  wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
       <view class="cu-avatar round lg" style="background-image:url(/image/file.png);"></view>
       <view class="content">
         <view >任务名：<view class="text-grey">{{item.desc}}</view></view>
@@ -110,6 +110,7 @@
         <view class="cu-tag round bg-grey sm"  wx:if="{{item.importance}}" class="cuIcon-title text-red">紧急</view>
       </view>
       <view class="move">
+         <view class="bg-blue" bindtap="complete" data-id = "{{item.id}}">完成</view>
         <view class="bg-red" bindtap="long_press" data-id="{{item.id}}" >删除</view>
       </view>
     </view>
@@ -154,3 +155,8 @@
     </view>
     <view style="padding: 20px;"></view>
 </view>
+
+
+
+
+
