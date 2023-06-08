@@ -81,7 +81,7 @@
     <view class="padding"></view>
     <view class="cu-bar bg-white solid-bottom">
         <view class="action">
-            <text class="cuIcon-title text-blue"></text><text class="text-black text-xl text-bold">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</text>
+            <text class="cuIcon-title text-blue"></text><text class="text-black text-xl text-bold " style="font-size:15px">{{dateCurrentStr}} 待完成任务 {{tasklist.length}} 项</text>
             <switch class="red margin-right" model:checked="{{importance}}" bindchange="importance_reminder" ></switch>
         </view>
         <view>
@@ -93,26 +93,28 @@
         </view>
     </view>
     <scroll-view  scroll-y="true" style="height:200px;opacity:0.8;background-color:white">
-        <block wx:if="{{true}}" wx:for="{{tasklist}}">
-            <movable-area style="width:100%;height:80px;display: flex;flex-direction: row;">
-                <movable-view wx:if= "{{importanceshow == 0 ?true:item.importance?true:false}}" class="bg-grey" direction="horizontal" class="task_normal" bindtap="modify" bindlongpress="long_press" data-id="{{item.id}}" out-of-bounds="true">
-                    <image src="/image/tasks.png" class="image_view"></image>
-                    <text wx:if="{{item.importance}}" class="cuIcon-title text-red"></text>
-                    <view class="task_name_style">
-                        <view style="display:flex;flex-direction: column">任务名：<view>{{item.desc}}</view>
-                        </view>
-                    </view>
-                    <view class="task_name_style">
-                        <view style="display:flex;flex-direction: column">开始时间:<view>{{active.psd(item.start_time,"hourmin")}}</view>
-                        </view>
-                    </view>
-                    <view class="task_name_style">
-                        <view style="display:flex;flex-direction: column">结束时间:<view>{{active.psd(item.due_time,"hourmin")}}</view>
-                        </view>
-                    </view>
-                </movable-view>
-            </movable-area>
-        </block>
+    <view class="cu-list menu-avatar" wx:for="{{tasklist}}">
+    <view  bindlongpress= "modify" data-id="{{item.id}}" wx:if= "{{importanceshow == 0 ?true:item.importance?true:false}}" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}"  wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url(/image/file.png);"></view>
+      <view class="content">
+        <view >任务名：<view class="text-grey">{{item.desc}}</view></view>
+        <view class="text-gray text-sm">
+         <view>
+         <view class="cu-tag round bg-red sm">S</view>开始时间 {{active.psd(item.start_time,"hourmin")}} </view>
+          </view>
+          <view class="text-gray text-sm">
+         <view class="cu-tag round bg-red sm">E</view> 结束时间 {{active.psd(item.due_time,"hourmin")}} </view>
+          </view>
+      <view class="action">
+        <view class="text-grey text-xs">22:20</view>
+        <view class="cu-tag round bg-grey sm"  wx:if="{{item.importance}}" class="cuIcon-title text-red">紧急</view>
+      </view>
+      <view class="move">
+        <view class="bg-red" bindtap="long_press" data-id="{{item.id}}" >删除</view>
+      </view>
+    </view>
+  </view>
+
     </scroll-view>
     <!--<view style="display:flex;flex-direction:row;background-color: white;color:green">
 <icon  type="info" size="44"></icon>
