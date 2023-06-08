@@ -18,6 +18,8 @@ Page({
     data: {
         tasklist: [],
         dateactive: [],
+        importanceshow:0,
+        importancetoast:["只显示重要事件","所有事件均显示"],
         /**时间组件 */
         dateList: [], // 日历数据数组
         swiperCurrent: 0, // 日历轮播正处在哪个索引位置
@@ -28,6 +30,7 @@ Page({
         hashmap: {},
         cnttask: new Map(),
         showvis: true,
+        importance:false 
     },
 
     /**
@@ -42,6 +45,7 @@ Page({
             dateCurrentStr: this.parse_date(new Date())
         })
     },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -93,7 +97,18 @@ Page({
     /**
      * 页面的初始数据
      */
+    importance_reminder(){
+        
+        wx.showToast({
+            title:this.data.importancetoast[this.data.importanceshow],
+            icon: 'success',
+            duration: 2000
+          })
+          this.data.importanceshow ^= 1;
+          this.setData({importanceshow:this.data.importanceshow});
 
+
+    },
     /**时间选择组件 */
     initDate() {
 
