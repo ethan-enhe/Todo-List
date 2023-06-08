@@ -192,7 +192,6 @@ Page({
     load_data() {
         var map = {};
         var li = [];
-        console.log(Object.keys(map));
         var task_copy = app.tasklist.get_tasks_copy();
         for (let i = 0; i < task_copy.length; i++) {
             var task = task_copy[i];
@@ -238,8 +237,7 @@ Page({
         this.setData({
             dateactive: li
         });
-        console.log(l);
-        console.log(this.data.cnttask);
+       
     },
     init_task() {
 
