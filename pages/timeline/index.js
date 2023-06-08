@@ -6,7 +6,18 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        TabCur: 0,
+        tabNav: ['事件总览', '重要事务', '其他']
+    },
+
+    tabSelect(e) {
+        console.log(e);
+        this.setData({
+            TabCur: e.currentTarget.dataset.id,
+            scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -50,15 +61,17 @@ Page({
             return utils.cmp_date(b.start_time, a.start_time);
         });
         console.log(taskdata);
+
+
+        //全部信息
         var showdata = new Array();
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
             var time = taskdata[i].start_time;
             var tmp = utils.getYearMonth(time);
             taskdata[i].day = time == null ? "Nan" : time.getDate();
-            taskdata[i] = taskdata[i];
             if (tmp != lastmonth.year_month) {
-                if (i) showdata.push(lastmonth);
+                if (lastmonth.year_month) showdata.push(lastmonth);
                 lastmonth = {
                     year_month: tmp,
                     taskdata: [taskdata[i]]
@@ -77,10 +90,70 @@ Page({
             showdata[showdata.length - 1].unknown = true;
 
 
+        var showdataimp = new Array();
+        var lastmonth = {};
+        for (var i = 0; i < taskdata.length; i++) {
+            if (taskdata[i].importance) {
+                var time = taskdata[i].start_time;
+                var tmp = utils.getYearMonth(time);
+                taskdata[i].day = time == null ? "Nan" : time.getDate();
+                if (tmp != lastmonth.year_month) {
+                    if (lastmonth.year_month) showdataimp.push(lastmonth);
+                    lastmonth = {
+                        year_month: tmp,
+                        taskdata: [taskdata[i]]
+                    };
+                } else lastmonth.taskdata.push(taskdata[i]);
+            }
+        }
+        if (lastmonth.year_month) showdataimp.push(lastmonth);
+
+        var cur_year_month = utils.getYearMonth(new Date());
+        for (var i = 0; i < showdataimp.length; i++)
+            if (i + 1 == showdataimp.length || showdataimp[i].year_month >= cur_year_month) {
+                showdataimp[i].current = true;
+                break;
+            }
+        if (showdataimp.length > 0)
+            showdataimp[showdataimp.length - 1].unknown = true;
+
+
+        //不重要
+
+        var showdataunimp = new Array();
+        var lastmonth = {};
+        for (var i = 0; i < taskdata.length; i++) {
+            if (!taskdata[i].importance) {
+                var time = taskdata[i].start_time;
+                var tmp = utils.getYearMonth(time);
+                taskdata[i].day = time == null ? "Nan" : time.getDate();
+                if (tmp != lastmonth.year_month) {
+                    if (lastmonth.year_month) showdataunimp.push(lastmonth);
+                    lastmonth = {
+                        year_month: tmp,
+                        taskdata: [taskdata[i]]
+                    };
+                } else lastmonth.taskdata.push(taskdata[i]);
+            }
+        }
+        if (lastmonth.year_month) showdataunimp.push(lastmonth);
+
+        var cur_year_month = utils.getYearMonth(new Date());
+        for (var i = 0; i < showdataunimp.length; i++)
+            if (i + 1 == showdataunimp.length || showdataunimp[i].year_month >= cur_year_month) {
+                showdataunimp[i].current = true;
+                break;
+            }
+        if (showdataunimp.length > 0)
+            showdataunimp[showdataunimp.length - 1].unknown = true;
+
+
+
         this.setData({
             cl: getApp().globaldata.bkgcolor,
             im: getApp().globaldata.bkgimage,
-            showdata: showdata
+            TabCur: 0,
+            showdata: [showdata, showdataimp, showdataunimp]
         }, function () {
             setTimeout(() => {
                 this.edit_task = function (d) {
