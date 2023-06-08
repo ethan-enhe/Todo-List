@@ -1,6 +1,7 @@
 // app.js
 const {
-    deepcopy
+    deepcopy,
+    task
 } = require('./utils/util.js');
 var utils = require('./utils/util.js')
 
@@ -71,7 +72,7 @@ App({
             d.setMilliseconds(0);
             var nxday = new Date(d);
             nxday.setDate(nxday.getDate() + 1);
-            var ge5min = function (a, b) {
+            var ge5min = function (a, b) { //取出所有时长大于5分钟的时间段
                 return Date.parse(b) - Date.parse(a) >= 5 * 60 * 1000
             }
             var ava = new Array();
@@ -90,9 +91,40 @@ App({
                     start_ava: new Date(d),
                     end_ava: nxday
                 })
-            console.log(utils.getYearMonthDay(d),"空闲时间：",ava);
+            console.log(utils.getYearMonthDay(d), "空闲时间：", ava);
             return ava;
+        },
+        try_insert(tasks, ava_time) { //尝试把这些任务插进ava_time里
+            function get_minute(a, b) {
+                return (Date.parse(b) - Date.parse(a)) / 1000 / 60;
+            }
+            tasks.sort(function (a, b) {
+                return Date.parse(b.due_time) - Date.parse(a.due_time);
+            })
+            var satisfied = 0;
+            for (var i = 0; i < task.length; i++) {
+                var cnt = 0;
+                for (var j = 0; j < ava_time.length; j++)
+                    if (Math.min(get_minute(ava_time[i].start_ava, task[i].due_time),
+                            get_minute(ava_time[i].start_ava, ava_time)) > task[i].duration + 2)
+                        ++cnt;
+                var choose = Math.ceil(Math.random() * cnt);
+                for (var j = 0; j < ava_time.length; j++) {
+                    if (Math.min(get_minute(ava_time[i].start_ava, task[i].due_time),
+                            get_minute(ava_time[i].start_ava, ava_time)) > task[i].duration + 2) {
+                        if (cnt == choose) {
+                            task[i].start_time = ava_time[i].start_ava;
+                            ava_time[i].start_ava.setMinutes(ava_time[i].start_ava.getMinutes() + task[i].duration);
+                            ++satisfied;
+                            break;
+                        }
+                        ++cnt;
+                    }
+                }
+                console.log("安排上了",satisfied,"个任务");
+            }
         }
+
     },
     onLaunch() {
         this.tasklist.load_tasks();
