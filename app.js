@@ -158,6 +158,7 @@ App({
         }
     },
     onLaunch() {
+        wx.cloud.init({env:"dolist-2gn76fqw7f70a669"});
         this.tasklist.load_tasks();
         var res = wx.getStorageSync("setting");
         if (res != "")

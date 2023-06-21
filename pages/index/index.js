@@ -45,6 +45,21 @@ Page({
       var idx = this.randomNum(-1,len-1);
       this.setData({curstr:this.data.motto[idx]})
     },
+    permission(e){
+        wx.requestSubscribeMessage({
+          tmplIds: ['EbuL48StwQeStSF4EYlVd9AMJccDEbIiu7UHQF_VWTc'], //这里填入我们生成的模板id
+          success(res) {
+            console.log('授权成功', res)
+          },
+          fail(res) {
+            console.log('授权失败', res)
+          }
+        })
+    
+    }
+
+
+    ,
 
       randomNum(minNum,maxNum){ 
       switch(arguments.length){ 
