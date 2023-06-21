@@ -4,6 +4,14 @@ var app = getApp();
 //console.log(app)
 var pos;
 var taskid;
+var extend_to_2char = function (c) {
+    c = new String(c);
+    if (c.length < 2)
+        c = "0" + c;
+    if (c.length < 2)
+        c = "0" + c;
+    return c;
+}
 Page({
     onLoad: function (option) {
         taskid = new Number(option.id);
@@ -32,7 +40,7 @@ Page({
             else
                 this.setData({
                     start_date: list[pos].start_time.toLocaleDateString(), //xxxx/xx/xx
-                    start_time: list[pos].start_time.getHours() + ":" + list[pos].start_time.getMinutes(), //xx:xx
+                    start_time: extend_to_2char(list[pos].start_time.getHours()) + ":" + extend_to_2char(list[pos].start_time.getMinutes()), //xx:xx
                 })
             if (list[pos].due_time == null)
                 this.setData({
@@ -42,7 +50,7 @@ Page({
             else
                 this.setData({
                     due_date: list[pos].due_time.toLocaleDateString(),
-                    due_time: list[pos].due_time.getHours() + ":" + list[pos].due_time.getMinutes(),
+                    due_time: extend_to_2char(list[pos].due_time.getHours()) + ":" + extend_to_2char(list[pos].due_time.getMinutes()),
                 })
         } else {
             this.setData({

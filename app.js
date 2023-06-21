@@ -64,7 +64,7 @@ App({
                 }
             }
             samedaytasks.sort(function (a, b) {
-                return Date.parse(a.star_time) - Date.parse(b.start_time);
+                return utils.cmp_date(b.start_time, a.start_time);
             })
             d.setHours(0);
             d.setMinutes(0);
@@ -73,7 +73,7 @@ App({
             var nxday = new Date(d);
             nxday.setDate(nxday.getDate() + 1);
             var ge5min = function (a, b) { //取出所有时长大于5分钟的时间段
-                return Date.parse(b) - Date.parse(a) >= 5 * 60 * 1000
+                return utils.cmp_date(a, b) >= 5 * 60 * 1000
             }
             var ava = new Array();
             for (var i = 0; i < samedaytasks.length; i++) {
@@ -121,7 +121,7 @@ App({
                         ++cnt;
                     }
                 }
-                console.log("安排上了",satisfied,"个任务");
+                console.log("安排上了", satisfied, "个任务");
             }
         }
 
