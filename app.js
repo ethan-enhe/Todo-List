@@ -1,7 +1,9 @@
 // app.js
+const util = require('./utils/util.js');
 const {
     deepcopy,
-    task
+    task,
+    fix_task
 } = require('./utils/util.js');
 var utils = require('./utils/util.js')
 
@@ -48,15 +50,15 @@ App({
             for (var i = 0; i < this.list.length; i++)
                 this.list[i] = utils.fix_task(this.list[i]);
         },
-        filter_task(l, r) { //筛选出与l，r，时间有交集的事件
+        task_inrange(l, r) { //筛选出与l，r，时间有交集，且时间确定的事件
             var tmp = this.get_tasks_copy();
             var res = new Array();
             for (var i = 0; i < tmp.length; i++) {
-                if (typeof (tmp[i].duration) == "number") {
+                if (tmp[i].start_time != null && typeof (tmp[i].duration) == "number") {
                     var end = new Date(tmp[i].start_time);
                     end.setMinutes(end.getMinutes() + tmp[i].duration)
                     if (end > l && tmp[i].start_time < r)
-                        samedaytasks.push({
+                        res.push({
                             start_time: tmp[i].start_time,
                             end_time: end
                         });
@@ -67,61 +69,93 @@ App({
             })
             return res;
         },
-
-        get_available_time(samedaytasks,l,r) { //传入Date对象，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
+        available_time(tasks, l, r) { //传入Date对象，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
             var ge5min = function (a, b) { //取出所有时长大于5分钟的时间段
-                return utils.cmp_date(a, b) >= 5 * 60 * 1000
+                return utils.cmp_date(a, b) >= 1 * 60 * 1000;
             }
             var ava = new Array();
-            for (var i = 0; i < samedaytasks.length; i++) {
-                if (ge5min(l, samedaytasks[i].start_time)) {
+            for (var i = 0; i < tasks.length; i++) {
+                if (ge5min(l, tasks[i].start_time)) {
                     ava.push({
                         start_ava: new Date(l),
-                        end_ava: new Date(samedaytasks[i].start_time)
+                        end_ava: new Date(tasks[i].start_time)
                     })
                 }
-                if (samedaytasks[i].end_time > l)
-                    l = samedaytasks[i].end_time;
+                if (tasks[i].end_time > l)
+                    l = tasks[i].end_time;
             }
-            if (ge5min(d, nxday))
+            if (ge5min(l, r))
                 ava.push({
-                    start_ava: new Date(d),
-                    end_ava: nxday
+                    start_ava: new Date(l),
+                    end_ava: r
                 })
-            console.log(utils.getYearMonthDay(d), "空闲时间：", ava);
             return ava;
         },
-        try_insert(tasks, ava_time) { //尝试把这些任务插进ava_time里
+        try_insert( _ava_time, trytime) { //尝试把这些任务插进ava_time里
             function get_minute(a, b) {
-                return (Date.parse(b) - Date.parse(a)) / 1000 / 60;
+                return utils.cmp_date(a, b) / 1000 / 60;
             }
-            tasks.sort(function (a, b) {
-                return Date.parse(b.due_time) - Date.parse(a.due_time);
+            var _task=this.get_tasks_copy();
+            _task.sort(function (a, b) {
+                if (a.importance && !b.importance) return -1;
+                if (!a.importance && b.importance) return 1;
+                return util.cmp_date(b.due_time, a.due_time);
             })
-            var satisfied = 0;
-            for (var i = 0; i < task.length; i++) {
-                var cnt = 0;
-                for (var j = 0; j < ava_time.length; j++)
-                    if (Math.min(get_minute(ava_time[i].start_ava, task[i].due_time),
-                            get_minute(ava_time[i].start_ava, ava_time)) > task[i].duration + 2)
-                        ++cnt;
-                var choose = Math.ceil(Math.random() * cnt);
-                for (var j = 0; j < ava_time.length; j++) {
-                    if (Math.min(get_minute(ava_time[i].start_ava, task[i].due_time),
-                            get_minute(ava_time[i].start_ava, ava_time)) > task[i].duration + 2) {
-                        if (cnt == choose) {
-                            task[i].start_time = ava_time[i].start_ava;
-                            ava_time[i].start_ava.setMinutes(ava_time[i].start_ava.getMinutes() + task[i].duration);
-                            ++satisfied;
-                            break;
+
+
+            var best_satisfied = 0,
+                best_satisfied_imp = 0;
+            var best_task_arrange = new Array();
+
+            while (trytime--) {
+                var ava_time = new Array();
+                var task = new Array();
+                for (var i = 0; i < _ava_time.length; i++) {
+                    ava_time.push({
+                        start_ava: new Date(_ava_time[i].start_ava),
+                        end_ava: new Date(_ava_time[i].end_ava),
+                    })
+                }
+                for (var i = 0; i < _task.length; i++) {
+                    task.push(utils.fix_task(utils.deepcopy(_task[i])))
+                }
+                var satisfied = 0,
+                    satisfied_imp = 0;
+                for (var i = 0; i < task.length; i++) {
+                    if (task[i].start_time == null || task[i].start_time == undefined) {
+                        var cnt = 0;
+                        for (var j = 0; j < ava_time.length; j++) {
+                            if (Math.min(get_minute(ava_time[j].start_ava, task[i].due_time),
+                                    get_minute(ava_time[j].start_ava, ava_time[j].end_ava)) > task[i].duration)
+                                ++cnt;
                         }
-                        ++cnt;
+                        console.log(cnt);
+                        var choose = Math.ceil(Math.random() * cnt);
+                        for (var j = 0; j < ava_time.length; j++) {
+                            if (Math.min(get_minute(ava_time[j].start_ava, task[i].due_time),
+                                    get_minute(ava_time[j].start_ava, ava_time[j].end_ava)) > task[i].duration) {
+                                if (cnt == choose) {
+                                    task[i].start_time = new Date(ava_time[j].start_ava);
+                                    ava_time[j].start_ava.setMinutes(ava_time[j].start_ava.getMinutes() + task[i].duration);
+                                    ++satisfied;
+                                    if (task[i].importance) ++satisfied_imp;
+                                    break;
+                                }
+                                ++cnt;
+                            }
+                        }
                     }
                 }
-                console.log("安排上了", satisfied, "个任务");
+                if (satisfied_imp > best_satisfied_imp || (satisfied_imp == best_satisfied_imp && satisfied > best_satisfied)) {
+                    best_task_arrange = task;
+                    best_satisfied = satisfied;
+                    best_satisfied_imp = satisfied_imp;
+                }
             }
+            console.log("安排上了", best_satisfied, "个任务");
+            console.log("安排上了", best_satisfied_imp, "个重要任务");
+            return best_task_arrange;
         }
-
     },
     onLaunch() {
         this.tasklist.load_tasks();

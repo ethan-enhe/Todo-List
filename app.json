@@ -18,8 +18,7 @@
         "selectedColor": "#3cc51f",
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
-        "list": [
-            {
+        "list": [{
                 "pagePath": "pages/index/index",
                 "text": "主页"
             },
@@ -37,9 +36,7 @@
             }
         ]
     },
-    "useExtendedLib": {
-        "weui": true
-    },
+    "useExtendedLib": {},
     "style": "v2",
     "sitemapLocation": "sitemap.json"
 }

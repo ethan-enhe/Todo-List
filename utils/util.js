@@ -82,11 +82,11 @@ function fix_task(x) { //把变成字符串的日期救回来
 
 function cmp_date(a, b) { //比较两个date对象，放回时间差（毫秒）（把有null的放在后面）
     var inf = 1e10;
-    if (a == null && b == null) {
-        return 0;
-    }
-    if (a == null) return -inf;
-    if (b == null) return inf;
+    var a_brok = a == null || a == undefined;
+    var b_brok = b == null || b == undefined;
+    if (a_brok && b_brok) return 0;
+    if (a_brok) return -inf;
+    if (b_brok) return inf;
     return (Date.parse(b) - Date.parse(a));
 }
 

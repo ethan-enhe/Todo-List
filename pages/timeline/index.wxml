@@ -19,7 +19,7 @@
                     <text class="margin-top">{{item.desc}}</text>
                 </view>
                 <view ontap="edit_task" data-id="{{item.id}}" hidden="{{!(item.ddl && !item.complete)}}" class="text-cut bg-red light padding-sm radius shadow-blur">
-                    <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 截止</view>
+                    <view class="cu-tag {{item.importance?'':'light'}} bg-red round margin-right-sm">{{item.day}} 截止</view>
                     <text class="margin-top">{{item.desc}}</text>
                 </view>
             </view>
