@@ -48,6 +48,23 @@ App({
             for (var i = 0; i < this.list.length; i++)
                 this.list[i] = utils.fix_task(this.list[i]);
         },
+        filter_task(l, r) { //筛选出与l，r，时间有交集的任务
+            var tmp = this.get_tasks_copy();
+            var res = new Array();
+            for (var i = 0; i < tmp.length; i++) {
+                if (typeof (tmp[i].duration) == "number") {
+                    var end = new Date(tmp[i].start_time);
+                    end.setMinutes(end.getMinutes() + tmp[i].duration)
+                    if (end > l && tmp[i].start_time < r)
+                        samedaytasks.push({
+                            start_time: tmp[i].start_time,
+                            end_time: end
+                        });
+                }
+            }
+            return res;
+        },
+
         get_available_time(d) { //传入Date对象，得到当天内的空余时间（一个数组，每项为{start_ava,end_ava}）
             var tmp = this.get_tasks_copy();
             var samedaytasks = new Array();

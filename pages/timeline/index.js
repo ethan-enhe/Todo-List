@@ -59,7 +59,6 @@ Page({
         taskdata.sort(function (a, b) {
             return utils.cmp_date(b.start_time, a.start_time);
         });
-        console.log(taskdata);
 
 
         //全部信息
@@ -67,8 +66,12 @@ Page({
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
             var time = taskdata[i].start_time;
+            taskdata[i].day = time == null ? "Nan" :
+                time.getDate() + " 日 " + time.getHours() + ":" + time.getMinutes();
+        }
+
+        for (var i = 0; i < taskdata.length; i++) {
             var tmp = utils.getYearMonth(time);
-            taskdata[i].day = time == null ? "Nan" : time.getDate();
             if (tmp != lastmonth.year_month) {
                 if (lastmonth.year_month) showdata.push(lastmonth);
                 lastmonth = {
@@ -89,13 +92,12 @@ Page({
             showdata[showdata.length - 1].unknown = true;
 
 
+        //imp
         var showdataimp = new Array();
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
             if (taskdata[i].importance) {
-                var time = taskdata[i].start_time;
                 var tmp = utils.getYearMonth(time);
-                taskdata[i].day = time == null ? "Nan" : time.getDate();
                 if (tmp != lastmonth.year_month) {
                     if (lastmonth.year_month) showdataimp.push(lastmonth);
                     lastmonth = {
@@ -123,9 +125,7 @@ Page({
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
             if (!taskdata[i].importance) {
-                var time = taskdata[i].start_time;
                 var tmp = utils.getYearMonth(time);
-                taskdata[i].day = time == null ? "Nan" : time.getDate();
                 if (tmp != lastmonth.year_month) {
                     if (lastmonth.year_month) showdataunimp.push(lastmonth);
                     lastmonth = {

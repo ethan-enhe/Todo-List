@@ -15,11 +15,11 @@
             <view class="padding text-xl {{item.unknown?'unk':''}} {{item.current?'cur':''}}">{{item.year_month}} </view>
             <view wx:for="{{item.taskdata}}" class="text-xl cu-item {{item.ddl?'text-red cuIcon-timefill':(item.complete?'text-blue cuIcon-roundcheckfill':(item.importance?'text-red cuIcon-roundclosefill':'text-grey cuIcon-roundclosefill'))}}">
                 <view ontap="edit_task" data-id="{{item.id}}" hidden="{{item.ddl}}" class="text-cut bg-gray padding-sm radius shadow-blur">
-                    <view class="cu-tag {{item.importance?'bg-red':'bg-grey'}} round margin-right-sm">{{item.day}} 日</view>
+                    <view class="cu-tag {{item.importance?'bg-red':'bg-grey'}} round margin-right-sm">{{item.day}} 开始</view>
                     <text class="margin-top">{{item.desc}}</text>
                 </view>
                 <view ontap="edit_task" data-id="{{item.id}}" hidden="{{!(item.ddl && !item.complete)}}" class="text-cut bg-red light padding-sm radius shadow-blur">
-                    <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 日截止</view>
+                    <view class="cu-tag bg-red round margin-right-sm">{{item.day}} 截止</view>
                     <text class="margin-top">{{item.desc}}</text>
                 </view>
             </view>
