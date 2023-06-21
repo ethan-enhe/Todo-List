@@ -55,7 +55,25 @@ Page({
             console.log('授权失败', res)
           }
         })
+        this.getopenid();
     
+    },
+    sendmsg(e){
+        wx.cloud.callFunction({name:"sendmsg"}).then(res=>{
+          console.log(res);
+        }).catch(res=>{console.log("发送失败",res)});
+    },
+
+    getopenid(){
+      wx.cloud.callFunction({
+        name: "getopenid"
+      }).then(res => {
+        let openid = res.result.openid
+        console.log("获取openid成功", openid)
+        this.send(openid)
+      }).catch(res => {
+        console.log("获取openid失败", res)
+      })
     }
 
 
