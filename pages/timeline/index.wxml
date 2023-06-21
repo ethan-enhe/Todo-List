@@ -29,10 +29,45 @@
     <button bindtap="scroll_cur_month" class="cu-btn icon lg bg-blue" style="position:fixed; bottom: 170px; right: 50px">
         <text class="cuIcon-locationfill"></text>
     </button>
-    <button bindtap="scroll_unknown" class="cu-btn icon lg bg-grey" style="position:fixed; bottom: 120px; right: 50px">
+    <!-- <button bindtap="scroll_unknown" class="cu-btn icon lg bg-grey" style="position:fixed; bottom: 120px; right: 50px">
         <text class="cuIcon-question"></text>
+    </button> -->
+    <button bindtap="toggle_order" class="cu-btn icon lg bg-red" style="position:fixed; bottom: 120px; right: 50px">
+        <text class="cuIcon-order"></text>
     </button>
     <button bindtap="add" class="cu-btn icon lg bg-green" style="position:fixed; bottom: 70px; right: 50px">
         <text class="cuIcon-add"></text>
     </button>
+</view>
+
+<view class="cu-modal {{modalName=='1'?'show':''}}" bindtap="hidemodal">
+  <view class="cu-dialog">
+    <radio-group class="block">
+      <view class="cu-list menu text-left">
+        <view class="cu-item" wx:for="{{[1,2,3,7,14,30]}}" wx:key>
+          <label class="flex justify-between align-center flex-sub" data-time="{{item}}"  catchtap bindtap="startord">
+            <view class="flex-sub">{{item}} 天</view>
+            <radio class="round"></radio>
+          </label>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='2'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">修改完成</view>
+      <view class="action" bindtap="hidemodal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+	是否保存本次修改结果？无法撤销！
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green solid-left" data-id="" bindtap="stopord">不保存</view>
+      <view class="action margin-0 flex-sub  solid-left" data-id="save" bindtap="stopord">保存</view>
+    </view>
+  </view>
 </view>
