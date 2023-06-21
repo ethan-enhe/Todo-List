@@ -45,6 +45,39 @@ Page({
       var idx = this.randomNum(-1,len-1);
       this.setData({curstr:this.data.motto[idx]})
     },
+    permission(e){
+        wx.requestSubscribeMessage({
+          tmplIds: ['EbuL48StwQeStSF4EYlVd9AMJccDEbIiu7UHQF_VWTc'], //这里填入我们生成的模板id
+          success(res) {
+            console.log('授权成功', res)
+          },
+          fail(res) {
+            console.log('授权失败', res)
+          }
+        })
+        this.getopenid();
+    
+    },
+    sendmsg(e){
+        wx.cloud.callFunction({name:"sendmsg"}).then(res=>{
+          console.log(res);
+        }).catch(res=>{console.log("发送失败",res)});
+    },
+
+    getopenid(){
+      wx.cloud.callFunction({
+        name: "getopenid"
+      }).then(res => {
+        let openid = res.result.openid
+        console.log("获取openid成功", openid)
+        this.send(openid)
+      }).catch(res => {
+        console.log("获取openid失败", res)
+      })
+    }
+
+
+    ,
 
       randomNum(minNum,maxNum){ 
       switch(arguments.length){ 

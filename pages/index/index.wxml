@@ -14,7 +14,8 @@
 <view style="display:flex;flex-direction: row;">
    <view ontap="edit_task"class="text-cut bg-red light padding-sm radius shadow-blur">
                 <view class="cu-tag bg-red round margin-right-sm"><image src="/image/calendar.png"class="padding-sm" style="height:60px;width: 60px;" ></image></view>
-                <text class="margin-top">开启订阅提醒</text> </view>
+                <text class="margin-top" bindtap="permission">开启订阅提醒授权</text> </view>
+                <button bindtap="sendmsg">发送样例信息</button>
 </view>
 <view>
 </view>
