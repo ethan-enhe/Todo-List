@@ -5,20 +5,18 @@ exports.main = async(event,context)=>{
    try {
     const result = await cloud.openapi.subscribeMessage.send({
       touser: "oSuuI5V-dKfxPuik2phIQjgjla-0",
-      page: event.page,
+      page: "pages/index/index",
       lang: 'zh_CN',
       data: {
-          "date2":"2022-2-26",
-          "date3":"2022-2-23",
-          "thing1":"poop"
+          "date2":{"value":"2022-2-26"},
+          "date3":{"value":"2022-2-23"},
+          "thing1":{"value":"poop"}
       },
-      templateId: "EbuL48StwQeStSF4EYlVd9AMJccDEbIiu7UHQF_VWTc",
+      template_id: "EbuL48StwQeStSF4EYlVd9AMJccDEbIiu7UHQF_VWTc",
     })
+   
     return result
   } catch (err) {
     return err
   }
-
-
-
 }

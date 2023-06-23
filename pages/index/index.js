@@ -6,7 +6,8 @@ Page({
       city:"...定位中",
       hour:8,
       motto : ["不自由毋宁死","今日事今日毕","内卷是社会的毒瘤，我们要坚决反对"],
-      curstr:""
+      curstr:"",
+      openid:""
      
     },
     onShow() {
@@ -58,27 +59,26 @@ Page({
         this.getopenid();
     
     },
-    sendmsg(e){
-        wx.cloud.callFunction({name:"sendmsg"}).then(res=>{
-          console.log(res);
-        }).catch(res=>{console.log("发送失败",res)});
-    },
+    
 
     getopenid(){
       wx.cloud.callFunction({
         name: "getopenid"
       }).then(res => {
         let openid = res.result.openid
-        console.log("获取openid成功", openid)
-        this.send(openid)
+        this.setData({"openid":openid});
+        
       }).catch(res => {
         console.log("获取openid失败", res)
+        this.getopenid();
       })
-    }
-
-
-    ,
-
+    },
+    sendmessage(e){
+      this.getopenid();
+      wx.cloud.callFunction({name:"sendmsg"}).then(res=>{
+        console.log(res);
+      }).catch(res=>{console.log("发送失败",res)});
+      },
       randomNum(minNum,maxNum){ 
       switch(arguments.length){ 
           case 1: 
