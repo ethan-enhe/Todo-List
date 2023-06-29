@@ -1,5 +1,17 @@
+const { FirstDayInThisWeek } = require("../../utils/util");
+
 var cl = getApp().globaldata.bkgcolor;
 var im = getApp().globaldata.bkgimage;
+var _app = getApp();
+var trienode = class{
+  /**The component of a trie leaf */
+   constructor(){
+        this.map = new Map();
+        this.end = false;
+        this.id = [];
+        
+   }
+};
 Page({
     data:{
       country:"...定位中",
@@ -7,11 +19,51 @@ Page({
       hour:8,
       motto : ["不自由毋宁死","今日事今日毕","内卷是社会的毒瘤，我们要坚决反对"],
       curstr:"",
-      openid:""
+      openid:"",
+      display:[],
+      content:""
+   
      
     },
+   
+    trie :class{
+      constructor(){
+            this.root = new trienode();
+      }
+      insert(desc,task_id){
+        let cur = this.root;
+        for (let i=0;i<desc.length;i++){
+            var curchar = desc[i];
+            if(cur.map[curchar]!=null){
+              cur = cur.map[curchar];
+              cur.id.push(task_id);
+            }
+            else{
+              cur.map[curchar] = new trienode();
+              cur = cur.map[curchar];
+              cur.id.push(task_id);
+            }
+        }
+      }
+      search(str){
+           let cur  = this.root;
+           for(let i=0;i<str.length;i++){
+                var curchar = str[i];
+                if(cur.map[curchar] == null){
+                  return [];
+                }
+                else{
+                  cur = cur.map[curchar];
+                }
+           }
+           console.log(cur);
+           return cur.id;
+      }
+    },
+    
     onShow() {
       this.getmotto();
+      this.count_complete_();
       var hournow = new Date().getHours();
          this.setData({
         cl: getApp().globaldata.bkgcolor,
@@ -92,6 +144,41 @@ Page({
               break; 
       } 
   },
+  
+   count_complete_(){
+        var copy =  _app.tasklist.get_tasks_copy();
+        let cmp = 0;let tocmp = 0;
+        for(var i=0;i<copy.length;i++){
+              if(copy[i].complete){cmp++;}
+              else{tocmp ++;}
+        }
+        this.setData({cmp:cmp,tocmp:tocmp});
+   },
+   modify(e) {
+    // app.taskid = e.currentTarget.dataset.id;
+    wx.navigateTo({
+        url: '../input/index?id=' + e.currentTarget.dataset.id,
+    })
+
+},
+   search_func(){
+     this.setData({display:[]})
+     console.log(this.data.content);
+     var t = new this.trie();
+     var copy =  _app.tasklist.get_tasks_copy();
+     for(let i=0;i<copy.length;i++){
+          t.insert(copy[i].desc,i);
+     }
+     const res = t.search(this.data.content);
+     
+     let dis= [];
+     for(let i=0;i<res.length;i++){
+              dis.push(copy[res[i]]);
+     }
+     this.setData({display:dis});
+      
+
+   }
   
   
   

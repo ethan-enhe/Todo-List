@@ -1,37 +1,80 @@
 <view style="z-index: -1;{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%;position:fixed">
 </view>
-
+<view class="bg-white padding">
+            <view style="font-size:20px">{{(hour > 17|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{country}}{{ city ==="...定位中"?"":"- " + city}} </view>
+</view>
 <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
-      <view style="font-size:30px">{{(hour > 17|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{country}}{{ city ==="...定位中"?"":"- " + city}} </view>
-      <view class="padding-sm" >
+    
+      <view class="bg-white padding flex-sub "  style="display:flex;flex-direction:row">
+         <input model:value="{{content}}" class="text-left" type="text" placeholder="例：高考" confirm-type="done" bindfocus="focus_func"></input>
+         <button bindtap="search_func" class="round cu-btn bg-blue" style="size:10px">搜索</button>
+         
+         
+      </view>
+      <view wx:for="{{display}}" class="bg-white padding flex-sub " bindtap= "modify" data-id="{{item.id}}" >
+                 {{item.desc}}
+                 <view class="cu-capsule">
+                                          <view class="cu-tag bg-{{item.complete?'green':'red'}} ">
+                                                  <text >{{item.complete?"已完成":"未完成"}}</text>
+                                          </view>               
+                 </view>
+                 
+      </view>
+      <view class="padding"></view>
+             
+         
+      <view class="bg-white padding">
+         <view class="padding" >
                            <view style="display:flex;flex-direction:row" class="flex-sub text-center">
                                 <view class="padding">
-                                    <view class="cu-avatar radius flex-sub text-center" >
+                                    <view class="cu-avatar xl radius flex-sub text-center" >
                                        <text class="cuIcon-people"></text>
-                                       <view class="cu-tag badge {{index%2==0?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>   
                                     </view>
                                     <view style="display:flex;flex-direction:row">
-                                       <view class="flex-sub text-center">
-                                           <view class="solid-bottom text-df padding">已完成</view>
-                                           <view calss="padding">0天</view>
+                                       <view class="flex-sub text-center padding">
+                                          <view class="cu-capsule">
+                                            <view class="cu-tag bg-red">
+                                                  <text >已完成</text>
+                                            </view>
+                                            <view class="cu-tag line-red">
+                                                             {{cmp}}项
+                                            </view>
+                                          </view>
                                        </view>
-                                       <view class="flex-sub text-center">
-                                           <view class="solid-bottom text-df padding">待完成</view>
-                                           <view calss="padding">0</view>
+                                       <view class="flex-sub text-center padding">
+                                          <view class="cu-capsule">
+                                            <view class="cu-tag bg-green">
+                                                  <text >待完成</text>
+                                            </view>
+                                            <view class="cu-tag line-green">
+                                                              {{tocmp}}项
+                                            </view>
+                                          </view>
                                        </view>
-
                                     </view>
                                  </view>
                            </view>
-                     <view  class="bg-gradual-white padding radius text-center shadow-blur">{{curstr}}</view>
-      </view>
-
+          </view>
+          <view class="flex-sub text-center">
+           <view class="cu-capsule round flex-sub text-center">
+                  <view class="cu-tag bg-blue" bindtap="getmotto">
+                      Motto(点击更新)
+                  </view>
+                  <view class="cu-tag line-blue">
+                     <text class="text-blue">  {{curstr}} </text>
+                  </view>
+            </view>
+           </view>
+         </view>
+    
+        
    
-
-   
-
+      
 
 
 </view>
 
 
+<view class="bg-white padding-xl">
+
+</view>
