@@ -1,5 +1,6 @@
 var cl = getApp().globaldata.bkgcolor;
 var im = getApp().globaldata.bkgimage;
+var _app = getApp();
 Page({
     data:{
       country:"...定位中",
@@ -7,11 +8,14 @@ Page({
       hour:8,
       motto : ["不自由毋宁死","今日事今日毕","内卷是社会的毒瘤，我们要坚决反对"],
       curstr:"",
-      openid:""
+      openid:"",
+      cmp:0,
+      tocmp:0
      
     },
     onShow() {
       this.getmotto();
+      this.count_complete_();
       var hournow = new Date().getHours();
          this.setData({
         cl: getApp().globaldata.bkgcolor,
@@ -92,6 +96,16 @@ Page({
               break; 
       } 
   },
+
+   count_complete_(){
+        var copy =  _app.tasklist.get_tasks_copy();
+        let cmp = 0;let tocmp = 0;
+        for(var i=0;i<copy.length;i++){
+              if(copy[i].complete){cmp++;}
+              else{tocmp ++;}
+        }
+        this.setData({cmp:cmp,tocmp:tocmp});
+   }
   
   
   

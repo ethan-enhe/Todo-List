@@ -13,6 +13,8 @@ App({
 		bkgimage: "none",
 		ordermode: false,
 		tasklistbackup: [],
+		has_complete: 0,
+		to_complete:0
 	},
 	tasklist: {
 		insert_task: function (task_data) { //传入类型为task的任务，加入人物列表
