@@ -23,6 +23,8 @@ Page({
         cl,
         im,
         url: url,
+        sleep_st:"11:30",
+        sleep_en:"7:30"
     },
     bkgsetred() {
         app.globaldata.bkgcolor = "red";

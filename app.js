@@ -104,7 +104,7 @@ App({
 			})
 
 
-			var best_satisfied = 0,
+			var best_satisfied = -1,
 				best_satisfied_imp = 0;
 			var best_task_arrange = new Array();
 
@@ -123,7 +123,7 @@ App({
 				var satisfied = 0,
 					satisfied_imp = 0;
 				for (var i = 0; i < task.length; i++) {
-					if (task[i].start_time == null && task[i].duration != null) {
+					if (task[i].start_time == null && task[i].duration != null && task[i].complete==false) {
 						var cnt = 0;
 						for (var j = 0; j < ava_time.length; j++) {
 							if (Math.min(get_minute(ava_time[j].start_ava, task[i].due_time),
