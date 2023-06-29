@@ -126,11 +126,11 @@ App({
             var ava = new Array();
             for (var i = 0; i < tasks.length; i++) {
 
-                if (i == 2) {
+                // if (i == 2) {
 
-                    console.log(l);
-                    console.log(tasks[i].start_time)
-                }
+                //     console.log(l);
+                //     console.log(tasks[i].start_time)
+                // }
                 if (ge5min(l, tasks[i].start_time)) {
                     ava.push({
                         start_ava: new Date(l),
