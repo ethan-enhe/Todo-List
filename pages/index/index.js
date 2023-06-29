@@ -154,6 +154,13 @@ Page({
         }
         this.setData({cmp:cmp,tocmp:tocmp});
    },
+   modify(e) {
+    // app.taskid = e.currentTarget.dataset.id;
+    wx.navigateTo({
+        url: '../input/index?id=' + e.currentTarget.dataset.id,
+    })
+
+},
    search_func(){
      this.setData({display:[]})
      console.log(this.data.content);
@@ -166,7 +173,7 @@ Page({
      
      let dis= [];
      for(let i=0;i<res.length;i++){
-              dis.push(copy[res[i]].desc);
+              dis.push(copy[res[i]]);
      }
      this.setData({display:dis});
       

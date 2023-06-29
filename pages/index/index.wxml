@@ -11,9 +11,15 @@
          
          
       </view>
-      <view wx:for="{{display}}" class="bg-red padding flex-sub ">
-                 {{item}}
-            </view>
+      <view wx:for="{{display}}" class="bg-white padding flex-sub " bindtap= "modify" data-id="{{item.id}}" >
+                 {{item.desc}}
+                 <view class="cu-capsule">
+                                          <view class="cu-tag bg-{{item.complete?'green':'red'}} ">
+                                                  <text >{{item.complete?"已完成":"未完成"}}</text>
+                                          </view>               
+                 </view>
+                 
+      </view>
       <view class="padding"></view>
              
          
