@@ -11,9 +11,6 @@ var trienode = class{
         this.id = [];
         
    }
-   getneighbor(){
-        return this.map;
-   }
 };
 Page({
     data:{
@@ -51,13 +48,15 @@ Page({
       search(str){
            let cur  = this.root;
            for(let i=0;i<str.length;i++){
-                if(cur == null){
+                var curchar = str[i];
+                if(cur.map[curchar] == null){
                   return [];
                 }
                 else{
-                  cur = cur.map[str[i]];
+                  cur = cur.map[curchar];
                 }
            }
+           console.log(cur);
            return cur.id;
       }
     },
@@ -162,15 +161,13 @@ Page({
      var copy =  _app.tasklist.get_tasks_copy();
      for(let i=0;i<copy.length;i++){
           t.insert(copy[i].desc,i);
-          console.log(t.root.map);
      }
      const res = t.search(this.data.content);
      
      let dis= [];
      for(let i=0;i<res.length;i++){
-              dis.push(copy[i].desc);
+              dis.push(copy[res[i]].desc);
      }
-     console.log(dis);
      this.setData({display:dis});
       
 
