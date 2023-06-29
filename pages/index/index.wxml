@@ -5,9 +5,20 @@
 </view>
 <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
     
-      
-      <view class="bg-white padding-xl">
-         <view class="padding-sm" >
+      <view class="bg-white padding flex-sub "  style="display:flex;flex-direction:row">
+         <input model:value="{{content}}" class="text-left" type="number" placeholder="例：高考" confirm-type="done" bindfocus="focus_func"></input>
+         <button bindtap="search_func" class="round cu-btn bg-blue" style="size:10px">搜索</button>
+         
+         
+      </view>
+      <view wx:for="{{display}}" class="bg-red padding flex-sub ">
+                 {{item}}
+            </view>
+      <view class="padding"></view>
+             
+         
+      <view class="bg-white padding">
+         <view class="padding" >
                            <view style="display:flex;flex-direction:row" class="flex-sub text-center">
                                 <view class="padding">
                                     <view class="cu-avatar xl radius flex-sub text-center" >
@@ -47,16 +58,17 @@
                      <text class="text-blue">  {{curstr}} </text>
                   </view>
             </view>
-      </view>
-      </view>
-     
-      
-
+           </view>
+         </view>
+    
+        
    
-
+      
 
 
 </view>
 
 
-<view class="bg-white padding-xl"></view>
+<view class="bg-white padding-xl">
+
+</view>
