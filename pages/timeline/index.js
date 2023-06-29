@@ -208,8 +208,10 @@ Page({
 			dater = new Date();
 		dater.setDate(dater.getDate() + e.currentTarget.dataset.time);
 		app.globaldata.tasklistbackup = app.tasklist.list;
-		var tmp = app.tasklist.task_inrange(datel, dater);
-		var ava = app.tasklist.available_time(tmp, datel, dater);
+        var tmp = app.tasklist.task_inrange(datel, dater).concat(app.tasklist.expand_work_sleep_time(datel,dater));
+        var ava = app.tasklist.available_time(tmp, datel, dater);
+        // console.log(ava);
+        
 		app.tasklist.list = app.tasklist.try_insert(ava, 100);
 		this.onShow();
 		// console.log("安排： "+datel+dater);

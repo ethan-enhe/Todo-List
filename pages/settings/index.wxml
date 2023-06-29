@@ -78,6 +78,7 @@
       <view class="flex-sub bg-grey margin-xs padding-sm radius">100%</view>
   </view>
         </view>  -->
+
     <view class="cu-bar bg-white margin-top solid-bottom text-right">
         <view class="action">
             <text class="cuIcon-title text-blue"></text>
@@ -87,7 +88,7 @@
             <view class="cu-btn bg-green round xl" bind:tap="export_data">点击导出</view>
         </view>
     </view>
-    <view class="cu-bar bg-white solid-bottomt">
+    <view class="cu-bar bg-white solid-bottom">
         <view class="action">
             <text class="cuIcon-title text-blue"></text>
             剪贴板导入<text class="text-red">（会覆盖当前数据！）</text>
@@ -96,12 +97,17 @@
             <view class="cu-btn bg-red round xl" bind:tap="import_data">点击导入</view>
         </view>
     </view>
-    <view class="cu-bar bg-white solid-bottom text-right margin-top padding-right">
+    <view class="cu-bar bg-white margin-top solid-bottom">
         <view class="action">
             <text class="cuIcon-title text-blue"></text>
+        自动安排任务选项(设置之后，会自动避开工作日的上学时段及每天的睡觉时间)
+        </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom text-right  padding-right">
+        <view class="action">
             碎觉时间
         </view>
-        <picker mode="time" model:value="{{sleep_st}}" start="09:01" end="21:01">
+        <picker mode="time" model:value="{{sleep_st}}" start="0:00" end="23:59" bindchange="change_time">
             <view class="picker">
                 {{sleep_st}}
             </view>
@@ -109,12 +115,32 @@
     </view>
     <view class="cu-bar bg-white solid-bottom padding-right">
         <view class="action">
-            <text class="cuIcon-title text-blue"></text>
             起床时间
         </view>
-        <picker mode="time" model:value="{{sleep_en}}" start="09:01" end="21:01" >
+        <picker mode="time" model:value="{{sleep_en}}" start="0:00" end="23:59" bindchange="change_time">
             <view class="picker">
                 {{sleep_en}}
+            </view>
+        </picker>
+    </view>
+
+    <view class="cu-bar bg-white solid-bottom text-right padding-right">
+        <view class="action">
+            上学时间
+        </view>
+        <picker mode="time" model:value="{{work_st}}" start="0:00" end="23:59" bindchange="change_time">
+            <view class="picker">
+                {{work_st}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-bar bg-white solid-bottom padding-right">
+        <view class="action">
+            下课时间
+        </view>
+        <picker mode="time" model:value="{{work_en}}" start="0:00" end="23:59" bindchange="change_time">
+            <view class="picker">
+                {{work_en}}
             </view>
         </picker>
     </view>
