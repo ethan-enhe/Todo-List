@@ -1,24 +1,37 @@
+<view style="z-index: -1;{{(im=='none' || !im)?'':'background-image: url('+im+');'}} height:fit-content;width:100%;height:100%;position:fixed">
+</view>
 
-<view class="bg-gradual-{{cl}} padding radius text-center shadow-blur">
-<view style="font-size:30px">{{(hour > 17|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{city}} </view>
+<view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
+      <view style="font-size:30px">{{(hour > 17|| hour < 2)?"晚安":(hour >12)?"下午好":"早安"}} {{country}}{{ city ==="...定位中"?"":"- " + city}} </view>
+      <view class="padding-sm" >
+                           <view style="display:flex;flex-direction:row" class="flex-sub text-center">
+                                <view class="padding">
+                                    <view class="cu-avatar radius flex-sub text-center" >
+                                       <text class="cuIcon-people"></text>
+                                       <view class="cu-tag badge {{index%2==0?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>   
+                                    </view>
+                                    <view style="display:flex;flex-direction:row">
+                                       <view class="flex-sub text-center">
+                                           <view class="solid-bottom text-df padding">已完成</view>
+                                           <view calss="padding">0天</view>
+                                       </view>
+                                       <view class="flex-sub text-center">
+                                           <view class="solid-bottom text-df padding">待完成</view>
+                                           <view calss="padding">0</view>
+                                       </view>
 
-<view class="padding-sm" >
-                    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-                    <view style="display:flex;flex-direction:row">
-                     <icon type="info" size="44"></icon>
-                     <view>
-                        <view  class="text-lg">国家(地区): {{country}}</view>
-                        <view class="text-lg">城市: {{city}}</view>
-                     </view>
-                     </view>
-                     </view>
-<view  class="bg-gradual-white padding radius text-center shadow-blur">{{curstr}}</view>
-<view style="display:flex;flex-direction: row;">
-   <view ontap="edit_task"class="text-cut bg-red light padding-sm radius shadow-blur"></view>                 
-</view>
-<view>
-</view>
-</view>
+                                    </view>
+                                 </view>
+                           </view>
+                     <view  class="bg-gradual-white padding radius text-center shadow-blur">{{curstr}}</view>
+      </view>
+
+   
+
+   
+
+
+
 </view>
 
 
