@@ -18,6 +18,13 @@ Page({
                 selected: 3
             })
         }
+        this.setData({
+            sleep_st: app.globaldata.sleep_st,
+            sleep_en: app.globaldata.sleep_en,
+            work_st: app.globaldata.work_st,
+            work_en: app.globaldata.work_en
+        })
+
     },
     data: {
         cl,
@@ -126,6 +133,10 @@ Page({
                     app.tasklist.list[i] = utils.fix_task(app.tasklist.list[i]);
             }
         });
+    },
+    change_time() {
+
+
     }
 })
 
