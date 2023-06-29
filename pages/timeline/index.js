@@ -70,10 +70,10 @@ Page({
             return utils.cmp_date(b.start_time, a.start_time);
         });
         var showdata = new Array();
-        console.log(showdata.length);
+        // console.log(showdata.length);
         var lastmonth = {};
         for (var i = 0; i < taskdata.length; i++) {
-            if ((taskdata[i].importance == this.data.whether_important) && (taskdata[i].complete == this.data.whether_completed)) {
+            if ((taskdata[i].importance || !this.data.whether_important) && (!taskdata[i].complete || !this.data.whether_completed)) {
 
                 var time = taskdata[i].start_time;
                 taskdata[i].day = time == null ? "Nan" :

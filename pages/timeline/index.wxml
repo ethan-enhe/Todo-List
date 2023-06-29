@@ -3,12 +3,12 @@
 </view>
 <view class="cu-bar bg-white solid-bottom">
         <view class="action">
-            <text class="text-black text-xl text-bold " style="font-size:15px">是否重要</text>
-            <switch class="red margin-right right" model:checked="{{whether_important}}" bindchange="importance_switch" ></switch>
+            <text class="text-black text-lg" >仅重要</text>
+            <switch style="zoom:0.8" class="red margin-left right" model:checked="{{whether_important}}" bindchange="importance_switch" ></switch>
         </view>
          <view class="action">
-            <text class="text-black text-xl text-bold " style="font-size:15px">是否完成</text>
-            <switch class="red margin-right right" model:checked="{{whether_completed}}" bindchange="completeness_switch" ></switch>
+            <text class="text-black text-lg" >仅未完成</text>
+            <switch style="zoom:0.8" class="red margin-left right" model:checked="{{whether_completed}}" bindchange="completeness_switch" ></switch>
         </view>
 </view>
 <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;height:100%">
