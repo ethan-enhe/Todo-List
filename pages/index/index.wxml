@@ -6,7 +6,7 @@
 <view class="bg-gradual-{{cl}} padding radius shadow-blur" style="opacity: 85%;">
     
       <view class="bg-white padding flex-sub "  style="display:flex;flex-direction:row">
-         <input model:value="{{content}}" class="text-left" type="number" placeholder="例：高考" confirm-type="done" bindfocus="focus_func"></input>
+         <input model:value="{{content}}" class="text-left" type="text" placeholder="例：高考" confirm-type="done" bindfocus="focus_func"></input>
          <button bindtap="search_func" class="round cu-btn bg-blue" style="size:10px">搜索</button>
          
          
